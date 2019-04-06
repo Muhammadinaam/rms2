@@ -1,0 +1,18 @@
+<div *ngIf="field.invalid && (field.dirty || field.touched)"
+    class="alert alert-danger">
+
+  <div *ngIf="field.errors.email">
+    {{fieldName}} is not valid email
+  </div>
+
+  <div *ngIf="field.errors.required">
+    {{fieldName}} is required
+  </div>
+  <div *ngIf="field.errors.minlength">
+    {{fieldName}} must be at least {{min}} characters long
+  </div>
+  <div *ngIf="field.errors.maxlength">
+    {{fieldName}} must be not be more than {{max}} characters long
+  </div>
+
+</div>

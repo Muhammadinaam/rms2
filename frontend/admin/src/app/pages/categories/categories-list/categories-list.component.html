@@ -1,0 +1,23 @@
+<div class="row">
+
+    <nb-card class="col-md-12">
+      <nb-card-header>
+        Categories
+        <button class="float-right" nbButton size="xsmall" [routerLink]="['/pages/categories/create']" >Add Category</button>
+      </nb-card-header>
+  
+      <nb-card-body>
+  
+        <datatable 
+          urlPart="categories" 
+          [columns]="columns"
+          [actionColumn]="actionColumn"></datatable>
+  
+      </nb-card-body>
+  
+  
+    </nb-card>
+  
+  
+  </div>
+  

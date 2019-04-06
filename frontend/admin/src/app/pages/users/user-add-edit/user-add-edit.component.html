@@ -1,0 +1,94 @@
+<div class="row">
+
+  <nb-card class="col-md-12">
+
+    <nb-card-header>
+      User
+    </nb-card-header>
+
+    <nb-card-body>
+      <form #userForm="ngForm" (ngSubmit)="onSubmit()" autocomplete="off">
+
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="name" class="form-control" id="name" 
+            name="name" [(ngModel)]="data.name" #name="ngModel" required autocomplete="off">
+          <validation [field]="name" fieldName="Name"></validation>
+        </div>
+
+        <div class="form-group">
+          <label for="userid">User ID:</label>
+          <input type="userid" class="form-control" id="userid" 
+            name="userid" [(ngModel)]="data.userid" #userid="ngModel" required autocomplete="off">
+          <validation [field]="userid" fieldName="User ID"></validation>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address:</label>
+          <input type="email" class="form-control" id="email" 
+            name="email" [(ngModel)]="data.email" #email="ngModel" email autocomplete="off">
+          <validation [field]="email" fieldName="Email"></validation>
+        </div>
+
+        <div class="form-group">
+          <label for="pwd">Password: 
+            <span class="text-danger">
+              {{ editingId != null ? 'Leave empty if you don\'t want to change password' : '' }}
+            </span>
+          </label>
+          <input type="password" class="form-control" id="pwd" autocomplete="new-password"
+            name="password" [(ngModel)]="data.password" #password="ngModel" [required]="editingId==null ? true : false">
+          <validation [field]="password" fieldName="Password"></validation>
+        </div>
+        
+        <div class="form-group">
+            <label for="user_type">User Type:</label>
+            <select class="form-control" id="user_type" 
+              name="user_type" [(ngModel)]="data.user_type" #user_type="ngModel">
+              <option value="Admin">Admin</option>
+              <option value="Super Admin">Super Admin</option>
+              <option value="Customer">Customer</option>
+            </select>
+            <validation [field]="user_type" fieldName="User Type"></validation>
+          </div>
+
+        <div class="form-group form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox"
+            name="is_activated" [(ngModel)]="data.is_activated" #is_activated="ngModel"> Is Activated
+          </label>
+        </div>
+
+        <br><br>
+
+        <div *ngIf="data.user_type == 'Admin'" id="permissions">
+          <h5>Permissions:</h5>
+
+          <table class="table">
+            <tbody>
+              <ng-container *ngFor="let permissionGroup of allPermissions | keyvalue">
+                <tr class="table-primary">
+                  <th colspan="2">{{permissionGroup.key}}</th>
+                </tr>
+                <tr *ngFor="let permission of permissionGroup.value">
+                  <td>{{permission.title}}</td>
+                  <td>
+                    <input type="checkbox"
+                    name="{{permission.idt}}" [(ngModel)]="data.permissions[permission.idt]">
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+
+        <hr>
+
+        <button type="submit" class="btn btn-sm btn-primary float-right" [disabled]="userForm.invalid || submitting">Submit</button>
+
+      </form>
+    </nb-card-body>
+
+  </nb-card>
+
+</div>

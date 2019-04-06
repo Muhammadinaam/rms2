@@ -1,0 +1,75 @@
+<section style="background-image: url('assets/images/hero.jpg'); background-repeat: none; background-size: cover; background-position: center;" class="hero is-fullheight-with-navbar">
+</section>
+
+<section class="hero ">
+  <div class="hero-body">
+    <div class="container">
+      <h4 class="title has-text-centered">Welcome to Chillies</h4>
+      <p class="has-text-justified">
+          At Chillies, we are passionate about good food. We deliver excellent food and service consistently with the help of our well-groomed staffs, so we stand out from the rest. We have an extensive traditional and authentic menu to choose from. We believe our food is exceptional due to the standards of selecting the finest ingredients and spices to make meal a good experience to remember.
+  
+          We would welcome you to try out our menu. We promise you that with all the passion and effort that we put into our food, it would be miles ahead of your expectations.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section style="background-image: url('assets/images/hero.jpg'); background-repeat: none; background-size: cover; background-position: center;" class="hero">
+  <div class="hero-body">
+    <div style="background: rgba(255, 255, 255, 0.95)" class="container has-text-centered">
+        <h4 class="subtitle">Fast Home Delivery or Phone and Collect</h4>
+
+        <p class="has-text-danger">Opening Hours - 4:00PM - 12:00AM</p>
+        <p class="has-text-danger">Online Delivery Times 4:30PM - 11:30PM</p>
+
+        <p>Delivery Charge - £2.00 Minimum Order £5.00.</p>
+
+        <p>Delivery areas are Balloch, Alexandria, Jamestown, Bonhill, Strathleven, Renton, 
+          Tullychewan. Customers ordering out of these areas please phone in to make an order 
+          as delivery charges changes with distance.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<div *ngIf="loading">
+  <loading></loading>
+</div>
+<section *ngIf="!loading" class="hero">
+  <section class="hero-body">
+    <div class="container">
+        <h4 class="title has-text-centered">Our Menu</h4>
+
+        <div class="columns">
+          
+          <div *ngFor="let category of categories" class="column">  
+            <category-card class="pointer" [category]="category" (click)="menuClicked(category.name)"></category-card>
+          </div>
+
+        </div>
+
+        <div class="buttons is-centered">
+          <a class="button is-link is-rounded is-outlined" (click)="setMenuModalVisibility(true)">Explore Menu</a>
+        </div>
+
+
+
+    </div>
+  </section>
+</section>
+
+<div class="container">
+  <div class="columns">
+    <div class="column">
+      <b>Map Location</b>
+      <map></map>
+    </div>
+    <div class="column">
+        <img src="assets/images/footer2.png">
+    </div>
+    <div class="column">
+        <img src="assets/images/footer3.png">
+    </div>
+  </div>
+</div>

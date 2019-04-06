@@ -1,0 +1,64 @@
+
+
+<h3>Options:</h3>
+
+
+<div 
+  style="background-color: lightblue; margin-bottom: 15px; padding-top: 10px;" 
+  *ngFor="let option of options; let i = index" class="row">
+  
+  
+  <div class="form-group col-md-6">
+    <label for="option_name" class="control-label">Name:</label>
+    <div>
+      <input type="text" name="option_name" id="option_name" 
+        class="form-control" [(ngModel)]="options[i].name" #option_name="ngModel" required autocomplete="off">
+    </div>
+  </div>
+  
+  <div class="form-group col-md-6">
+    <label for="option_type" class="control-label">Type:</label>
+    <div>
+      <select name="option_type" id="option_type" 
+        class="form-control" [(ngModel)]="options[i].type" #option_type="ngModel">
+        <option value="Single" selected>Single</option>
+        <option value="Multiple">Multiple</option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="options[i].options_items && options[i].options_items.length != 0" class="col-md-12">
+    <h4>Option Items</h4>
+    <table style="background-color:white;" class="table table-borderd">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let option_item of options[i].options_items; let j = index">
+          <td>
+            <input type="text" class="form-control" [(ngModel)]="options[i].options_items[j].name">
+          </td>
+          <td>
+              <input type="number" min="0" class="form-control" [(ngModel)]="options[i].options_items[j].price">
+          </td>
+          <td>
+            <button type="button" class="btn btn-xs btn-danger" (click)="deleteOptionItem(i, j)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <button type="button" class="btn btn-xs btn-danger" (click)="deleteOption(i)">Delete Option</button>  
+  <button type="button" class="btn btn-xs btn-primary" (click)="addOptionItem(i)">Add Option Item</button>  
+
+  
+
+</div>
+
+<button type="button" class="btn btn-xs btn-info" (click)="addOption()">Add Option</button>
+

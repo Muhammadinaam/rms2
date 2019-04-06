@@ -1,0 +1,38 @@
+/* You can add global styles to this file, and also import other style files */
+
+.pointer {
+    cursor: pointer;
+}
+
+.nav2 {
+    position: fixed;
+    top: 3.25rem;
+    padding: 5px;
+    z-index: 10;
+    display: flex;
+    background-color: white;
+}
+
+.nav2 > .menu-button {
+    width: 20vw;
+}
+
+.nav2 > .order-button {
+    width: 78vw;
+}
+
+html {
+    padding-top: 6.25rem !important;
+}
+
+.left-indented {
+    padding-left: 40px !important;
+}
+
+agm-map {
+    height: 300px;
+}
+
+#toast-container > div {
+    opacity:1;
+}

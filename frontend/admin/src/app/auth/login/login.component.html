@@ -1,0 +1,73 @@
+<h1 id="title" class="title">Login</h1>
+<p class="sub-title">Hello! Log in with your userid.</p>
+
+<nb-alert *ngIf="error != '' && !submitted" outline="danger" role="alert">
+  <p class="alert-title"><b>Oh snap!</b></p>
+  <ul class="alert-message-list">
+    <li class="alert-message">{{ error }}</li>
+  </ul>
+</nb-alert>
+
+<form (ngSubmit)="login()" #form="ngForm" aria-labelledby="title">
+
+  <div class="form-control-group">
+    <label class="label" for="input-userid">User ID:</label>
+    <input nbInput
+           fullWidth
+           [(ngModel)]="user.userid"
+           #userid="ngModel"
+           name="userid"
+           id="input-userid"
+           placeholder="User ID"
+           autofocus
+           [status]="userid.dirty ? (userid.invalid  ? 'danger' : 'success') : ''"
+           [required]="true"
+           [attr.aria-invalid]="userid.invalid && userid.touched ? true : null">
+    <ng-container *ngIf="userid.invalid && userid.touched">
+      <p class="error-message" *ngIf="userid.errors?.required">
+        userid is required!
+      </p>
+    </ng-container>
+  </div>
+
+  <div class="form-control-group">
+    <label class="label" for="input-password">Password:</label>
+    <input nbInput
+           fullWidth
+           [(ngModel)]="user.password"
+           #password="ngModel"
+           name="password"
+           type="password"
+           id="input-password"
+           placeholder="Password"
+           [status]="password.dirty ? (password.invalid  ? 'danger' : 'success') : ''"
+           required
+           minlength="3"
+           [attr.aria-invalid]="password.invalid && password.touched ? true : null">
+    <ng-container *ngIf="password.invalid && password.touched ">
+      <p class="error-message" *ngIf="password.errors?.required">
+        Password is required!
+      </p>
+      <p class="error-message" *ngIf="password.errors?.minlength || password.errors?.maxlength">
+        Password should contains
+        from 3
+        to 5
+        characters
+      </p>
+    </ng-container>
+  </div>
+
+  <!-- <div class="form-control-group accept-group">
+    <nb-checkbox name="rememberMe" [(ngModel)]="user.rememberMe" *ngIf="rememberMe">Remember me</nb-checkbox>
+    <a class="forgot-password" routerLink="../request-password">Forgot Password?</a>
+  </div> -->
+
+  <button nbButton
+          fullWidth
+          status="success"
+          [disabled]="submitted || !form.valid"
+          [class.btn-pulse]="submitted">
+    Log In
+  </button>
+</form>
+

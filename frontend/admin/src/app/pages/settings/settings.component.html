@@ -1,0 +1,48 @@
+<div class="row">
+
+  <nb-card class="col-md-12">
+    <nb-card-header>
+      Settings
+    </nb-card-header>
+
+    <nb-card-body>
+
+
+      <div *ngFor="let settings_group of settings | keyvalue">
+        <h4>{{settings_group.key}}</h4>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Setting</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let setting of settings_group.value">
+              <td>
+                <p>{{setting.name}}</p>
+                <small>{{setting.instructions}}</small>
+              </td>
+              <td>
+                
+                <div *ngIf="setting.type == 'number' || setting.type == 'text'">
+                  <input class="form-control" type="{{setting.type}}" [(ngModel)]="setting.value">
+                </div>
+
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </nb-card-body>
+
+    <nb-card-footer class="text-right">
+      <button class="btn btn-primary" (click)="saveSettings()">Save</button>
+    </nb-card-footer>
+
+  </nb-card>
+
+
+</div>

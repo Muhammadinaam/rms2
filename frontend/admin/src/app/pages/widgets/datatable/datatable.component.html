@@ -1,0 +1,32 @@
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Search" [(ngModel)]="search">
+  <div class="input-group-append">
+    <button class="btn btn-success" type="button" (click)="getPaginatedData(0, search)">Search</button> 
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <th *ngFor="let column of columns">{{column.header}}</th>
+      <th *ngIf="actionColumn.show" class="text-center">{{actionColumn.header}}</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td *ngFor="let column of columns" 
+          [innerHTML]="modify(item[column.dataName], column.modifier)"></td>
+        <td *ngIf="actionColumn.show && actionColumn.showEdit" class="text-center">
+            <button nbButton size="xsmall" [routerLink]="[item.id+'/edit']">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p>Showing {{from}} - {{to}} of total {{total}} records</p>
+
+<ul class="pagination float-right">
+  <li class="page-item {{ from == 1 ? 'disabled' : '' }}"><a class="page-link" (click)="getPaginatedData(currentPage-1, search)">Previous</a></li>
+  <li class="page-item {{ to == total ? 'disabled' : '' }}"><a class="page-link" (click)="getPaginatedData(currentPage+1, search)">Next</a></li>
+</ul>
