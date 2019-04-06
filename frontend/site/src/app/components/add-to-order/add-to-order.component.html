@@ -34,7 +34,7 @@
   
           <!-- options -->
           <!-- <p>{{category.options | json}}</p> -->
-          <div *ngIf="category.options">
+          <div *ngIf="category.options && category.options.length > 0">
             <hr>
             <p class="title is-4">Options</p>
             <!-- <p>{{singleOptions | json}}</p>

@@ -9,7 +9,7 @@
   <div class="columns is-multiline">
 
     <div *ngFor="let item of category.items" class="column is-one-quarter">
-      <div class="card">
+      <div class="card" (click)="addToOrderClicked(item, category)">
         <div class="card-image">
           <figure class="image is-4by3">
             <img [src]=" basePath + '/images/' + item.image" alt="Placeholder image">

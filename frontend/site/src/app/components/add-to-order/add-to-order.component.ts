@@ -153,8 +153,9 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     this.setModalVisibility(false);
     this.reset();
 
-    this.toastr.success("Item added to Order", '', {
+    this.toastr.success("Item added to Order. Click \"Your Order\" Button at Top to Checkout", '', {
       positionClass: 'toast-bottom-center',
+      timeOut: 15000,
     });
   }
 
