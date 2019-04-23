@@ -9,7 +9,7 @@ import 'rxjs/add/operator/do';
 })
 export class AuthInterceptorService implements HttpInterceptor {
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<import("@angular/common/http").HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
     request = request.clone({
       setHeaders: {
