@@ -15,7 +15,7 @@ class AddOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             
-            $table->bigIncrements('id');
+            $table->uuid('id')->primary();
 
             $table->integer('order_type_id');
             $table->string('order_number')->unique();

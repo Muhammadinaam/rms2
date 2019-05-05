@@ -42,12 +42,20 @@ class OrdersController extends Controller
         }
     }
 
-    private function generateOrderNumber()
+    private function generateOrderNumber($order_type)
     {
+        if($order_type == null || $order_type == '')
+        {
+            throw new \Exception('Error in generateOrderNumber Function: order_type is null or empty');
+        }
+
+        $order_type = $order_type == '' ? null : $order_type;
+
         $period = date('Ym');
 
         $last_sequence = DB::table('order_number_sequences')
             ->where('period', $period)
+            ->where('order_type', $order_type)
             ->first();
 
         if($last_sequence == null)
@@ -56,10 +64,11 @@ class OrdersController extends Controller
                 ->insert(
                     [
                         'period' => $period,
+                        'order_type' => $order_type == '' ? null : $order_type,
                         'number' => 1,
                     ]);
 
-            return $period . '-' . 1;
+            return $period . '-' . 1 . '-' . $order_type;
         }
 
         $last_number = $last_sequence->number;
@@ -69,11 +78,12 @@ class OrdersController extends Controller
 
         DB::table('order_number_sequences')
             ->where('period', $period)
+            ->where('order_type', $order_type)
             ->update([
                 'number' => $new_number,
             ]);
 
-        return $period . '-' . $new_number;
+        return $period . '-' . $new_number . '-' . $order_type;
     }
 
     public function saveOrder($order, $request_data)
@@ -81,7 +91,7 @@ class OrdersController extends Controller
         $order_type_id = DB::table('order_types')->where('idt', $request_data['order_type_idt'])->first()->id;
 
         $order->order_type_id = $order_type_id;
-        $order->order_number = $order->order_number != null ? $order->order_number : $this->generateOrderNumber();
+        $order->order_number = $order->order_number != null ? $order->order_number : $this->generateOrderNumber($request_data['order_type_idt']);
         $order->customer_name = $request_data['customer_name'];
         $order->customer_address = $request_data['customer_address'];
         $order->customer_lat = $request_data['customer_lat'];
@@ -131,8 +141,10 @@ class OrdersController extends Controller
         
         foreach($request_data['items'] as $item)
         {
-            $order_item_id = DB::table('order_items')
-                ->insertGetId([
+            $order_item_id = (string) Str::uuid();
+            DB::table('order_items')
+                ->insert([
+                    'id' => $order_item_id,
                     'order_id' => $order->id,
                     'item_id' => $item['id'],
                     'name' => $item['name'],
@@ -144,8 +156,10 @@ class OrdersController extends Controller
 
             foreach($item['options'] as $option)
             {
-                $order_item_option_id = DB::table('order_items_options')
-                    ->insertGetId([
+                $order_item_option_id = (string) Str::uuid();
+                DB::table('order_items_options')
+                    ->insert([
+                        'id' => $order_item_option_id,
                         'order_item_id' => $order_item_id,
                         'option_id' => $option['id'],
                         'name' => $option['name'],
@@ -155,6 +169,7 @@ class OrdersController extends Controller
                 {
                     DB::table('order_items_options_items')
                         ->insert([
+                            'id' => (string) Str::uuid(),
                             'order_item_option_id' => $order_item_option_id,
                             'option_item_id' => $option_item['id'],
                             'name' => $option_item['name'],

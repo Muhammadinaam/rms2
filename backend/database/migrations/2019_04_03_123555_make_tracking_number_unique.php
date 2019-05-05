@@ -26,7 +26,7 @@ class MakeTrackingNumberUnique extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropUnique('tracking_number');
+            $table->dropUnique(['tracking_number']);
         });
     }
 }

@@ -19,9 +19,9 @@ class AddSettingsTable extends Migration
             $table->string('group');
             $table->string('name')->unique();
             $table->string('idt')->unique();
-            $table->string('value')->nullable();
+            $table->text('value')->nullable();
             $table->string('type');
-            $table->string('instructions')->nullable();
+            $table->text('instructions')->nullable();
             $table->string('select_options')->nullable();
         });
     }

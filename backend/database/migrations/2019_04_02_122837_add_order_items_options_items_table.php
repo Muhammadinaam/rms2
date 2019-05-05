@@ -15,10 +15,10 @@ class AddOrderItemsOptionsItemsTable extends Migration
     {
         Schema::create('order_items_options_items', function (Blueprint $table) {
             
-            $table->bigIncrements('id');
+            $table->uuid('id')->primary;
 
-            $table->bigInteger('order_item_option_id');
-            $table->bigInteger('option_item_id');
+            $table->uuid('order_item_option_id');
+            $table->uuid('option_item_id');
             $table->string('name');
             $table->string('price');
         });

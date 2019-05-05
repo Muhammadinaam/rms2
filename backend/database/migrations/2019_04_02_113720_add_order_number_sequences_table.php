@@ -17,6 +17,7 @@ class AddOrderNumberSequencesTable extends Migration
             $table->bigIncrements('id');
 
             $table->string('period');
+            $table->string('order_type');
             $table->integer('number');
         });
     }

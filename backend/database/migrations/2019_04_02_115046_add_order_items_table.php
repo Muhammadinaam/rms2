@@ -15,9 +15,10 @@ class AddOrderItemsTable extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             
-            $table->bigIncrements('id');
+            $table->uuid('id')->primary();
             
-            $table->bigInteger('order_id');
+            $table->uuid('order_id');
+            
             $table->bigInteger('item_id');
             $table->string('name');
             $table->decimal('price');
