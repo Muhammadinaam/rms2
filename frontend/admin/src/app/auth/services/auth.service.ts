@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
 
+  user:any = null;
+
   constructor(private http: HttpClient, private router: Router) { }
   
   login(userID: string, password: string): any {
@@ -28,6 +30,10 @@ export class AuthService {
     })
     .do(res => this.setSession(res)) 
     .shareReplay();
+  }
+
+  public getLoggedInUser(){
+    return this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/logged-in-user');
   }
 
   private setSession(authResult) {

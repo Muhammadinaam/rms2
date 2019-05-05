@@ -37,4 +37,9 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('save-settings', 'SettingsController@saveSettings');
 
     Route::get('orders', 'OrdersController@index');
+
+    Route::get('logged-in-user', function(){
+        return Auth::user();
+    });
+
 });

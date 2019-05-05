@@ -4,7 +4,6 @@ import { GenericDataService } from '../../classes/GenericDataService';
 import { HttpClient } from '@angular/common/http';
 import { GenericAddEdit } from '../../classes/GenericAddEdit';
 import { BaseEndPointService } from '../../../services/base-end-point.service';
-import { baseDirectiveCreate } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'items-add-edit',
