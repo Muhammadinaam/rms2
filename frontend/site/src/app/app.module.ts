@@ -22,6 +22,7 @@ import { MapComponent } from './components/map/map.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SettingsService } from './services/settings.service';
+import { SliderComponent } from './components/slider/slider.component';
 
 export function initializeApp1(settingsService: SettingsService) {
   return (): Promise<any> => { 
@@ -44,7 +45,8 @@ export function initializeApp1(settingsService: SettingsService) {
     TrackOrderComponent,
     FeedbackComponent,
     ContactComponent,
-    MapComponent
+    MapComponent,
+    SliderComponent
   ],
   imports: [
     BrowserModule,
