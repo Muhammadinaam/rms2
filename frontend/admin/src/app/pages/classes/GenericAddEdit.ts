@@ -85,23 +85,24 @@ export class GenericAddEdit implements OnInit
         error => {
             if(error.status == 422)
             {
-                let validationMessages = error.error.errors;
-
-                let errorMessage = '';
-                
-                Object.keys(validationMessages).forEach(key =>{
-                    validationMessages[key].forEach(msg => {
-                        errorMessage += '- ' + msg + '\n';
-                    })
-                })
-
-                alert(errorMessage);
+                this.alertValidationErrors(error);
 
             }else
             {
                 alert(error.message);
             }
         }).add(() => this.submitting = false);
+    }
+
+    private alertValidationErrors(error: any) {
+        let validationMessages = error.error.errors;
+        let errorMessage = '';
+        Object.keys(validationMessages).forEach(key => {
+            validationMessages[key].forEach(msg => {
+                errorMessage += '- ' + msg + '\n';
+            });
+        });
+        alert(errorMessage);
     }
 
     uploadImagesAndSubmitData(): any {
@@ -143,6 +144,16 @@ export class GenericAddEdit implements OnInit
                         {
                             this.submitData();
                         }
+                    }, error => {
+                        if(error.status == 422)
+                        {
+                            this.alertValidationErrors(error);
+
+                        }else
+                        {
+                            alert(error.message);
+                        }
+                        this.submitting = false;
                     });
             }
             else

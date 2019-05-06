@@ -2,39 +2,40 @@
   <loading></loading>
 </div>
 
-<div *ngIf="category && !loading" class="container">
-  <h3 class="title is-4 has-text-centered">{{category.name}}</h3>
-  <hr>
+<section class="section">
+  <div *ngIf="category && !loading" class="container">
+    <h3 class="title is-4 has-text-centered">{{category.name}}</h3>
+    <hr>
 
-  <div class="columns is-multiline">
+    <div class="columns is-multiline">
 
-    <div *ngFor="let item of category.items" class="column is-one-quarter">
-      <div class="card" (click)="addToOrderClicked(item, category)">
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img [src]=" basePath + '/images/' + item.image" alt="Placeholder image">
-          </figure>
-        </div>
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content has-text-centered">
-              <p class="title is-5">{{item.name}}</p>
-              <p class="subtitle is-6">{{item.price | currency:currencyCode}}</p>
+      <div *ngFor="let item of category.items" class="column is-one-quarter">
+        <div class="card" (click)="addToOrderClicked(item, category)">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img [src]=" basePath + '/images/' + item.image" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content has-text-centered">
+                <p class="title is-5">{{item.name}}</p>
+                <p class="subtitle is-6">{{item.price | currency:currencyCode}}</p>
 
-              <button class="button is-outlined is-info" (click)="addToOrderClicked(item, category)">Add to Order</button>
+                <button class="button is-outlined is-info" (click)="addToOrderClicked(item, category)">Add to Order</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
+    <br><br><br><br>
+    <hr>
+
   </div>
-
-  <br><br><br><br>
-  <hr>
-
-</div>
-
+</section>
 
 
 <add-to-order 

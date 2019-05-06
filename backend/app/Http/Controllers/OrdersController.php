@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Order;
 use DB;
 use Auth;
+use Illuminate\Support\Str;
 
 class OrdersController extends Controller
 {

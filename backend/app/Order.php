@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use App\UsesUuid;
+    use UsesUuid;
 
     protected $table = 'orders';
 }

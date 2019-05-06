@@ -10,6 +10,10 @@ class ImagesController extends Controller
 
     public function storeImage()
     {
+        $this->validate(request(), [
+            'image' => 'required|image|mimes:jpeg,bmp,png|max:1024',
+        ]);
+
         $folder = request()->input('folder');
 
         $filename = uniqid() . '-' . time().'.'.request()->image->getClientOriginalExtension();

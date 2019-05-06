@@ -113,7 +113,6 @@ class CategoriesController extends Controller
             
         } catch (\Throwable $ex) {
             DB::rollBack();
-            throw $ex;
             return ['success' => false, 'message' => $ex->getMessage()];
         }
     }

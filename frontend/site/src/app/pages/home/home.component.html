@@ -4,11 +4,9 @@
 <section class="hero ">
   <div class="hero-body">
     <div class="container">
-      <h4 class="title has-text-centered">Welcome to Chillies</h4>
+      <h4 class="title has-text-centered">Welcome to {{settingsService.getSettingFromArray('restaurant-name')}}</h4>
       <p class="has-text-justified">
-          At Chillies, we are passionate about good food. We deliver excellent food and service consistently with the help of our well-groomed staffs, so we stand out from the rest. We have an extensive traditional and authentic menu to choose from. We believe our food is exceptional due to the standards of selecting the finest ingredients and spices to make meal a good experience to remember.
-  
-          We would welcome you to try out our menu. We promise you that with all the passion and effort that we put into our food, it would be miles ahead of your expectations.
+          {{settingsService.getSettingFromArray('welcome-note')}}
       </p>
     </div>
   </div>
@@ -19,14 +17,16 @@
     <div style="background: rgba(255, 255, 255, 0.95)" class="container has-text-centered">
         <h4 class="subtitle">Fast Home Delivery or Phone and Collect</h4>
 
-        <p class="has-text-danger">Opening Hours - 4:00PM - 12:00AM</p>
-        <p class="has-text-danger">Online Delivery Times 4:30PM - 11:30PM</p>
+        <p class="has-text-danger">Opening Hours: {{openingHoursStart}} - {{openingHoursEnd}}</p>
+        <p class="has-text-danger">Online Delivery Times: {{deliveryHoursStart}} - {{deliveryHoursEnd}}</p>
 
-        <p>Delivery Charge - £2.00 Minimum Order £5.00.</p>
+        <br>
+        <p>Minimum Order: {{settingsService.getSettingFromArray('minimum-order-amount')}}</p>
+        
+        <br>
+        <p>{{settingsService.getSettingFromArray('delivery-charges-note')}}</p>
 
-        <p>Delivery areas are Balloch, Alexandria, Jamestown, Bonhill, Strathleven, Renton, 
-          Tullychewan. Customers ordering out of these areas please phone in to make an order 
-          as delivery charges changes with distance.</p>
+        <p>Delivery areas are {{settingsService.getSettingFromArray('delivery-areas')}}</p>
     </div>
   </div>
 </section>
@@ -59,17 +59,50 @@
   </section>
 </section>
 
-<div class="container">
-  <div class="columns">
-    <div class="column">
-      <b>Map Location</b>
-      <map></map>
-    </div>
-    <div class="column">
-        <img src="assets/images/footer2.png">
-    </div>
-    <div class="column">
-        <img src="assets/images/footer3.png">
+<section class="section">
+
+  <div class="container">
+    <div class="columns">
+      
+      <!-- <div class="column">
+        <b>Map Location</b>
+        <map></map>
+      </div> -->
+  
+  
+      <div class="column is-2 has-text-centered"
+      *ngIf="settingsService.getSettingFromArray('android-app-link') != null || settingsService.getSettingFromArray('iphone-app-link') != null">
+        <p class="subtitle">Download App</p>
+        <div *ngIf="settingsService.getSettingFromArray('android-app-link') != null">
+          <a target="_blank" href="{{settingsService.getSettingFromArray('android-app-link')}}">
+            <img src="assets/images/google-play-badge.png" alt="">
+          </a>
+        </div>
+        <div *ngIf="settingsService.getSettingFromArray('iphone-app-link') != null">
+          <a target="_blank" href="{{settingsService.getSettingFromArray('iphone-app-link')}}">
+            <img style="margin:6%;width:88%" src="assets/images/app-store-badge.svg" alt="">
+          </a>
+        </div>
+      </div>
+  
+  
+      <div class="column">
+          <div class="content" [innerHTML]="settingsService.getSettingFromArray('instructions')"></div>
+      </div>
+      <div class="column">
+          <img src="assets/images/logo.png">
+
+          <div class="has-text-centered">
+            <p class="subtitle is-marginless">Address</p>
+            <p>{{settingsService.getSettingFromArray('address')}}</p>
+
+            <br>
+            <p class="subtitle ">Call</p>
+            <p class="title">{{settingsService.getSettingFromArray('telephone')}}</p>
+          </div>
+
+      </div>
     </div>
   </div>
-</div>
+
+</section>

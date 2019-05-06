@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BaseEndPointService } from 'src/app/services/base-end-point.service';
 import { MenuModalService } from 'src/app/services/menu-modal.service';
 import { Router } from '@angular/router';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-home',
@@ -12,11 +13,19 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
  
   loading: boolean;
+  allSettingsArray;
+
+  openingHoursStart = '0:00AM';
+  openingHoursEnd = '0:00AM';
+
+  deliveryHoursStart = '0:00AM';
+  deliveryHoursEnd = '0:00AM';
 
   constructor(
     private http: HttpClient,
     private menuModalService: MenuModalService,
-    private router: Router) { }
+    private router: Router,
+    private settingsService: SettingsService) { }
 
   basePath = BaseEndPointService.getBaseEndPoint();
   categories = null;
@@ -29,6 +38,28 @@ export class HomeComponent implements OnInit {
       }).add(() => {
         this.loading = false;
       });;
+
+      this.allSettingsArray = this.settingsService.allSettingsArray;
+
+      this.getHoursFromSettings();
+  }
+
+  private getHoursFromSettings() {
+    let openingHours = this.settingsService.getSettingFromArray('opening-hours');
+    let openingHoursArray = openingHours.split(",");
+
+    this.openingHoursStart = openingHoursArray[0];
+    if(openingHoursArray.length == 2){
+      this.openingHoursEnd = openingHoursArray[1];
+    }
+
+    let deliveryHours = this.settingsService.getSettingFromArray('opening-hours');
+    let deliveryHoursArray = deliveryHours.split(",");
+
+    this.deliveryHoursStart = deliveryHoursArray[0];
+    if(deliveryHoursArray.length == 2){
+      this.deliveryHoursEnd = deliveryHoursArray[1];
+    }
   }
 
   setMenuModalVisibility(visibility)
