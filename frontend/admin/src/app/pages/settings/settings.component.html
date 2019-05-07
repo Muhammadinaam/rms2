@@ -29,6 +29,9 @@
                   <input class="form-control" type="{{setting.type}}" [(ngModel)]="setting.value">
                 </div>
 
+                <div *ngIf="setting.type == 'image'">
+                  <input class="form-control" type="file" accept="image/*" [(ngModel)]="setting.value">
+                </div>
 
               </td>
             </tr>

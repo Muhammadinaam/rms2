@@ -23,6 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { SettingsService } from './services/settings.service';
 import { SliderComponent } from './components/slider/slider.component';
+import {SlideshowModule} from 'ng-simple-slideshow';
 
 export function initializeApp1(settingsService: SettingsService) {
   return (): Promise<any> => { 
@@ -57,7 +58,8 @@ export function initializeApp1(settingsService: SettingsService) {
     ToastrModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBybYVclV94ibbDRa2VR4Tr95TDeQJIQTk'
-    })
+    }),
+    SlideshowModule
   ],
   providers: [
     SettingsService,
