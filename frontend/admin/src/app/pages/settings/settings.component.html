@@ -30,7 +30,8 @@
                 </div>
 
                 <div *ngIf="setting.type == 'image'">
-                  <input class="form-control" type="file" accept="image/*" [(ngModel)]="setting.value">
+                  <img class="img-thumbnail" style="max-width: 200px;" [src]="setting[imageURL]" alt="Image">
+                  <input class="form-control" type="file" accept="image/*" (change)="showImage($event, setting);">
                 </div>
 
               </td>
