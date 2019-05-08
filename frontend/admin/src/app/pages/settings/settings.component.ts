@@ -13,7 +13,6 @@ export class SettingsComponent implements OnInit {
 
   submitting = false;
   settings;
-  imagesFolder: "settings";
 
   constructor(private settingsService: SettingsService, private httpClient: HttpClient) { }
 
@@ -21,6 +20,15 @@ export class SettingsComponent implements OnInit {
     this.settingsService.allSettings()
       .subscribe(settings => {
         this.settings = settings;
+
+        var settingGroups = Object.keys(this.settings);
+        settingGroups.forEach(settingGroup => {
+          this.settings[settingGroup].forEach(setting => {
+            if(setting['type'] == 'image' && setting['value'] != null && setting['value'] != ''){
+              setting['imageURL'] = BaseEndPointService.getBaseEndPoint() + '/images/' + setting['value'];
+            }
+          });
+        });
       })
   }
 
@@ -87,7 +95,7 @@ export class SettingsComponent implements OnInit {
         {
           var fd = new FormData();
           fd.append('image', setting['value']);
-          fd.append('folder', this.imagesFolder);
+          fd.append('folder', "settings");
           this.httpClient.post(BaseEndPointService.getBaseEndPoint() + '/api/store-image', fd)
               .subscribe(resp => {
                   counter++;
@@ -115,7 +123,6 @@ export class SettingsComponent implements OnInit {
 
     });
 
-    console.log(this.settings);
 }
 
 showImage(event: Event, setting): void {
@@ -129,7 +136,6 @@ showImage(event: Event, setting): void {
 
         reader.readAsDataURL(file);
 
-        console.log(setting);
     }
 }
 

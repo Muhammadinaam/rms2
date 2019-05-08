@@ -1,8 +1,9 @@
-<slideshow [height]="height"
-           [minHeight]="'525px'"
-           [autoPlay]="true"
-           [showArrows]="false"
-           [imageUrls]="imageSources"
-           [lazyLoad]="imageSources?.length > 1"
-           [autoPlayWaitForLazyLoad]="true">
-</slideshow>
+<div class="wrapper">
+    <slideshow class="slider" [autoPlay]="true"
+               [showArrows]="true"
+               [showDots]="true"
+               [imageUrls]="imageSources"
+               [lazyLoad]="imageSources?.length > 1"
+               [autoPlayWaitForLazyLoad]="true">
+    </slideshow>
+</div>

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         },
         error => 
         {
-          let message = error.status == 401 ? 'User ID or Password not correct' : error.statusText;
+          let message = error.status == 401 ? 'User ID or Password not correct OR User ID not activated' : error.statusText;
           this.error = message;
         }
       ).add(() =>
