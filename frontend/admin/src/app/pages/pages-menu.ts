@@ -2,9 +2,9 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Orders',
+    title: 'Orders and Tables',
     icon: 'nb-layout-default',
-    link: '/pages/orders',
+    link: '/pages/orders-and-tables',
     home: true,
   },
   // {
@@ -25,6 +25,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/categories',
     data: {
       permission_idt: 'categories-list',
+    }
+  },
+  {
+    title: 'Tables',
+    icon: 'nb-grid-a-outline',
+    link: '/pages/tables',
+    data: {
+      permission_idt: 'tables-list',
     }
   },
   {

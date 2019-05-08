@@ -10,7 +10,6 @@ import { BaseEndPointService } from 'src/app/services/base-end-point.service';
 export class SliderComponent implements OnInit {
 
   imageSources = [];
-  height = '60vh';
 
   constructor(private settingsService: SettingsService) { }
 

@@ -36,3 +36,7 @@ agm-map {
 #toast-container > div {
     opacity:1;
 }
+
+.arrow-container{
+    z-index: 1 !important;
+}

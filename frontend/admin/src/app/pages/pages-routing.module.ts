@@ -68,13 +68,13 @@ const routes: Routes = [{
     },
 
     {
-      path: 'orders',
+      path: 'orders-and-tables',
       component: OpenOrdersAndTablesComponent,
     },
 
     {
       path: '',
-      redirectTo: 'orders',
+      redirectTo: 'orders-and-tables',
       pathMatch: 'full',
     },
   ],
