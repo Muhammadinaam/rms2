@@ -2,38 +2,24 @@
 
   <nb-card class="col-md-12">
     <nb-card-header>
-      Orders
-      <!-- <button class="float-right" nbButton size="xsmall" [routerLink]="['/pages/categories/create']" >Add Category</button> -->
+      Open Orders
+      <button class="float-right" nbButton size="xsmall" [routerLink]="['/pages/orders/create']" >Add New Order</button>
     </nb-card-header>
 
     <nb-card-body>
 
-      <table class="table">
-        <thead>
+    </nb-card-body>
+  </nb-card>
 
-          <tr>
-            <th>Order Number</th>
-            <th>Customer</th>
-            <th>Amount</th>
-            <th>Action</th>
-          </tr>
-        </thead>
 
-        
-        <tbody>
-          
-          <tr *ngFor="let order of orders">
-            <td>{{order.order_number}}</td>
-            <td>{{order.customer_name}}</td>
-            <td>{{order.total_order_amount}}</td>
-            <td><button class="btn btn-primary">Close Order</button></td>
-          </tr>
-        </tbody>
-      </table>
+  <nb-card class="col-md-12">
+    <nb-card-header>
+      Free Tables
+    </nb-card-header>
+
+    <nb-card-body>
 
     </nb-card-body>
-
-
   </nb-card>
 
 
