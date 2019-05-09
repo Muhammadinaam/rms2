@@ -19,9 +19,9 @@ class AddTableTables extends Migration
 
             $table->string('floor');
             $table->string('name');
-            $table->bigInteger('order_id');
-            $table->datetime('reserved_datetime');
-            $table->
+            $table->bigInteger('order_id')->nullable();
+            $table->bigInteger('reservation_id')->nullable();
+            $table->boolean('is_activated');
             
             $table->timestamps();
         });

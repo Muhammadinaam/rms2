@@ -19,9 +19,6 @@ Route::get('/test', function (Request $request) {
     return \App\User::find(1)->permissions;
 });
 
-Route::resource('categories', 'CategoriesController');
-Route::resource('items', 'ItemsController');
-
 Route::get('get-category-with-items', 'CategoriesController@getCategoryWithItems');
 
 Route::get('get-setting-by-idt', 'SettingsController@getSettingByIdt');
@@ -33,6 +30,11 @@ Route::get('get-order-status', 'OrdersController@getOrderStatus');
 Route::middleware(['auth:api'])->group(function () {
     Route::post('store-image', 'ImagesController@storeImage');
     Route::resource('users', 'UsersController');
+    Route::resource('categories', 'CategoriesController');
+    Route::resource('items', 'ItemsController');
+
+    Route::resource('tables', 'TablesController');
+    Route::get('floors', 'TablesController@getFloors');
 
     Route::post('save-settings', 'SettingsController@saveSettings');
 

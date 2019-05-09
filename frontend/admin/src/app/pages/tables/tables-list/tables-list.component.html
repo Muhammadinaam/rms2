@@ -1,0 +1,22 @@
+<div class="row">
+
+  <nb-card class="col-md-12">
+    <nb-card-header>
+      Tables
+      <button class="float-right" nbButton size="xsmall" [routerLink]="['/pages/tables/create']" >Add Table</button>
+    </nb-card-header>
+
+    <nb-card-body>
+
+      <datatable 
+        urlPart="tables" 
+        [columns]="columns"
+        [actionColumn]="actionColumn"></datatable>
+
+    </nb-card-body>
+
+
+  </nb-card>
+
+
+</div>

@@ -12,6 +12,8 @@ import { ItemsListComponent } from './items/items-list/items-list.component';
 import { ItemsAddEditComponent } from './items/items-add-edit/items-add-edit.component';
 import { SettingsComponent } from './settings/settings.component';
 import { OpenOrdersAndTablesComponent } from './orders/open-orders-and-tables/open-orders-and-tables.component';
+import { TablesListComponent } from './tables/tables-list/tables-list.component';
+import { TablesAddEditComponent } from './tables/tables-add-edit/tables-add-edit.component';
 
 const routes: Routes = [{
   path: '',
@@ -60,6 +62,19 @@ const routes: Routes = [{
     {
       path: 'items/create',
       component: ItemsAddEditComponent,
+    },
+
+    {
+      path: 'tables',
+      component: TablesListComponent,
+    },
+    {
+      path: 'tables/:id/edit',
+      component: TablesAddEditComponent,
+    },
+    {
+      path: 'tables/create',
+      component: TablesAddEditComponent,
     },
 
     {

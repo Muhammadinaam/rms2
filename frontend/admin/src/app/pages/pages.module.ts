@@ -17,6 +17,8 @@ import { ItemsAddEditComponent } from './items/items-add-edit/items-add-edit.com
 import { ItemsListComponent } from './items/items-list/items-list.component';
 import { SettingsComponent } from './settings/settings.component';
 import { OpenOrdersAndTablesComponent } from './orders/open-orders-and-tables/open-orders-and-tables.component';
+import { TablesListComponent } from './tables/tables-list/tables-list.component';
+import { TablesAddEditComponent } from './tables/tables-add-edit/tables-add-edit.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -43,6 +45,8 @@ const PAGES_COMPONENTS = [
     ItemsListComponent,
     SettingsComponent,
     OpenOrdersAndTablesComponent,
+    TablesListComponent,
+    TablesAddEditComponent,
   ],
 })
 export class PagesModule {
