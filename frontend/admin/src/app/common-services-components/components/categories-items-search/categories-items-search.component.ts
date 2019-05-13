@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BaseEndPointService } from '../../services/base-end-point.service';
 
 @Component({
   selector: 'categories-items-search',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories-items-search.component.scss']
 })
 export class CategoriesItemsSearchComponent implements OnInit {
+  categories;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+    this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/categories?withitems=1&all=1')
+      .subscribe(categories => this.categories = categories);
   }
 
 }
