@@ -3,8 +3,8 @@ import { DataServiceInterface } from "./DataServiceInterface";
 import { ActivatedRoute, Router } from "@angular/router";
 import { repeat } from "rxjs/operators";
 import { HttpClient, HttpHandler, HttpXhrBackend, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { BaseEndPointService } from "../../services/base-end-point.service";
 import { AuthInterceptorService } from "../../auth/interceptors/auth-interceptor.service";
+import { BaseEndPointService } from "../../common-services-components/services/base-end-point.service";
 
 export class GenericAddEdit implements OnInit
 {

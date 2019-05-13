@@ -3,7 +3,7 @@ import { GenericAddEdit } from '../../classes/GenericAddEdit';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GenericDataService } from '../../classes/GenericDataService';
 import { HttpClient } from '@angular/common/http';
-import { BaseEndPointService } from '../../../services/base-end-point.service';
+import { BaseEndPointService } from '../../../common-services-components/services/base-end-point.service';
 
 @Component({
   selector: 'tables-add-edit',

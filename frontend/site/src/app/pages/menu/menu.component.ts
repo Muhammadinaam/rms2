@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { BaseEndPointService } from 'src/app/services/base-end-point.service';
-import { SettingsService } from 'src/app/services/settings.service';
+import { BaseEndPointService } from '../../../../../admin/src/app/common-services-components/services/base-end-point.service';
+import { SettingsService } from '../../../../../admin/src/app/common-services-components/services/settings.service';
 
 @Component({
   selector: 'app-menu',

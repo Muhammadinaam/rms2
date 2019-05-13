@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BaseEndPointService } from '../../services/base-end-point.service';
 import 'rxjs/add/operator/shareReplay';
 import 'rxjs/add/operator/do';
 import * as moment from "moment";
 import { Router } from '@angular/router';
+import { BaseEndPointService } from '../../common-services-components/services/base-end-point.service'
 
 @Injectable({
   providedIn: 'root'

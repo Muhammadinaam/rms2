@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { OrderService } from 'src/app/services/order.service';
-import { SettingsService } from 'src/app/services/settings.service';
+import { OrderService } from '../../../../../admin/src/app/common-services-components/services/order.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { SettingsService } from '../../../../../admin/src/app/common-services-components/services/settings.service';
 
 @Component({
   selector: 'order-modal',
@@ -39,8 +39,7 @@ export class OrderModalComponent implements OnInit {
   deleteItem(item_index){
     if(confirm("Are you sure to delete this item?"))
     {
-      this.orderService.order.items.splice(item_index, 1);
-      this.orderService.calculateOrderAmounts();
+      this.orderService.deleteItem(item_index);
     }
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BaseEndPointService } from 'src/app/services/base-end-point.service';
+import { BaseEndPointService } from '../../../../../admin/src/app/common-services-components/services/base-end-point.service';
 import { Router } from '@angular/router';
 import { MenuModalService } from 'src/app/services/menu-modal.service';
 

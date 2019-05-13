@@ -14,6 +14,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { OpenOrdersAndTablesComponent } from './orders/open-orders-and-tables/open-orders-and-tables.component';
 import { TablesListComponent } from './tables/tables-list/tables-list.component';
 import { TablesAddEditComponent } from './tables/tables-add-edit/tables-add-edit.component';
+import { OrderAddEditComponent } from './orders/order-add-edit/order-add-edit.component';
 
 const routes: Routes = [{
   path: '',
@@ -85,6 +86,16 @@ const routes: Routes = [{
     {
       path: 'orders-and-tables',
       component: OpenOrdersAndTablesComponent,
+    },
+
+    {
+      path: 'orders/create',
+      component: OrderAddEditComponent,
+    },
+
+    {
+      path: 'orders/:id/edit',
+      component: OrderAddEditComponent,
     },
 
     {

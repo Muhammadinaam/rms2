@@ -15,6 +15,7 @@ class ItemsController extends Controller
         }])
             ->where('name', 'like', '%'.request()->search.'%')
             ->orWhere('information', 'like', '%'.request()->search.'%')
+            ->orWhere('printer', 'like', '%'.request()->search.'%')
             ->paginate(10);
         return $items;
     }
@@ -79,6 +80,7 @@ class ItemsController extends Controller
         $item->price = request()->price;
         $item->image = request()->image;
         $item->information = request()->information;
+        $item->printer = request()->printer;
         $item->is_activated = request()->is_activated;
 
         $item->save();

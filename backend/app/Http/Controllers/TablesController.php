@@ -83,4 +83,10 @@ class TablesController extends Controller
         $floors = DB::table('tables')->select('floor')->groupBy('floor')->get()->pluck('floor');
         return $floors;
     }
+
+    public function freeTables()
+    {
+        $free_tables = Table::whereNull('order_id')->get();
+        return $free_tables;
+    }
 }

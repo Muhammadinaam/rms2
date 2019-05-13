@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseEndPointService } from '../../../services/base-end-point.service';
+import { BaseEndPointService } from '../../../common-services-components/services/base-end-point.service';
 
 @Component({
   selector: 'categories-list',

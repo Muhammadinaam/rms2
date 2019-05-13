@@ -1,0 +1,94 @@
+<div class="modal {{ isVisible ? 'is-active' : '' }}">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head is-radiusless">
+        <p class="modal-card-title">Add to Order / Cart</p>
+        <button class="delete" aria-label="close" (click)="setModalVisibility(false)"></button>
+      </header>
+      <section class="modal-card-body">
+        <div *ngIf="item">
+          <b>{{item.name}}</b> 
+          <small> ({{item.price | currency:currencyCode }})</small>
+  
+          <br><br>
+  
+          <!-- qty -->
+          <div class="field">
+            <label class="label">Quantity</label>
+            <div class="field has-addons">
+              <div class="control">
+                  <a class="button is-info" (click)="addToQty(-1)">
+                    -
+                  </a>
+                </div>
+              <div class="control is-expanded">
+                <input class="input" type="number" readonly [(ngModel)]="orderItem.quantity">
+              </div>
+              <div class="control">
+                <a class="button is-info" (click)="addToQty(1)">
+                  +
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Instructions -->
+          <div class="field">
+            <label class="label">Instructions (optional)</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="make less spicy" [(ngModel)]="orderItem.instructions">
+            </div>
+          </div>
+  
+          <!-- options -->
+          <!-- <p>{{category.options | json}}</p> -->
+          <div *ngIf="category.options && category.options.length > 0">
+            <hr>
+            <p class="title is-4">Options</p>
+            <!-- <p>{{singleOptions | json}}</p>
+            <p>{{multipleOptions | json}}</p>
+            <p>{{orderItem | json}}</p> -->
+  
+            <div *ngFor="let option of category.options">
+              
+              <div *ngIf="option.type == 'Single'">
+                <div class="field">
+                    <label class="label">{{option.name}}</label>
+                  <div class="control">
+                    <div class="select is-primary">
+                      <select [(ngModel)]="singleOptions[option.id]" (change)="optionsChanged()">
+                        <option selected></option>
+                        <option *ngFor="let option_item of option.options_items" value="{{option_item.id}}">
+                          {{option_item.name + ' - ' + (option_item.price|currency:currencyCode)}}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              </div>
+  
+              <div *ngIf="option.type == 'Multiple'">
+                <label class="label">{{option.name}}</label>
+                <div class="columns is-multiline">
+                  <div *ngFor="let option_item of option.options_items" class="column is-half">
+                    <label class="checkbox">
+                      <input type="checkbox" [(ngModel)]="multipleOptions[option_item.id]" (change)="optionsChanged()">
+                      {{option_item.name + ' - ' + (option_item.price|currency:currencyCode)}}
+                    </label>
+                  </div>
+                </div>
+                <br>
+              </div>
+  
+            </div>
+  
+          </div>
+  
+        </div>
+      </section>
+      <footer class="modal-card-foot is-radiusless">
+          <button class="button is-success is-fullwidth" (click)="addItemInOrder()">Add</button>
+      </footer>
+    </div>
+  </div>

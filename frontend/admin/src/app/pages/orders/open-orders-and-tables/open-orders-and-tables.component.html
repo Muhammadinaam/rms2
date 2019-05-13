@@ -5,9 +5,42 @@
       Open Orders
       <button class="float-right" nbButton size="xsmall" [routerLink]="['/pages/orders/create']" >Add New Order</button>
     </nb-card-header>
+      <div class="row">
+        
+        <p *ngIf="openOrders.length == 0" class="text-center col-md-12">No Open Orders</p>
+        <div *ngFor="let order of openOrders" class="col-md-3">
+          <div class="open-order rounded">
+            <p class="text-center"><small>{{order.order_number}}</small></p>
+            <hr>
+            <small>Type: <b>{{order.order_type_name}}</b></small>
+            <br>
+            <span class="badge" 
+              [class.badge-danger]="isOrderPendingOrPreparing(order)"
+              [class.badge-primary]="!isOrderPendingOrPreparing(order)">
+              {{order.order_status_name}}
+            </span>
+            <br>
+            <small class="mb-3" *ngIf="order.order_status_idt == 'phone-confirmation-pending'">
+              {{order.customer_name}}
+              <br>
+              Phone: {{order.customer_phone}}
+            </small>
 
+            <br><br>
+            <small *ngIf="isOrderPendingOrPreparing(order)" class="text-red">Time: <b>{{calculateTime(order)}}</b> (minutes)</small>
+
+            <br><br>
+            <button class="btn btn-xs btn-info btn-block" (click)="openChangeStatusDialog(dialog, order)">Change Status</button>
+            <button class="btn btn-xs btn-primary btn-block" [routerLink]="['/pages/orders/'+order.id+'/edit']"  >Edit Order</button>
+            <button class="btn btn-xs btn-danger btn-block" (click)="cancelOrder(order)">Cancel Order</button>
+            <button class="btn btn-xs btn-primary btn-block">Reprint for Kitchen</button>
+            <button class="btn btn-xs btn-primary btn-block">Print for Customer</button>
+            <button class="btn btn-xs btn-primary btn-block">Close Order</button>
+          </div>
+        </div>
+
+      </div>
     <nb-card-body>
-
     </nb-card-body>
   </nb-card>
 
@@ -17,6 +50,15 @@
       Free Tables
     </nb-card-header>
 
+      <div class="row">
+          <p *ngIf="freeTables.length == 0" class="text-center col-md-12">No Free Orders</p>
+        <div *ngFor="let table of freeTables" class="col-md-3 text-center free-table">
+          <h2>{{table.name}}</h2>
+          <small>Floor: {{table.floor}}</small>
+        </div>
+
+      </div>
+
     <nb-card-body>
 
     </nb-card-body>
@@ -24,3 +66,23 @@
 
 
 </div>
+
+
+<ng-template #dialog let-data let-ref="dialogRef">
+  <nb-card>
+    <nb-card-header>Change Status</nb-card-header>
+    <nb-card-body>
+      <select class="form-control" #newStatus>
+        <option *ngFor="let status of assignableStatuses" 
+          value="{{status.idt}}" [selected]="status.idt == data.order_status_idt" >
+          {{status.name}}
+        </option>
+      </select>
+      
+    </nb-card-body>
+    <nb-card-footer>
+      <button class="btn btn-xs btn-danger" (click)="ref.close()">Cancel</button>
+      <button class="btn btn-xs btn-primary" (click)="changeOrderStatus(newStatus.value, data)">Save</button>
+    </nb-card-footer>
+  </nb-card>
+</ng-template>

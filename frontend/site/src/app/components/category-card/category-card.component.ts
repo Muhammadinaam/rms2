@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BaseEndPointService } from 'src/app/services/base-end-point.service';
+import { BaseEndPointService } from '../../../../../admin/src/app/common-services-components/services/base-end-point.service';
 
 @Component({
   selector: 'category-card',

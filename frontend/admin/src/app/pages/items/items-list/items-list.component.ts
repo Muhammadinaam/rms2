@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseEndPointService } from '../../../services/base-end-point.service';
+import { BaseEndPointService } from '../../../common-services-components/services/base-end-point.service';
 
 @Component({
   selector: 'items-list',
@@ -21,6 +21,7 @@ export class ItemsListComponent implements OnInit {
     { header: 'Name', dataName: 'name', modifier: null, },
     { header: 'Price', dataName: 'price', modifier: null, },
     { header: 'Information', dataName: 'information', modifier: null, },
+    { header: 'Printer', dataName: 'printer', modifier: null, },
     { header: 'Activated', dataName: 'is_activated', modifier: this.isActivatedModifier, },
   ];
 

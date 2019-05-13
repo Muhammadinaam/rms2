@@ -43,6 +43,13 @@
             name="information" [(ngModel)]="data.information" #information="ngModel"></textarea>
             <validation [field]="information" fieldName="Information"></validation>
           </div>
+
+          <div class="form-group">
+            <label for="printer">Printer:</label>
+            <input type="text" class="form-control" id="printer" 
+              name="printer" [(ngModel)]="data.printer" #printer="ngModel" >
+            <validation [field]="printer" fieldName="Printer"></validation>
+          </div>
   
           <div class="form-group form-check">
             <label class="form-check-label">

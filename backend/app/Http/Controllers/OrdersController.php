@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use App\OrderStatus;
 use DB;
 use Auth;
 use Illuminate\Support\Str;
 
 class OrdersController extends Controller
 {
+    private $printJobTypes = [
+        'new' => 'new',
+        'edit' => 'edit',
+        'cancel' => 'cancel',
+        'reprint' => 'reprint',
+        'print-for-customer' => 'print-for-customer',
+    ];
 
     public function index()
     {
@@ -18,7 +26,7 @@ class OrdersController extends Controller
 
     public function store()
     {
-        $data = request()->all();
+        $order_data = request()->order;
 
         $order = new Order;
 
@@ -26,7 +34,7 @@ class OrdersController extends Controller
             
             DB::beginTransaction();
 
-            $this->saveOrder($order, $data);
+            $this->saveOrder($order, $order_data);
 
             DB::commit();
 
@@ -87,24 +95,25 @@ class OrdersController extends Controller
         return $period . '-' . $new_number . '-' . $order_type;
     }
 
-    public function saveOrder($order, $request_data)
+    public function saveOrder($order, $order_data)
     {
-        $order_type_id = DB::table('order_types')->where('idt', $request_data['order_type_idt'])->first()->id;
+        $order_type_id = DB::table('order_types')->where('idt', $order_data['order_type_idt'])->first()->id;
 
         $order->order_type_id = $order_type_id;
-        $order->order_number = $order->order_number != null ? $order->order_number : $this->generateOrderNumber($request_data['order_type_idt']);
-        $order->customer_name = $request_data['customer_name'];
-        $order->customer_address = $request_data['customer_address'];
-        $order->customer_lat = $request_data['customer_lat'];
-        $order->customer_long = $request_data['customer_long'];
-        $order->customer_zipcode = $request_data['customer_zipcode'];
-        $order->customer_phone = $request_data['customer_phone'];
-        $order->order_amount_before_discount = $request_data['order_amount_before_discount'] != null ? $request_data['order_amount_before_discount'] : 0;
-        $order->discount_percent = $request_data['discount_percent'] != null ? $request_data['discount_percent'] : 0;
-        $order->discount_amount = $request_data['discount_amount'] != null ? $request_data['discount_amount'] : 0;
-        $order->sales_tax_percent = $request_data['sales_tax_percent'] != null ? $request_data['sales_tax_percent'] : 0;
-        $order->sales_tax_amount = $request_data['sales_tax_amount'] != null ? $request_data['sales_tax_amount'] : 0;
-        $order->delivery_charges = $request_data['delivery_charges'] != null ? $request_data['delivery_charges'] : 0;
+        $order->order_number = $order->order_number != null ? $order->order_number : $this->generateOrderNumber($order_data['order_type_idt']);
+        $order->guests = isset($order_data['guests']) ? $order_data['guests'] : 0;
+        $order->customer_name = $order_data['customer_name'];
+        $order->customer_address = $order_data['customer_address'];
+        $order->customer_lat = $order_data['customer_lat'];
+        $order->customer_long = $order_data['customer_long'];
+        $order->customer_zipcode = $order_data['customer_zipcode'];
+        $order->customer_phone = $order_data['customer_phone'];
+        $order->order_amount_before_discount = $order_data['order_amount_before_discount'] != null ? $order_data['order_amount_before_discount'] : 0;
+        $order->discount_percent = $order_data['discount_percent'] != null ? $order_data['discount_percent'] : 0;
+        $order->discount_amount = $order_data['discount_amount'] != null ? $order_data['discount_amount'] : 0;
+        $order->sales_tax_percent = $order_data['sales_tax_percent'] != null ? $order_data['sales_tax_percent'] : 0;
+        $order->sales_tax_amount = $order_data['sales_tax_amount'] != null ? $order_data['sales_tax_amount'] : 0;
+        $order->delivery_charges = $order_data['delivery_charges'] != null ? $order_data['delivery_charges'] : 0;
         
         $order->total_order_amount = 
             $order->order_amount_before_discount - 
@@ -117,10 +126,12 @@ class OrdersController extends Controller
             $order->order_booked_by = Auth::user()->id;
         }
 
+        $isSavingNewOrder = false;
         if($order->id == null)  // new order
         {
+            $isSavingNewOrder = true;
             $order_status_idt = 'preparing';
-            if( $request_data['order_type_idt'] == 'web-delivery')
+            if( $order_data['order_type_idt'] == 'web-delivery')
             {
                 $order_status_idt = 'phone-confirmation-pending';
             }
@@ -140,7 +151,7 @@ class OrdersController extends Controller
             ->where('order_id', $order->id)
             ->delete();
         
-        foreach($request_data['items'] as $item)
+        foreach($order_data['items'] as $item)
         {
             $order_item_id = (string) Str::uuid();
             DB::table('order_items')
@@ -150,6 +161,7 @@ class OrdersController extends Controller
                     'item_id' => $item['id'],
                     'name' => $item['name'],
                     'price' => $item['price'],
+                    'instructions' => $item['instructions'],
                     'item_price_with_options' => $item['item_price_with_options'],
                     'quantity' => $item['quantity'],
                     'item_total_price' => $item['item_total_price'],
@@ -179,6 +191,21 @@ class OrdersController extends Controller
                 }
             }
         }
+
+        // Print job
+        if($order_status_idt != 'phone-confirmation-pending')
+        {
+            if($isSavingNewOrder)
+            {
+                $this->insertNewPrintJob(
+                    $this->printJobTypes['new'], $order->id, null );
+            }
+            else
+            {
+                throw new \Exception('Not Implemented');
+            }
+        }
+
     }
 
     public function getOrderStatus()
@@ -192,5 +219,91 @@ class OrdersController extends Controller
             ->first();
 
         return compact('order_status');
+    }
+
+    public function openOrders()
+    {
+        $open_orders = DB::table('orders')
+        ->select('orders.*', 
+            'order_statuses.name as order_status_name', 
+            'order_statuses.idt as order_status_idt',
+            'order_types.name as order_type_name')
+        ->join('order_statuses', 'orders.order_status_id', '=', 'order_statuses.id')
+        ->join('order_types', 'orders.order_type_id', '=', 'order_types.id')
+        ->whereNotIn('order_statuses.idt', ['cancelled', 'closed'])
+        ->get();
+
+        return $open_orders;
+    }
+
+    public function assignableStatuses()
+    {
+        $statuses = DB::table('order_statuses')->where('is_assignable', 1)->get();
+        return $statuses;
+    }
+
+    public function changeOrderStatus()
+    {
+        try
+        {
+            $order_id = request()->order_id;
+
+            $status = OrderStatus::where('idt', request()->status_idt)
+                ->first();
+
+            if($status == null)
+                throw new \Exception('Order Status: ' . request()->status_idt . ' is not valid.');
+
+            $order = Order::with('order_status')->where('id', $order_id)->first();
+
+            if($order == null)
+                throw new \Exception('Order not found.');
+
+            try
+            {
+                DB::beginTransaction();
+
+                $old_status = $order->order_status;
+
+                $order->order_status_id = $status->id;
+                $order->save();
+
+                if($old_status->idt == 'phone-confirmation-pending' && 
+                    ($status->idt != 'closed' || $status->idt != 'cancelled' || $status->idt != 'printed-for-customer' )
+                )
+                {
+                    $this->insertNewPrintJob(
+                        $this->printJobTypes['new'], $order->id, null );
+                }
+                else if($status->idt != 'cancelled')
+                {
+                    $this->insertNewPrintJob(
+                        $this->printJobTypes['cancel'], $order->id, null );
+                }
+
+                DB::commit();
+            }
+            catch(\Exception $ex)
+            {
+                DB::rollback();
+                throw $ex;
+            }
+
+            return ['message' => 'Saved Successfully'];
+        }
+        catch(\Exception $ex)
+        {
+            return ['message' => $ex->getMessage()];
+        }
+    }
+
+    private function insertNewPrintJob($print_type, $order_id, $order_edit_id)
+    {
+        DB::table('orders_print_jobs')
+            ->insert([
+                'print_type' => $print_type,
+                'order_id' => $order_id,
+                'order_edit_id' => $order_edit_id,
+            ]);
     }
 }

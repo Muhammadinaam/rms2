@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OrderService } from 'src/app/services/order.service';
+import { OrderService } from '../../../../../admin/src/app/common-services-components/services/order.service';
 
 @Component({
   selector: 'app-track-order',
@@ -27,7 +27,7 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
     this.refreshStatus();
     this.intervalID = setInterval(() => {
       this.refreshStatus();
-    }, 10000);
+    }, 20000);
   }
 
   ngOnDestroy(): void {

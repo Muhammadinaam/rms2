@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { MENU_ITEMS } from './pages-menu';
 import { HttpClient } from '@angular/common/http';
-import { BaseEndPointService } from '../services/base-end-point.service';
 
 @Component({
   selector: 'ngx-pages',

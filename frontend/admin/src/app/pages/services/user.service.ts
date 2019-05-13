@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BaseEndPointService } from '../../services/base-end-point.service';
 import { DataServiceInterface } from '../classes/DataServiceInterface';
+import { BaseEndPointService } from '../../common-services-components/services/base-end-point.service';
 
 @Injectable({
   providedIn: 'root'

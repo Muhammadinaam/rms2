@@ -1,0 +1,31 @@
+<div class="row">
+    <nb-card class="col-md-12">
+      <!-- <nb-card-header>
+        Order
+      </nb-card-header> -->
+      
+      <nb-card-body>
+
+        <div class="row">
+
+          <div class="col-md-5 mb-2">
+            <form #dataForm="ngForm" (ngSubmit)="onSubmit()">
+              <!-- <pre> {{ data | json}}</pre> -->
+              <order-items-amounts [order]="order"></order-items-amounts>
+              <hr>
+              <button type="submit" class="btn btn-sm btn-primary btn-block" [disabled]="dataForm.invalid || submitting">Save</button>
+            </form>
+          </div>
+
+          <div class="col-md-7 d-none d-md-block">
+
+              <categories-items-search></categories-items-search>
+  
+          </div>
+
+
+        </div>
+        
+      </nb-card-body>
+    </nb-card>
+  </div>

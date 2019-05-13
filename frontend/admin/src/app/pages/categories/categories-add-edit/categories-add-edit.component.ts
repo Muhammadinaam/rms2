@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GenericAddEdit } from '../../classes/GenericAddEdit';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../services/user.service';
 import { GenericDataService } from '../../classes/GenericDataService';
-import { BaseEndPointService } from '../../../services/base-end-point.service';
 import { HttpClient } from '@angular/common/http';
+import { BaseEndPointService } from '../../../common-services-components/services/base-end-point.service';
 
 @Component({
   selector: 'categories-add-edit',

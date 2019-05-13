@@ -7,11 +7,14 @@ import { LoaderState } from './loader';
 })
 export class LoaderService {
 
+  isLoaderEnabled = true;
+
   private loaderSubject = new Subject<LoaderState>();
   loaderState = this.loaderSubject.asObservable();
   constructor() { }
   show() {
-    this.loaderSubject.next(<LoaderState>{ show: true });
+    if(this.isLoaderEnabled)
+      this.loaderSubject.next(<LoaderState>{ show: true });
   }
   hide() {
     this.loaderSubject.next(<LoaderState>{ show: false });

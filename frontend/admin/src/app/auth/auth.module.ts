@@ -6,6 +6,7 @@ import { NbAlertModule, NbInputModule, NbButtonModule, NbCheckboxModule } from '
 import { NbAuthModule } from '@nebular/auth';
 import { AuthRoutingModule } from '../auth-routing/auth-routing.module';
 import { LoginComponent } from './login/login.component';
+import { CommonServicesComponentsModule } from '../common-services-components/common-services-components.module';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -21,6 +22,7 @@ import { LoginComponent } from './login/login.component';
     NbAuthModule,
     
     AuthRoutingModule,
+    CommonServicesComponentsModule
   ]
 })
 export class AuthModule { }

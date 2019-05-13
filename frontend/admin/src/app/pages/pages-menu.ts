@@ -12,36 +12,42 @@ export const MENU_ITEMS: NbMenuItem[] = [
   //   group: true,
   // },
   {
-    title: 'Users',
-    icon: 'nb-person',
-    link: '/pages/users',
-    data: {
-      permission_idt: 'users-list',
-    }
-  },
-  {
-    title: 'Categories',
+    title: 'Configurations',
     icon: 'nb-grid-a-outline',
-    link: '/pages/categories',
-    data: {
-      permission_idt: 'categories-list',
-    }
-  },
-  {
-    title: 'Tables',
-    icon: 'nb-grid-a-outline',
-    link: '/pages/tables',
-    data: {
-      permission_idt: 'tables-list',
-    }
-  },
-  {
-    title: 'Items',
-    icon: 'nb-compose',
-    link: '/pages/items',
-    data: {
-      permission_idt: 'items-list',
-    }
+    children: [
+      {
+        title: 'Users',
+        icon: 'nb-person',
+        link: '/pages/users',
+        data: {
+          permission_idt: 'users-list',
+        }
+      },
+      {
+        title: 'Categories',
+        icon: 'nb-grid-a-outline',
+        link: '/pages/categories',
+        data: {
+          permission_idt: 'categories-list',
+        }
+      },
+      {
+        title: 'Tables',
+        icon: 'nb-grid-a-outline',
+        link: '/pages/tables',
+        data: {
+          permission_idt: 'tables-list',
+        }
+      },
+      {
+        title: 'Items',
+        icon: 'nb-compose',
+        link: '/pages/items',
+        data: {
+          permission_idt: 'items-list',
+        }
+      },
+    ]
   },
   {
     title: 'Reports',

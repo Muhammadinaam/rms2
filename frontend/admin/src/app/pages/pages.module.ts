@@ -19,6 +19,9 @@ import { SettingsComponent } from './settings/settings.component';
 import { OpenOrdersAndTablesComponent } from './orders/open-orders-and-tables/open-orders-and-tables.component';
 import { TablesListComponent } from './tables/tables-list/tables-list.component';
 import { TablesAddEditComponent } from './tables/tables-add-edit/tables-add-edit.component';
+import { NbDialogModule } from '@nebular/theme';
+import { OrderAddEditComponent } from './orders/order-add-edit/order-add-edit.component';
+import { CommonServicesComponentsModule } from '../common-services-components/common-services-components.module';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -30,7 +33,9 @@ const PAGES_COMPONENTS = [
     ThemeModule,
     DashboardModule,
     MiscellaneousModule,
-    FormsModule
+    FormsModule,
+    NbDialogModule.forChild(null),
+    CommonServicesComponentsModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,
@@ -47,6 +52,7 @@ const PAGES_COMPONENTS = [
     OpenOrdersAndTablesComponent,
     TablesListComponent,
     TablesAddEditComponent,
+    OrderAddEditComponent,
   ],
 })
 export class PagesModule {

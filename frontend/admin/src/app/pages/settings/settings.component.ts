@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingsService } from '../services/settings.service';
-import { GenericAddEdit } from '../classes/GenericAddEdit';
 import { HttpClient } from '@angular/common/http';
-import { BaseEndPointService } from '../../services/base-end-point.service';
+import { BaseEndPointService } from '../../common-services-components/services/base-end-point.service';
+import { SettingsService } from './../../common-services-components/services/settings.service';
 
 @Component({
   selector: 'settings',

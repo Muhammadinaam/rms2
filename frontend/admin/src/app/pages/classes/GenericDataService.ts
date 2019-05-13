@@ -1,6 +1,5 @@
 import { DataServiceInterface } from "./DataServiceInterface";
 import { HttpClient } from "@angular/common/http";
-import { BaseEndPointService } from "../../services/base-end-point.service";
 import { Injectable } from "@angular/core";
 
 @Injectable({

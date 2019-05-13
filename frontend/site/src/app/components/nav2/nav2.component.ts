@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuModalService } from 'src/app/services/menu-modal.service';
-import { OrderService } from 'src/app/services/order.service';
-import { SettingsService } from 'src/app/services/settings.service';
+import { OrderService } from '../../../../../admin/src/app/common-services-components/services/order.service';
+import { SettingsService } from '../../../../../admin/src/app/common-services-components/services/settings.service';
 
 @Component({
   selector: 'nav2',
