@@ -45,6 +45,8 @@ export class OrderModalComponent implements OnInit {
 
   saveOrder()
   {
+    this.order.order_type_idt = 'wd'; // wed-delivery
+
     if(
       this.order.customer_name == '' ||
       this.order.customer_address == '' ||

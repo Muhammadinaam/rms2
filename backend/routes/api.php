@@ -49,4 +49,9 @@ Route::middleware(['auth:api'])->group(function () {
         return Auth::user();
     });
 
+    Route::get('table', function(){
+        $table = \DB::table(request()->table)->get();
+        return $table;
+    });
+
 });

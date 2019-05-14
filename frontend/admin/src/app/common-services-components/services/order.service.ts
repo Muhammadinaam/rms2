@@ -17,7 +17,7 @@ export class OrderService {
   deliveryChargesFunction;
 
   order = {
-    order_type_idt: 'web-delivery',
+    order_type_idt: '',
     customer_name: '',
     customer_address: '',
     customer_lat: 0,

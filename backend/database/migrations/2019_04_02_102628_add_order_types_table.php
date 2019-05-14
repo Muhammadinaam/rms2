@@ -17,29 +17,29 @@ class AddOrderTypesTable extends Migration
             
             $table->bigIncrements('id');
             
-            $table->string('idt');
-            $table->string('name');
+            $table->string('idt')->unique();
+            $table->string('name')->unique();
         });
 
         DB::table('order_types')
-            ->insert(
+            ->insert([
                 [
-                    'idt' => 'web-delivery',
+                    'idt' => 'wd',
                     'name' => 'Web Delivery',
                 ],
                 [
-                    'idt' => 'dine-in',
+                    'idt' => 'di',
                     'name' => 'Dine In',
                 ],
                 [
-                    'idt' => 'take-away',
+                    'idt' => 'ta',
                     'name' => 'Take Away',
                 ],
                 [
-                    'idt' => 'other-delivery',
+                    'idt' => 'od',
                     'name' => 'Other Delivery',
                 ]
-            );
+            ]);
     }
 
     /**

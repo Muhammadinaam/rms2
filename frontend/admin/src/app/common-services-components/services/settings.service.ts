@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseEndPointService } from '../../common-services-components/services/base-end-point.service';
 
@@ -6,8 +6,13 @@ import { BaseEndPointService } from '../../common-services-components/services/b
   providedIn: 'root'
 })
 export class SettingsService {
-
-  constructor(private http: HttpClient) { }
+  
+  orderTypes;
+  
+  constructor(private http: HttpClient) 
+  {
+    
+  }
 
   allSettings()
   {
@@ -54,8 +59,12 @@ export class SettingsService {
           () => {
             alert('Error occurred in loading site settings, please retry');
             reject();
-          })
+          });
 
+          this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/table?table=order_types')
+          .subscribe(data => {
+            this.orderTypes = data;
+          });
     });
   }
 

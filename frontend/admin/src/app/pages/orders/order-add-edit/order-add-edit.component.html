@@ -11,9 +11,86 @@
           <div class="col-md-5 mb-2">
             <form #dataForm="ngForm" (ngSubmit)="onSubmit()">
               <!-- <pre> {{ data | json}}</pre> -->
-              <order-items-amounts [order]="order"></order-items-amounts>
-              <hr>
-              <button type="submit" class="btn btn-sm btn-primary btn-block" [disabled]="dataForm.invalid || submitting">Save</button>
+
+              {{order | json}}
+              <div class="order-container">
+
+                <!-- order-type -->
+                <div class="field has-addons">
+                  <div class="control">
+                    <a class="button is-static is-small">
+                      Order Type
+                    </a>
+                  </div>
+                  <div class="control is-expanded">
+                    <div class="select is-fullwidth is-small">
+                      <select name="order_type_idt" [(ngModel)]="order.order_type_idt" #order_type_idt="ngModel" required>
+                        <option value=""></option>
+                        <option *ngFor="let orderType of settingsService.orderTypes" value="{{orderType.idt}}">
+                          {{orderType.name}}
+                        </option>
+                      </select>
+                      <validation [field]="order_type_idt" fieldName="Order Type"></validation>
+                    </div>
+                  </div>
+                </div>
+
+  
+                <!-- dine-in -->
+                <div *ngIf="order_type_idt.value == 'di'">
+                  <div class="field has-addons">
+                    <div class="control">
+                      <a class="button is-static is-small">
+                        Guests
+                      </a>
+                    </div>
+                    <div class="control is-expanded">
+                      <input class="input is-small is-fullwidth" type="number" name="guests" [(ngModel)]="order.guests" #guests="ngModel" required>
+                      <validation [field]="guests" fieldName="Guests"></validation>
+                    </div>
+                  </div>
+  
+                  <button type="button" class="button is-primary is-small" (click)="addTable()">Add Tables</button>
+                  <div class="field has-addons" *ngFor="let table of order.tables; trackBy:identify; let i = index">
+                    <p>{{i}}</p>
+                    <div class="control is-expanded">
+                      <div class="select is-fullwidth is-small has-addons">
+                        <select name="order.tables[i]" [(ngModel)]="order.tables[i]">
+                          <option *ngFor="let freeTable of freeTables" value="{{freeTable.id}}" [selected]="freeTable.id == order.tables[i]">
+                            Floor: {{freeTable.floor}} - Table: {{freeTable.name}}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="control">
+                      <button type="button" class="button is-danger is-small" (click)="removeTable(i)">x</button>
+                    </div>
+                  </div>
+  
+                </div>
+                <!-- dine-in -->
+
+
+
+                <!-- take-away -->
+                <div *ngIf="order_type_idt.value == 'ta' || order_type_idt.value == 'wd' || order_type_idt.value == 'od'">
+
+                </div>
+                <!-- take-away -->
+
+
+                <br>
+                <order-items-amounts [order]="order"></order-items-amounts>
+                <br>
+
+                <div class="">
+                  <button class="button is-default is-pulled-left">Search Item</button>
+                  <button type="submit" class="button is-info is-pulled-right" [disabled]="dataForm.invalid || submitting">Save</button>
+                </div>
+              </div>
+              <!-- order-container -->
+
+              
             </form>
           </div>
 
