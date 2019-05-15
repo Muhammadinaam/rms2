@@ -36,3 +36,9 @@
 .maxwidth200 {
   max-width: 200px;
 };
+
+.shadow-normal {
+  -webkit-box-shadow: 0px 0px 29px -12px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 29px -12px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 29px -12px rgba(0,0,0,0.75);
+}

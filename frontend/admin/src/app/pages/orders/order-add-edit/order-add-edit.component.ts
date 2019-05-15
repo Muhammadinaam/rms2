@@ -14,6 +14,7 @@ export class OrderAddEditComponent implements OnInit {
   order;
   freeTables;
 
+
   constructor(
     private orderService: OrderService,
     private settingsService: SettingsService,
@@ -40,28 +41,11 @@ export class OrderAddEditComponent implements OnInit {
       this.order.tables = [];
     }
 
-    this.order.tables.push(this.freeTables[0].id);
-    alert(this.order.tables);
+    this.order.tables.push(this.freeTables[0]);
   }
 
   removeTable(index){
     this.order.tables.splice(index, 1);
-  }
-
-  getFreeTableById(id){
-
-    let table = null;
-    this.freeTables.forEach(element => {
-      if(element.id == id){
-        table = element;
-      }
-    });
-
-    return table != null ? table : [];
-  }
-
-  identify(index, table){
-    return table.id;
   }
 
 }

@@ -12,7 +12,6 @@
             <form #dataForm="ngForm" (ngSubmit)="onSubmit()">
               <!-- <pre> {{ data | json}}</pre> -->
 
-              {{order | json}}
               <div class="order-container">
 
                 <!-- order-type -->
@@ -52,11 +51,10 @@
   
                   <button type="button" class="button is-primary is-small" (click)="addTable()">Add Tables</button>
                   <div class="field has-addons" *ngFor="let table of order.tables; trackBy:identify; let i = index">
-                    <p>{{i}}</p>
                     <div class="control is-expanded">
                       <div class="select is-fullwidth is-small has-addons">
-                        <select name="order.tables[i]" [(ngModel)]="order.tables[i]">
-                          <option *ngFor="let freeTable of freeTables" value="{{freeTable.id}}" [selected]="freeTable.id == order.tables[i]">
+                        <select name="order.tables{{i}}" [(ngModel)]="order.tables[i]">
+                          <option *ngFor="let freeTable of freeTables" [ngValue]="freeTable">
                             Floor: {{freeTable.floor}} - Table: {{freeTable.name}}
                           </option>
                         </select>
@@ -75,8 +73,62 @@
                 <!-- take-away -->
                 <div *ngIf="order_type_idt.value == 'ta' || order_type_idt.value == 'wd' || order_type_idt.value == 'od'">
 
+                    <div class="field has-addons">
+                      <div class="control">
+                        <a class="button is-static is-small">
+                          Customer Name
+                        </a>
+                      </div>
+                      <div class="control is-expanded">
+                        <input class="input is-small is-fullwidth" type="text" name="customer_name" [(ngModel)]="order.customer_name" #customer_name="ngModel">
+                        <validation [field]="customer_name" fieldName="Customer Name"></validation>
+                      </div>
+                    </div>
+
                 </div>
                 <!-- take-away -->
+
+                <!-- delivery -->
+                <div *ngIf="order_type_idt.value == 'wd' || order_type_idt.value == 'od'">
+
+                    <div class="field has-addons">
+                      <div class="control">
+                        <a class="button is-static is-small">
+                          Customer Phone
+                        </a>
+                      </div>
+                      <div class="control is-expanded">
+                        <input class="input is-small is-fullwidth" type="text" name="customer_phone" [(ngModel)]="order.customer_phone" #customer_phone="ngModel" required>
+                        <validation [field]="customer_phone" fieldName="Customer Phone"></validation>
+                      </div>
+                    </div>
+
+                    <div class="field has-addons">
+                      <div class="control">
+                        <a class="button is-static is-small">
+                          Customer Address
+                        </a>
+                      </div>
+                      <div class="control is-expanded">
+                        <input class="input is-small is-fullwidth" type="text" name="customer_address" [(ngModel)]="order.customer_address" #customer_address="ngModel" required>
+                        <validation [field]="customer_address" fieldName="Customer Address"></validation>
+                      </div>
+                    </div>
+
+                    <div class="field has-addons">
+                      <div class="control">
+                        <a class="button is-static is-small">
+                          Customer Zipcode
+                        </a>
+                      </div>
+                      <div class="control is-expanded">
+                        <input class="input is-small is-fullwidth" type="text" name="customer_zipcode" [(ngModel)]="order.customer_zipcode" #customer_zipcode="ngModel">
+                        <validation [field]="customer_zipcode" fieldName="Customer Zipcode"></validation>
+                      </div>
+                    </div>
+
+                </div>
+                <!-- delivery -->
 
 
                 <br>

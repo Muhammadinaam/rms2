@@ -1,6 +1,6 @@
 <div class="field has-addons">
     <div class="control is-expanded">
-      <input class="input is-small is-fullwidth" type="text" placeholder="Find Items">
+      <input class="input is-small is-fullwidth" type="text" placeholder="Find Items" [(ngModel)]="binding">
     </div>
     <div class="control">
       <a class="button is-small">
@@ -14,9 +14,19 @@
     </div>
   </div>
 
-<div class="card mb-2">
+<div class="card mb-0">
   <div class="card-header bg-primary text-white p-1">Categories</div>
-  <div class="card-body p-1">Content</div> 
+  
+  <div class="card-body custom-scroll p-0" style="overflow: auto; white-space:nowrap;">
+
+    <div *ngFor="let category of categories" class="category m-2 p-1 shadow-normal" 
+      [class.bg-info]='category == selectedCategory' [class.text-white]='category == selectedCategory' 
+      (click)="selectCategory(category)">
+        <img src="{{basePath + '/images/' + category.image}}" alt=""> {{category.name}}
+    </div>
+
+  </div>
+
 </div>
 
 <div class="card">
