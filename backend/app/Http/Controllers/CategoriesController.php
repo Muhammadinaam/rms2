@@ -13,9 +13,21 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = new Category;
+
+        $relations = [];
         if(request()->has('withitems') && request()->withitems == 1)
         {
-            $categories = $categories->with('items');
+            $relations[] = 'items';
+        }
+
+        if(request()->has('withoptions') && request()->withoptions == 1)
+        {
+            $relations[] = 'options.options_items';
+        }
+
+        if(count($relations) > 0)
+        {
+            $categories = $categories->with($relations);
         }
 
         if(request()->has('limit'))

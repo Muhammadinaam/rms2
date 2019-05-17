@@ -1,75 +1,134 @@
 <div *ngIf="order.items.length <= 0">
-    <p class="title is-6 has-text-centered">Order is Empty. Please add items to order</p>
-  </div>
-  <div *ngIf="order.items.length > 0">
-    <p class="title is-4">Items</p>
+  <p class="title is-6 has-text-centered">Order is Empty. Please add items to order</p>
+</div>
+<div *ngIf="order.items.length > 0 && small == false">
+  <p class="title is-4">Items</p>
 
-    <div *ngFor="let item of order.items; let item_index = index;" class="notification">
-      <button class="delete" (click)="orderService.deleteItem(item_index)"></button>
-      <table class="table is-fullwidth">
-        <tr>
-          <td><b>{{item.name}}</b></td>
-          <td>{{item.price | currency:currencyCode}}</td>
-        </tr>
-
-        <ng-container *ngFor="let option of item.options">
-          <tr *ngIf="option.options_items.length > 1">
-            <td>{{option.name}}</td>
-            <td></td>
-          </tr>
-          <tr *ngFor="let option_item of option.options_items">
-            <td class="{{option.options_items.length > 1 ? 'left-indented' : '' }}">
-              {{ option.options_items.length > 1 ? option_item.name : option.name + ': ' + option_item.name }}
-            </td>
-            <td>{{option_item.price | currency:currencyCode }}</td>
-          </tr>
-
-        </ng-container>
-        <tr>
-          <td><b>Price</b></td>
-          <td><b>{{item.item_price_with_options | currency:currencyCode }}</b></td>
-        </tr>
-        <tr>
-          <td><b>Quantity</b></td>
-          <td><b>{{item.quantity}}</b></td>
-        </tr>
-        <tr>
-          <td><b>Sub Total</b></td>
-          <td><b>{{item.item_price_with_options * item.quantity | currency:currencyCode }}</b></td>
-        </tr>
-      </table>
-    </div>
-
-
-
-
-
-    <p class="title is-4">Amounts</p>
+  <div *ngFor="let item of order.items; let item_index = index;" class="notification">
+    <button class="delete" (click)="orderService.deleteItem(item_index)"></button>
     <table class="table is-fullwidth">
       <tr>
-        <td>Order Amount</td>
-        <td>{{order.order_amount_before_discount | currency:currencyCode}}</td>
+        <td><b>{{item.name}}</b></td>
+        <td>{{item.price | currency:currencyCode}}</td>
+      </tr>
+
+      <ng-container *ngFor="let option of item.options">
+        <tr *ngIf="option.options_items.length > 1">
+          <td>{{option.name}}</td>
+          <td></td>
+        </tr>
+        <tr *ngFor="let option_item of option.options_items">
+          <td class="{{option.options_items.length > 1 ? 'left-indented' : '' }}">
+            {{ option.options_items.length > 1 ? option_item.name : option.name + ': ' + option_item.name }}
+          </td>
+          <td>{{option_item.price | currency:currencyCode }}</td>
+        </tr>
+
+      </ng-container>
+      <tr>
+        <td><b>Price</b></td>
+        <td><b>{{item.item_price_with_options | currency:currencyCode }}</b></td>
       </tr>
       <tr>
-        <td>Discount ({{order.discount_percent}}%)</td>
-        <td>{{order.discount_amount | currency:currencyCode}}</td>
+        <td><b>Quantity</b></td>
+        <td><b>{{item.quantity}}</b></td>
       </tr>
       <tr>
-        <td>Sales Tax / Vat ({{order.sales_tax_percent}}%)</td>
-        <td>{{order.sales_tax_amount | currency:currencyCode}}</td>
+        <td><b>Sub Total</b></td>
+        <td><b>{{item.item_price_with_options * item.quantity | currency:currencyCode }}</b></td>
       </tr>
-      <tr>
-        <td>Delivery Charges</td>
-        <td>{{order.delivery_charges | currency:currencyCode}}</td>
-      </tr>
-      <tr class="is-selected">
-        <td>Total Payable</td>
+    </table>
+  </div>
+
+
+
+
+
+  <p class="title is-4">Amounts</p>
+  <table class="table is-fullwidth">
+    <tr>
+      <td>Order Amount</td>
+      <td>{{order.order_amount_before_discount | currency:currencyCode}}</td>
+    </tr>
+    <tr>
+      <td>Discount ({{order.discount_percent}}%)</td>
+      <td>{{order.discount_amount | currency:currencyCode}}</td>
+    </tr>
+    <tr>
+      <td>Sales Tax / Vat ({{order.sales_tax_percent}}%)</td>
+      <td>{{order.sales_tax_amount | currency:currencyCode}}</td>
+    </tr>
+    <tr>
+      <td>Delivery Charges</td>
+      <td>{{order.delivery_charges | currency:currencyCode}}</td>
+    </tr>
+    <tr class="is-selected">
+      <td>Total Payable</td>
+      <td>
+        {{order.order_amount_before_discount - order.discount_amount + order.sales_tax_amount + order.delivery_charges | currency:currencyCode }}
+      </td>
+    </tr>
+  </table>
+
+  
+  
+</div>
+
+<div *ngIf="order.items.length > 0 && small == true">
+    <p class="title is-6">Items</p>
+
+    <table class="table is-fullwidth">
+      <tr *ngFor="let item of order.items; let item_index = index;">
         <td>
-          {{order.order_amount_before_discount - order.discount_amount + order.sales_tax_amount + order.delivery_charges | currency:currencyCode }}
+          {{item.quantity}}x
+          <b>{{item.name}} </b> 
+          <small>({{item.price | currency:currencyCode}})</small>
+          <p class="m-0">
+            <small *ngFor="let option of item.options">
+              <span *ngFor="let option_item of option.options_items">
+                  {{option_item.name}}: , {{option_item.price | currency:currencyCode }}
+              </span>
+            </small>
+          </p>
+          <p class="m-0">
+            <small class="text-primary">
+              {{item.instructions}}
+            </small>
+          </p>
+        </td>
+        <td>{{item.item_price_with_options * item.quantity | currency:currencyCode }}</td>
+        <td>
+          <button class="delete" (click)="orderService.deleteItem(item_index)"></button>
         </td>
       </tr>
     </table>
 
+  
+    <hr>
+    <table class="table is-fullwidth">
+      <tr *ngIf="showDetails">
+        <th>Order Amount</th> 
+        <th>Discount</th> 
+        <th>Tax</th> 
+        <th>Delivery Charges</th>
+      </tr>
+      <tr *ngIf="showDetails">
+        <td>{{order.order_amount_before_discount | currency:currencyCode}}</td>
+        <td>({{order.discount_percent}}%) {{order.discount_amount | currency:currencyCode}}</td>
+        <td>({{order.sales_tax_percent}}%) {{order.sales_tax_amount | currency:currencyCode}}</td>
+        <td>{{order.delivery_charges | currency:currencyCode}}</td>
+      </tr>
+      <tr class="is-selected">
+        <td colspan="3">
+          Total Payable
+          ( <input type="checkbox" [(ngModel)]="showDetails"> Show Details )
+        </td>
+        <td colspan="1">
+          {{order.order_amount_before_discount - order.discount_amount + order.sales_tax_amount + order.delivery_charges | currency:currencyCode }}
+        </td>
+      </tr>
+    </table>
+  
     
     
   </div>

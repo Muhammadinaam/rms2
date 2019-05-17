@@ -16,6 +16,7 @@ import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthInterceptorService } from './auth/interceptors/auth-interceptor.service';
 import { SettingsService } from './common-services-components/services/settings.service';
+import { ToastrModule } from 'ngx-toastr';
 
 export function initializeApp1(settingsService: SettingsService) {
   return (): Promise<any> => { 
@@ -34,6 +35,7 @@ export function initializeApp1(settingsService: SettingsService) {
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
+    ToastrModule.forRoot() // ToastrModule added
   ],
   bootstrap: [AppComponent],
   providers: [

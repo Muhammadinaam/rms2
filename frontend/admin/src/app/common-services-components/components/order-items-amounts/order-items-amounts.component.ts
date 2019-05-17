@@ -9,6 +9,8 @@ import { OrderService } from '../../services/order.service';
 export class OrderItemsAmountsComponent implements OnInit {
 
   @Input() order;
+  @Input() small = false;
+  showDetails = false;
 
   constructor(private orderService: OrderService) { }
 
