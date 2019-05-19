@@ -26,11 +26,13 @@ Route::get('get-all-settings', 'SettingsController@getAllSettings');
 
 Route::post('orders', 'OrdersController@store');
 Route::get('get-order-status', 'OrdersController@getOrderStatus');
-Route::resource('categories', 'CategoriesController');
+Route::get('categories', 'CategoriesController@index');
 
 Route::middleware(['auth:api'])->group(function () {
     Route::post('store-image', 'ImagesController@storeImage');
     Route::resource('users', 'UsersController');
+
+    Route::resource('categories', 'CategoriesController')->except('index');
     
     Route::resource('items', 'ItemsController');
 
@@ -41,6 +43,9 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('save-settings', 'SettingsController@saveSettings');
 
     Route::get('orders', 'OrdersController@index');
+    Route::get('orders/{id}/edit', 'OrdersController@edit');
+    Route::put('orders/{id}', 'OrdersController@update');
+
     Route::get('open-orders', 'OrdersController@openOrders');
     Route::get('assignable-statuses', 'OrdersController@assignableStatuses');
     Route::post('change-order-status', 'OrdersController@changeOrderStatus');
@@ -49,9 +54,11 @@ Route::middleware(['auth:api'])->group(function () {
         return Auth::user();
     });
 
-    Route::get('table', function(){
-        $table = \DB::table(request()->table)->get();
-        return $table;
-    });
+    
 
+});
+
+Route::get('table', function(){
+    $table = \DB::table(request()->table)->get();
+    return $table;
 });

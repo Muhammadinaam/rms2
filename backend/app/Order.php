@@ -14,4 +14,14 @@ class Order extends Model
     {
         return $this->belongsTo('App\OrderStatus', 'order_status_id');
     }
+
+    public function items()
+    {
+        return $this->hasMany('App\OrderItem');
+    }
+
+    public function tables()
+    {
+        return $this->hasMany('App\Table');
+    }
 }

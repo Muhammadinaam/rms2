@@ -51,7 +51,7 @@
     </nb-card-header>
 
       <div class="row">
-          <p *ngIf="freeTables.length == 0" class="text-center col-md-12">No Free Orders</p>
+          <p *ngIf="freeTables.length == 0" class="text-center col-md-12">No Free Tables</p>
         <div *ngFor="let table of freeTables" class="col-md-3 text-center free-table">
           <h2>{{table.name}}</h2>
           <small>Floor: {{table.floor}}</small>

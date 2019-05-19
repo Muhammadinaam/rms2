@@ -16,7 +16,7 @@ export class OrderService {
   minimumOrderAmount;
   deliveryChargesFunction;
 
-  order = {
+  order:any = {
     order_type_idt: '',
     customer_name: '',
     customer_address: '',
@@ -30,8 +30,10 @@ export class OrderService {
     sales_tax_percent: 0,
     sales_tax_amount: 0,
     delivery_charges: 0,
-    items: []
-  }
+    total_order_amount: 0,
+    items: [],
+  };
+
 
   removedItems = [];
 
@@ -40,9 +42,51 @@ export class OrderService {
     private http: HttpClient)
   {
     this.getSettings();
+    this.resetOrder();
   }
 
-  
+
+
+  resetOrder(){
+    this.order.order_type_idt = '';
+    this.order.customer_name = '';
+    this.order.customer_address = '';
+    this.order.customer_lat = 0;
+    this.order.customer_long = 0;
+    this.order.customer_zipcode = '';
+    this.order.customer_phone = '';
+    this.order.order_amount_before_discount = 0;
+    this.order.discount_percent = 0;
+    this.order.discount_amount = 0;
+    this.order.sales_tax_percent = 0;
+    this.order.sales_tax_amount = 0;
+    this.order.delivery_charges = 0;
+    this.order.items.length = 0;
+
+    let initialKeys = [
+      'order_type_idt',
+      'customer_name',
+      'customer_address',
+      'customer_lat',
+      'customer_long',
+      'customer_zipcode',
+      'customer_phone',
+      'order_amount_before_discount',
+      'discount_percent',
+      'discount_amount',
+      'sales_tax_percent',
+      'sales_tax_amount',
+      'delivery_charges',
+      'items',
+    ]
+
+    Object.keys(this.order).forEach(key => {
+      let initialKeyFound = initialKeys.find(x => x == key);
+      if(initialKeyFound == null){
+        this.order[key] = null;
+      }
+    })
+  }
 
   private getSettings()
   {
@@ -53,8 +97,8 @@ export class OrderService {
   }
 
   addItemInOrder(item) {
-    
     this.order.items.push(item);
+    this.order.items = this.order.items.slice();
     this.calculateOrderAmounts();
   }
 
@@ -88,7 +132,10 @@ export class OrderService {
       this.order.delivery_charges = deliveryChargesFunction(order_amount);
     }
   
-    console.log(this.order);
+    this.order.total_order_amount = this.order.order_amount_before_discount - 
+    +this.order.discount_amount + 
+    +this.order.sales_tax_amount + 
+    +this.order.delivery_charges;
   }
 
 
@@ -107,7 +154,22 @@ export class OrderService {
       'order': this.order,
       'removed_items': this.removedItems
     };
+    
+    if(this.order.items.length == 0){
+      alert('Please add items in order');
+      return;
+    }
+
+    if(this.order.id != null && this.order.id != 'undefined')
+    {
+      return this.http.put(BaseEndPointService.getBaseEndPoint() + '/api/orders/' + this.order.id, data)
+    }
+
     return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/orders', data)
+  }
+
+  edit(editingId: any) {
+    return this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/orders/'+editingId+'/edit');
   }
 
   refreshStatus(tracking_number: string): any {

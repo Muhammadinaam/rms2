@@ -54,17 +54,21 @@ export class SettingsService {
         this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/get-all-settings')
           .subscribe(allSettings => {
             this.allSettingsArray = allSettings;
-            resolve();
+
+            this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/table?table=order_types')
+            .subscribe(data => {
+              this.orderTypes = data;
+
+              resolve();
+            });
+
           }, 
           () => {
             alert('Error occurred in loading site settings, please retry');
             reject();
           });
 
-          this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/table?table=order_types')
-          .subscribe(data => {
-            this.orderTypes = data;
-          });
+          
     });
   }
 

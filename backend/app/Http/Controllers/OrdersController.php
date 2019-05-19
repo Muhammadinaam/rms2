@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use App\OrderStatus;
+use App\Table;
 use DB;
 use Auth;
 use Illuminate\Support\Str;
@@ -40,7 +41,8 @@ class OrdersController extends Controller
 
             return [
                 'success' => true,
-                'tracking_number' => $order->tracking_number
+                'tracking_number' => $order->tracking_number,
+                'order_number' => $order->order_number
             ];
 
         } catch (\Exception $ex) {
@@ -49,6 +51,47 @@ class OrdersController extends Controller
             return ['success' => false, 'message' => $ex->getMessage()];
 
         }
+    }
+
+    public function update()
+    {
+        $order_data = request()->order;
+
+        $order = Order::find($order_data['id']);
+
+        try {
+            
+            DB::beginTransaction();
+
+            $this->saveOrder($order, $order_data);
+
+            DB::commit();
+
+            return [
+                'success' => true,
+                'tracking_number' => $order->tracking_number,
+                'order_number' => $order->order_number
+            ];
+
+        } catch (\Exception $ex) {
+        
+            throw $ex;
+            return ['success' => false, 'message' => $ex->getMessage()];
+
+        }
+    }
+
+    public function edit($id)
+    {
+        //\DB::enableQueryLog();
+        //return \App\OrderItem::with('options.options_items')->get();
+        //return \DB::getQueryLog();
+
+        //\DB::enableQueryLog();
+        $order = Order::with(['items.options.options_items', 'tables'])->where('orders.id', $id)->first();
+        //return \DB::getQueryLog();
+
+        return $order;
     }
 
     private function generateOrderNumber($order_type)
@@ -126,6 +169,7 @@ class OrdersController extends Controller
             $order->order_booked_by = Auth::user()->id;
         }
 
+        $order_status_idt = isset($order_data['order_status_idt']) ? $order_data['order_status_idt'] : '';
         $isSavingNewOrder = false;
         if($order->id == null)  // new order
         {
@@ -143,6 +187,25 @@ class OrdersController extends Controller
 
         $order->tracking_number = $order->order_number;
         $order->save();
+
+
+        ///////////////////////////////////////
+        // order tables
+        $this->freeOrdersTables($order->id);
+        
+        if(isset($order_data['tables']))
+        {
+            foreach($order_data['tables'] as $table)
+            {
+                Table::where('id', $table['id'])
+                ->update(
+                    [
+                        'order_id' => $order->id,
+                    ]
+                );
+            }
+        }
+
 
         ///////////////////////////////////////
         // order items
@@ -202,10 +265,23 @@ class OrdersController extends Controller
             }
             else
             {
-                throw new \Exception('Not Implemented');
+                //throw new \Exception('Not Implemented');
             }
         }
 
+    }
+
+
+    private function freeOrdersTables($order_id)
+    {
+        //throw new \Exception($order_id);
+        Table::where('order_id', $order_id)
+            ->update(
+                [
+                    'order_id' => null,
+                ]
+            );
+            
     }
 
     public function getOrderStatus()
@@ -275,10 +351,12 @@ class OrdersController extends Controller
                     $this->insertNewPrintJob(
                         $this->printJobTypes['new'], $order->id, null );
                 }
-                else if($status->idt != 'cancelled')
+                else if($status->idt == 'cancelled')
                 {
                     $this->insertNewPrintJob(
                         $this->printJobTypes['cancel'], $order->id, null );
+
+                    $this->freeOrdersTables($order->id);
                 }
 
                 DB::commit();

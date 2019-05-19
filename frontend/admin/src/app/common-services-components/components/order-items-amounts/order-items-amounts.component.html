@@ -86,7 +86,7 @@
           <p class="m-0">
             <small *ngFor="let option of item.options">
               <span *ngFor="let option_item of option.options_items">
-                  {{option_item.name}}: , {{option_item.price | currency:currencyCode }}
+                  {{option_item.name}}: {{option_item.price | currency:currencyCode }}, 
               </span>
             </small>
           </p>
@@ -124,7 +124,7 @@
           ( <input type="checkbox" [(ngModel)]="showDetails"> Show Details )
         </td>
         <td colspan="1">
-          {{order.order_amount_before_discount - order.discount_amount + order.sales_tax_amount + order.delivery_charges | currency:currencyCode }}
+          {{ order.total_order_amount | currency:currencyCode }}
         </td>
       </tr>
     </table>
