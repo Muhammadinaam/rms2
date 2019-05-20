@@ -35,7 +35,7 @@ class OrdersController extends Controller
             
             DB::beginTransaction();
 
-            $this->saveOrder($order, $order_data);
+            $this->saveOrder($order, $order_data, false, null, null);
 
             DB::commit();
 
@@ -56,6 +56,8 @@ class OrdersController extends Controller
     public function update()
     {
         $order_data = request()->order;
+        $new_items = request()->new_items;
+        $removed_items = request()->removed_items;
 
         $order = Order::find($order_data['id']);
 
@@ -63,7 +65,7 @@ class OrdersController extends Controller
             
             DB::beginTransaction();
 
-            $this->saveOrder($order, $order_data);
+            $this->saveOrder($order, $order_data, true, $new_items, $removed_items);
 
             DB::commit();
 
@@ -138,7 +140,7 @@ class OrdersController extends Controller
         return $period . '-' . $new_number . '-' . $order_type;
     }
 
-    public function saveOrder($order, $order_data)
+    public function saveOrder($order, $order_data, $is_editing, $new_items, $removed_items)
     {
         $order_type_id = DB::table('order_types')->where('idt', $order_data['order_type_idt'])->first()->id;
 
@@ -209,18 +211,51 @@ class OrdersController extends Controller
 
         ///////////////////////////////////////
         // order items
-
         DB::table('order_items')
             ->where('order_id', $order->id)
             ->delete();
-        
-        foreach($order_data['items'] as $item)
+        $this->saveOrderItems($order->id, null, $order_data['items'], null);
+
+
+        //////////////////////////////////////
+        // order edit
+        if($is_editing == true)
+        {
+            $order_edit = new \App\OrderEdit;
+            $order_edit->created_by = \Auth::user()->id;
+            $order_edit->save();
+
+            $this->saveOrderItems(null, $order_edit->id, $new_items, 'new_item');
+            $this->saveOrderItems(null, $order_edit->id, $removed_items, 'removed_item');
+        }
+
+        // Print job
+        if($order_status_idt != 'phone-confirmation-pending')
+        {
+            if($isSavingNewOrder)
+            {
+                $this->insertNewPrintJob(
+                    $this->printJobTypes['new'], $order->id, null );
+            }
+            else
+            {
+                //throw new \Exception('Not Implemented');
+            }
+        }
+
+    }
+
+    private function saveOrderItems($order_id, $order_edit_id, $items, $edit_type)
+    {
+        foreach($items as $item)
         {
             $order_item_id = (string) Str::uuid();
             DB::table('order_items')
                 ->insert([
                     'id' => $order_item_id,
                     'order_id' => $order->id,
+                    'order_edit_id' => $order_edit_id,
+                    'edit_type' => $edit_type,
                     'item_id' => $item['id'],
                     'name' => $item['name'],
                     'price' => $item['price'],
@@ -254,23 +289,7 @@ class OrdersController extends Controller
                 }
             }
         }
-
-        // Print job
-        if($order_status_idt != 'phone-confirmation-pending')
-        {
-            if($isSavingNewOrder)
-            {
-                $this->insertNewPrintJob(
-                    $this->printJobTypes['new'], $order->id, null );
-            }
-            else
-            {
-                //throw new \Exception('Not Implemented');
-            }
-        }
-
     }
-
 
     private function freeOrdersTables($order_id)
     {

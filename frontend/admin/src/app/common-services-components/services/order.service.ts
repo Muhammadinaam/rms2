@@ -36,6 +36,7 @@ export class OrderService {
 
 
   removedItems = [];
+  newItems = [];
 
   constructor(
     private settingsService: SettingsService,
@@ -45,7 +46,11 @@ export class OrderService {
     this.resetOrder();
   }
 
-
+  reset(){
+    this.resetOrder();
+    this.removedItems.length = 0;
+    this.newItems.length = 0;
+  }
 
   resetOrder(){
     this.order.order_type_idt = '';
@@ -97,6 +102,10 @@ export class OrderService {
   }
 
   addItemInOrder(item) {
+
+    let newItem = cloneDeep(item);
+    this.newItems.push(item);
+
     this.order.items.push(item);
     this.order.items = this.order.items.slice();
     this.calculateOrderAmounts();
@@ -152,7 +161,8 @@ export class OrderService {
   saveOrder() {
     let data = {
       'order': this.order,
-      'removed_items': this.removedItems
+      'removed_items': this.removedItems,
+      'new_items': this.newItems
     };
     
     if(this.order.items.length == 0){

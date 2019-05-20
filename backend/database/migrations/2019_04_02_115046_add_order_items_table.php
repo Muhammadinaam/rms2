@@ -17,7 +17,9 @@ class AddOrderItemsTable extends Migration
             
             $table->uuid('id')->primary();
             
-            $table->uuid('order_id');
+            $table->uuid('order_id')->nullable();
+            $table->uuid('order_edit_id')->nullable();
+            $table->string('edit_type')->nullable();
             
             $table->bigInteger('item_id');
             $table->string('name');

@@ -25,6 +25,7 @@ export class OrderAddEditComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.orderService.reset();
     this.order = this.orderService.order;
     this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/free-tables')
       .subscribe(data => {
@@ -47,9 +48,6 @@ export class OrderAddEditComponent implements OnInit {
                   this.setMappings();
 
                 });
-        }
-        else {
-          this.orderService.resetOrder();
         }
       });
   }
@@ -125,7 +123,7 @@ export class OrderAddEditComponent implements OnInit {
         alert(message);
 
         if(resp['success'] == true){
-          this.orderService.resetOrder();
+          this.orderService.reset();
           this.router.navigate(['pages/orders-and-tables']);
         }
       });
