@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import cloneDeep from 'lodash/cloneDeep';
-import { ToastrService } from 'ngx-toastr';
+//import { ToastrService } from 'ngx-toastr';
 import { SettingsService } from '../../services/settings.service';
 import { OrderService } from '../../services/order.service';
 
@@ -21,6 +21,7 @@ export class AddToOrderComponent implements OnInit, OnChanges {
   @Input() category;
   @Input() isVisible;
   @Output() isVisibleChange:EventEmitter<any> = new EventEmitter<any>();
+  @Input() showAlertOnItemAdd = true;
   
   orderItem = {
     category_id: '',
@@ -42,7 +43,8 @@ export class AddToOrderComponent implements OnInit, OnChanges {
   constructor(
     private settingsService: SettingsService,
     private orderService: OrderService,
-    private toastr: ToastrService) { }
+    //private toastr: ToastrService
+    ) { }
 
   ngOnInit() {
   }
@@ -155,10 +157,14 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     this.setModalVisibility(false);
     this.reset();
 
-    this.toastr.success("Item added to Order. Click \"Your Order\" Button at Top to Checkout", '', {
-      positionClass: 'toast-bottom-center',
-      timeOut: 15000,
-    });
+    // this.toastr.success("Item added to Order. Click \"Your Order\" Button at Top to Checkout", '', {
+    //   positionClass: 'toast-bottom-center',
+    //   timeOut: 15000,
+    // });
+
+    if(this.showAlertOnItemAdd){
+      alert("Item added to Order. Click \"Your Order\" Button at Top to Checkout");
+    }
   }
 
 }

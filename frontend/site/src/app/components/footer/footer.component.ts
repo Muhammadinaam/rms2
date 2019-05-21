@@ -8,7 +8,7 @@ import { SettingsService } from '../../../../../admin/src/app/common-services-co
 })
 export class FooterComponent implements OnInit {
 
-  constructor(private settingsService: SettingsService) { }
+  constructor(public settingsService: SettingsService) { }
 
   ngOnInit() {
   }

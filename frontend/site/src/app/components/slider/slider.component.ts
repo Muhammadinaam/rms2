@@ -11,7 +11,7 @@ export class SliderComponent implements OnInit {
 
   imageSources = [];
 
-  constructor(private settingsService: SettingsService) { }
+  constructor(public settingsService: SettingsService) { }
 
   ngOnInit() {
     

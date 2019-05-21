@@ -19,7 +19,7 @@ export class OrderModalComponent implements OnInit {
   
   constructor(
     private orderService: OrderService,
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
     private router: Router,
     private toastr: ToastrService) { }
   

@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     private http: HttpClient,
     private menuModalService: MenuModalService,
     private router: Router,
-    private settingsService: SettingsService) { }
+    public settingsService: SettingsService) { }
 
   basePath = BaseEndPointService.getBaseEndPoint();
   categories = null;

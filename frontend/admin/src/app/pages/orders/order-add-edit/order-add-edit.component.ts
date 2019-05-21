@@ -15,11 +15,11 @@ export class OrderAddEditComponent implements OnInit {
   order;
   freeTables;
   editingId: any;
-
+  
 
   constructor(
     private orderService: OrderService,
-    private settingsService: SettingsService,
+    public settingsService: SettingsService,
     private http: HttpClient,
     private router: Router,
     private activatedRoute: ActivatedRoute) { }

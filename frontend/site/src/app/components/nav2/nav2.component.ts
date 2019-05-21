@@ -16,7 +16,7 @@ export class Nav2Component implements OnInit {
   constructor(
     private menuModalService: MenuModalService,
     private orderService: OrderService,
-    private settingsService: SettingsService) { }
+    public settingsService: SettingsService) { }
 
   ngOnInit() {
     this.order = this.orderService.order;

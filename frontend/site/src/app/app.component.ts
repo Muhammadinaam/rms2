@@ -9,7 +9,7 @@ import { SettingsService } from '../../../admin/src/app/common-services-componen
 export class AppComponent {
   title = 'Restaurant';
 
-  constructor(private settingsService: SettingsService)
+  constructor(public settingsService: SettingsService)
   {
     
   }

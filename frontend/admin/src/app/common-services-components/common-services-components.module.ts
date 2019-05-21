@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddToOrderComponent } from './components/add-to-order/add-to-order.component';
 import { FormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
+//import { ToastrModule } from '../../../../admin/node_modules/ngx-toastr';
 import { OrderItemsAmountsComponent } from './components/order-items-amounts/order-items-amounts.component';
 import { CategoriesItemsSearchComponent } from './components/categories-items-search/categories-items-search.component';
 
@@ -16,7 +16,7 @@ import { CategoriesItemsSearchComponent } from './components/categories-items-se
   imports: [
     CommonModule,
     FormsModule,
-    ToastrModule.forRoot(),
+    //ToastrModule.forRoot(),
   ],
   exports: [
     AddToOrderComponent,

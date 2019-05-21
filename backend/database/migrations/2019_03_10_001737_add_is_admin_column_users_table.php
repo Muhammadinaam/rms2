@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Hash;
 
 class AddIsAdminColumnUsersTable extends Migration
 {
@@ -17,6 +18,8 @@ class AddIsAdminColumnUsersTable extends Migration
             //
             $table->boolean('is_admin')->nullable()->after('password');;
         });
+
+        
     }
 
     /**

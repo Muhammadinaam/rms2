@@ -25,7 +25,7 @@ export class MenuComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private http: HttpClient,
-    private settingsService: SettingsService) { }
+    public settingsService: SettingsService) { }
 
 
   ngOnInit() {

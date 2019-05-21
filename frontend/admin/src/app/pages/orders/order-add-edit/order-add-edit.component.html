@@ -10,7 +10,7 @@
 
           <div class="col-md-5 mb-2">
             <form #dataForm="ngForm" (ngSubmit)="onSubmit()">
-              <pre> {{ order | json}}</pre>
+              <!-- <pre> {{ order | json}}</pre> -->
 
               <div class="order-container">
 
@@ -141,7 +141,7 @@
 
                 <div >
                   <button class="button is-default is-pulled-left">Search Item</button>
-                  <button type="submit" class="button is-info is-pulled-right" [disabled]="dataForm.invalid || submitting">Save</button>
+                  <button type="submit" class="button is-info is-pulled-right" [disabled]="dataForm.invalid">Save</button>
                 </div>
               </div>
               <!-- order-container -->

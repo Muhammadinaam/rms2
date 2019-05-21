@@ -253,7 +253,7 @@ class OrdersController extends Controller
             DB::table('order_items')
                 ->insert([
                     'id' => $order_item_id,
-                    'order_id' => $order->id,
+                    'order_id' => $order_id,
                     'order_edit_id' => $order_edit_id,
                     'edit_type' => $edit_type,
                     'item_id' => $item['id'],
