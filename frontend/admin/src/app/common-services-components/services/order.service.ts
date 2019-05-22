@@ -126,7 +126,13 @@ export class OrderService {
       });
     });
 
-    this.order.discount_percent = this.webDiscountPercent;
+    this.order.discount_percent = 0;
+    
+    if(this.order.order_type_idt == 'wd')
+    {
+      this.order.discount_percent = this.webDiscountPercent;
+    }
+
     this.order.discount_amount = this.order.order_amount_before_discount * this.order.discount_percent / 100;
     this.order.sales_tax_percent = this.salesTaxPercent;
     this.order.sales_tax_amount = 
@@ -165,8 +171,8 @@ export class OrderService {
       'new_items': this.newItems
     };
     
-    if(this.order.items.length == 0){
-      alert('Please add items in order');
+    if(this.isOrderValid() == false)
+    {
       return;
     }
 
@@ -176,6 +182,22 @@ export class OrderService {
     }
 
     return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/orders', data)
+  }
+
+  isOrderValid(){
+    if(this.order.items.length == 0){
+      alert('Please add items in order');
+      return false;
+    }
+
+    if(this.order.order_type_idt == 'di' && 
+      (this.order.tables == null || this.order.tables.length == 0)
+    ){
+      alert('Please add tables for Dine In Order');
+      return false;
+    }
+
+    return true;
   }
 
   edit(editingId: any) {

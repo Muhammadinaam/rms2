@@ -71,5 +71,6 @@
   [item]="selectedItem" 
   [category]="selectedItemCategory" 
   [(isVisible)]="AddToOrderModalVisibility"
-  [showAlertOnItemAdd]="false">
+  [showAlertOnItemAdd]="false" 
+  (itemAddedToOrder)="itemAddedToOrderHandler()">
 </add-to-order>

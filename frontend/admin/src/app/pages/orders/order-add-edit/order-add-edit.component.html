@@ -140,7 +140,10 @@
                 </div>
 
                 <div >
-                  <button class="button is-default is-pulled-left">Search Item</button>
+                  <button type="button" (click)="showSearch(true)"
+                    class="button is-default is-pulled-left d-block d-sm-block d-md-none">
+                    Search Item
+                  </button>
                   <button type="submit" class="button is-info is-pulled-right" [disabled]="dataForm.invalid">Save</button>
                 </div>
               </div>
@@ -152,13 +155,33 @@
 
           <div class="col-md-7 d-none d-md-block">
 
-              <categories-items-search></categories-items-search>
+            <categories-items-search></categories-items-search>
   
           </div>
 
 
         </div>
+
+
+        <div class="modal" [class.is-active]="searchModalVisible" >
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <div class="modal-card-title">Search</div>
+              <button class="delete" aria-label="close" (click)="showSearch(false)"></button>
+            </header>
+            <section class="modal-card-body">
+              <categories-items-search (itemAddedToOrder)="showSearch(false)">
+
+              </categories-items-search>
+            </section>
+          </div>
+        </div>
+
         
       </nb-card-body>
     </nb-card>
   </div>
+
+
+  

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseEndPointService } from '../../services/base-end-point.service';
 
@@ -20,6 +20,8 @@ export class CategoriesItemsSearchComponent implements OnInit {
   selectedItem;
   selectedItemCategory;
   AddToOrderModalVisibility;
+
+  @Output() itemAddedToOrder = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -86,6 +88,10 @@ export class CategoriesItemsSearchComponent implements OnInit {
     this.selectedItemCategory = this.allCategories.find(x => x.id == item.category_id);
 
     this.AddToOrderModalVisibility = true;
+  }
+
+  itemAddedToOrderHandler(){
+    this.itemAddedToOrder.emit();
   }
 
 }

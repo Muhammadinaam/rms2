@@ -21,6 +21,7 @@ export class AddToOrderComponent implements OnInit, OnChanges {
   @Input() category;
   @Input() isVisible;
   @Output() isVisibleChange:EventEmitter<any> = new EventEmitter<any>();
+  @Output() itemAddedToOrder:EventEmitter<any> = new EventEmitter<any>();
   @Input() showAlertOnItemAdd = true;
   
   orderItem = {
@@ -155,6 +156,7 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     var orderItem = cloneDeep(this.orderItem);
     this.orderService.addItemInOrder(orderItem);
     this.setModalVisibility(false);
+    this.itemAddedToOrder.emit();
     this.reset();
 
     // this.toastr.success("Item added to Order. Click \"Your Order\" Button at Top to Checkout", '', {

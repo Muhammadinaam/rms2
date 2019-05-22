@@ -15,6 +15,7 @@ import { OpenOrdersAndTablesComponent } from './orders/open-orders-and-tables/op
 import { TablesListComponent } from './tables/tables-list/tables-list.component';
 import { TablesAddEditComponent } from './tables/tables-add-edit/tables-add-edit.component';
 import { OrderAddEditComponent } from './orders/order-add-edit/order-add-edit.component';
+import { SalesReportComponent } from './reports/sales-report/sales-report.component'
 
 const routes: Routes = [{
   path: '',
@@ -96,6 +97,11 @@ const routes: Routes = [{
     {
       path: 'orders/:id/edit',
       component: OrderAddEditComponent,
+    },
+
+    {
+      path: 'sales-report',
+      component: SalesReportComponent,
     },
 
     {

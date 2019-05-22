@@ -22,6 +22,7 @@ import { TablesAddEditComponent } from './tables/tables-add-edit/tables-add-edit
 import { NbDialogModule } from '@nebular/theme';
 import { OrderAddEditComponent } from './orders/order-add-edit/order-add-edit.component';
 import { CommonServicesComponentsModule } from '../common-services-components/common-services-components.module';
+import { SalesReportComponent } from './reports/sales-report/sales-report.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -53,6 +54,7 @@ const PAGES_COMPONENTS = [
     TablesListComponent,
     TablesAddEditComponent,
     OrderAddEditComponent,
+    SalesReportComponent,
   ],
 })
 export class PagesModule {

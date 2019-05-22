@@ -111,4 +111,8 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
     this.isTimerStopped = state;
   }
 
+  closeOrder(order){
+    alert("You do not have permission to Close Order");
+  }
+
 }

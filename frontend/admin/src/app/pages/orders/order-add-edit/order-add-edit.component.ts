@@ -15,7 +15,8 @@ export class OrderAddEditComponent implements OnInit {
   order;
   freeTables;
   editingId: any;
-  
+
+  searchModalVisible = false;
 
   constructor(
     private orderService: OrderService,
@@ -128,6 +129,10 @@ export class OrderAddEditComponent implements OnInit {
         }
       });
     }
+  }
+
+  showSearch(show:boolean){
+    this.searchModalVisible = show;
   }
 
 }
