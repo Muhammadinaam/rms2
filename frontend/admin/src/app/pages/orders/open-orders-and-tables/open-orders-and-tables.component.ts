@@ -18,6 +18,7 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   isTimerStopped = false;
   assignableStatuses:any = [];
   changeStatusDialogRef;
+  isCloseOrderModalVisible = false;
   
   constructor(private http: HttpClient, 
     private loaderService: LoaderService,
@@ -57,7 +58,7 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
 
   refresh() {
 
-    if(this.isTimerStopped)
+    if(this.isTimerStopped || this.isCloseOrderModalVisible)
       return;
 
       this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/free-tables')
@@ -114,5 +115,7 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   closeOrder(order){
     alert("You do not have permission to Close Order");
   }
+
+  
 
 }

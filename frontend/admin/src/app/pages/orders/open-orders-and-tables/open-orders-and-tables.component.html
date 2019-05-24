@@ -35,7 +35,7 @@
             <button class="btn btn-xs btn-danger btn-block" (click)="cancelOrder(order)">Cancel Order</button>
             <button class="btn btn-xs btn-primary btn-block">Reprint for Kitchen</button>
             <button class="btn btn-xs btn-primary btn-block">Print for Customer</button>
-            <button class="btn btn-xs btn-primary btn-block" (click)="closeOrder(order)">Close Order</button>
+            <button class="btn btn-xs btn-primary btn-block" (click)="isCloseOrderModalVisible = true">Close Order</button>
           </div>
         </div>
 
@@ -86,3 +86,47 @@
     </nb-card-footer>
   </nb-card>
 </ng-template>
+
+<div class="modal" [class.is-active]="isCloseOrderModalVisible">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <div class="modal-card-title">Close Order</div>
+      <button class="delete" aria-label="close" (click)="isCloseOrderModalVisible = false"></button>
+    </header>
+    <section class="modal-card-body">
+      
+      <div class="field">
+        <label class="label">Receivable Amount</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input" disabled>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Cash Received</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Card Received</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input">
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Balance</label>
+        <div class="control">
+          <input class="input" type="text" placeholder="Text input" disabled>
+        </div>
+      </div>
+
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-primary is-fullwidth">Close Order</button>
+    </footer>
+  </div>
+</div>
