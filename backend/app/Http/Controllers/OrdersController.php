@@ -160,7 +160,7 @@ class OrdersController extends Controller
         $order->sales_tax_amount = $order_data['sales_tax_amount'] != null ? $order_data['sales_tax_amount'] : 0;
         $order->delivery_charges = $order_data['delivery_charges'] != null ? $order_data['delivery_charges'] : 0;
         
-        $order->total_order_amount = 
+        $order->receivable_amount = 
             $order->order_amount_before_discount - 
             $order->discount_amount + 
             $order->sales_tax_amount +

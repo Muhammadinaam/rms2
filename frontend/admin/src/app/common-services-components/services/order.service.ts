@@ -30,7 +30,7 @@ export class OrderService {
     sales_tax_percent: 0,
     sales_tax_amount: 0,
     delivery_charges: 0,
-    total_order_amount: 0,
+    receivable_amount: 0,
     items: [],
   };
 
@@ -147,7 +147,7 @@ export class OrderService {
       this.order.delivery_charges = deliveryChargesFunction(order_amount);
     }
   
-    this.order.total_order_amount = this.order.order_amount_before_discount - 
+    this.order.receivable_amount = this.order.order_amount_before_discount - 
     +this.order.discount_amount + 
     +this.order.sales_tax_amount + 
     +this.order.delivery_charges;

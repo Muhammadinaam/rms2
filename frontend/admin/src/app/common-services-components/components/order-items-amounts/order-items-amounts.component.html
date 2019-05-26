@@ -124,7 +124,7 @@
           ( <input type="checkbox" [(ngModel)]="showDetails"> Show Details )
         </td>
         <td colspan="1">
-          {{ order.total_order_amount | currency:currencyCode }}
+          {{ order.receivable_amount | currency:currencyCode }}
         </td>
       </tr>
     </table>

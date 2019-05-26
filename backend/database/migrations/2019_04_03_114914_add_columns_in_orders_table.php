@@ -15,8 +15,8 @@ class AddColumnsInOrdersTable extends Migration
     {
         Schema::table('orders', function (Blueprint $table) {
             
-            $table->decimal('total_order_amount')->after('delivery_charges');
-            $table->decimal('received_through_cash')->nullable()->after('total_order_amount');
+            $table->decimal('receivable_amount')->after('delivery_charges');
+            $table->decimal('received_through_cash')->nullable()->after('receivable_amount');
             $table->decimal('received_through_card')->nullable()->after('received_through_cash');
             $table->bigInteger('received_by')->nullable()->after('received_through_card');
             $table->bigInteger('cancelled_by')->nullable()->after('received_by');
@@ -36,7 +36,7 @@ class AddColumnsInOrdersTable extends Migration
             
             $table->dropColumn(
                 [
-                    'total_order_amount',
+                    'receivable_amount',
                     'received_through_cash',
                     'received_through_card',
                     'received_by',
