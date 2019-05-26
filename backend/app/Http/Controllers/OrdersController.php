@@ -234,12 +234,13 @@ class OrdersController extends Controller
         {
             if($isSavingNewOrder)
             {
-                $this->insertNewPrintJob(
+                $this->insertPrintJob(
                     $this->printJobTypes['new'], $order->id, null );
             }
             else
             {
-                //throw new \Exception('Not Implemented');
+                $this->insertPrintJob(
+                    $this->printJobTypes['edit'], $order->id, $order_edit->id );
             }
         }
 
@@ -367,12 +368,12 @@ class OrdersController extends Controller
                     ($status->idt != 'closed' || $status->idt != 'cancelled' || $status->idt != 'printed-for-customer' )
                 )
                 {
-                    $this->insertNewPrintJob(
+                    $this->insertPrintJob(
                         $this->printJobTypes['new'], $order->id, null );
                 }
                 else if($status->idt == 'cancelled')
                 {
-                    $this->insertNewPrintJob(
+                    $this->insertPrintJob(
                         $this->printJobTypes['cancel'], $order->id, null );
 
                     $this->freeOrdersTables($order->id);
@@ -394,7 +395,7 @@ class OrdersController extends Controller
         }
     }
 
-    private function insertNewPrintJob($print_type, $order_id, $order_edit_id)
+    private function insertPrintJob($print_type, $order_id, $order_edit_id)
     {
         DB::table('orders_print_jobs')
             ->insert([
