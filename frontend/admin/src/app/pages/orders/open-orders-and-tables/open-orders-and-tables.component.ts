@@ -4,6 +4,7 @@ import { LoaderService } from '../../../@theme/services/loader.service';
 import * as moment from 'moment';
 import { NbDialogService } from '@nebular/theme';
 import { BaseEndPointService } from '../../../common-services-components/services/base-end-point.service';
+import { OrderService } from '../../../common-services-components/services/order.service';
 
 @Component({
   selector: 'open-orders-and-tables',
@@ -19,10 +20,14 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   assignableStatuses:any = [];
   changeStatusDialogRef;
   isCloseOrderModalVisible = false;
+  closingOrder = null;
+  cash_received = 0;
+  card_received = 0;
   
   constructor(private http: HttpClient, 
     private loaderService: LoaderService,
-    private dialogService: NbDialogService) { }
+    private dialogService: NbDialogService,
+    private orderService: OrderService) { }
 
   openChangeStatusDialog(dialog, order){
     this.isTimerStopped = true;
@@ -89,14 +94,13 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
 
   cancelOrder(order){
     if(confirm("Are you sure to cancel order?")){
-      this.changeOrderStatus('cancelled', order);
+      this.changeOrderStatus(order, 'cancelled');
     }
   }
 
-  changeOrderStatus(status, order)
+  changeOrderStatus(order, status)
   {
-    let data = {order_id: order.id, status_idt: status};
-    this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/change-order-status', data)
+    this.orderService.changeOrderStatus(order, status)
       .subscribe(resp => {
         alert(resp['message']);
         
@@ -112,8 +116,32 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
     this.isTimerStopped = state;
   }
 
-  closeOrder(order){
-    alert("You do not have permission to Close Order");
+  closeOrder(){
+    if(this.closingOrder.receivable_amount - this.cash_received - this.card_received > 0){
+      alert('Received amount is less than Order Amount');
+      return;
+    }
+
+    this.orderService.closeOrder(this.closingOrder, this.cash_received, this.card_received)
+      .subscribe(resp => {
+        alert(resp['message']);
+        if(resp['success'] == true){
+          this.isCloseOrderModalVisible = false;
+          this.refresh();
+        }
+      });
+  }
+
+  sendPrintCommand(order_id, order_edit_id, print_type){
+    this.orderService.sendPrintCommand(order_id, order_edit_id, print_type)
+      .subscribe(resp => {
+        alert(resp['message']);
+      });
+  }
+
+  showCloseOrderModal(order) {
+    this.closingOrder = order;
+    this.isCloseOrderModalVisible = true;
   }
 
   

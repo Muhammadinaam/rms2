@@ -11,6 +11,21 @@ import cloneDeep from 'lodash/cloneDeep';
 })
 export class OrderService {
 
+  closeOrder(closingOrder: any, cash_received: number, card_received: number) {
+    let data = {
+      order_id: closingOrder.id,
+      cash_received: cash_received,
+      card_received: card_received
+    };
+
+    return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/close-order', data);
+  }
+
+  changeOrderStatus(order: any, status: any) {
+    let data = {order_id: order.id, status_idt: status};
+    return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/change-order-status', data);
+  }
+  
   webDiscountPercent;
   salesTaxPercent;
   minimumOrderAmount;
@@ -128,9 +143,12 @@ export class OrderService {
 
     this.order.discount_percent = 0;
     
-    if(this.order.order_type_idt == 'wd')
+    if(this.order.id != null || this.order.id != '')  // if new order then set discount according to rate in settings
     {
-      this.order.discount_percent = this.webDiscountPercent;
+      if(this.order.order_type_idt == 'wd')
+      {
+        this.order.discount_percent = this.webDiscountPercent;
+      }
     }
 
     this.order.discount_amount = this.order.order_amount_before_discount * this.order.discount_percent / 100;
@@ -218,6 +236,15 @@ export class OrderService {
     
     this.order.items.splice(item_index, 1);
     this.calculateOrderAmounts();
+  }
+
+  sendPrintCommand(order_id: any, order_edit_id: any, print_type: any) {
+    let data = {
+      'order_id': order_id,
+      'order_edit_id': order_edit_id,
+      'print_type': print_type
+    };
+    return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/send-print-command', data);
   }
 
   // cloneItem(item){

@@ -49,6 +49,8 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('open-orders', 'OrdersController@openOrders');
     Route::get('assignable-statuses', 'OrdersController@assignableStatuses');
     Route::post('change-order-status', 'OrdersController@changeOrderStatus');
+    Route::post('send-print-command', 'OrdersController@sendPrintCommand');
+    Route::post('close-order', 'OrdersController@closeOrder');
 
     Route::get('logged-in-user', function(){
         return Auth::user();

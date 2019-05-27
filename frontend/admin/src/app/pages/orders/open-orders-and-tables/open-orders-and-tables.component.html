@@ -33,9 +33,9 @@
             <button class="btn btn-xs btn-info btn-block" (click)="openChangeStatusDialog(dialog, order)">Change Status</button>
             <button class="btn btn-xs btn-primary btn-block" [routerLink]="['/pages/orders/'+order.id+'/edit']"  >Edit Order</button>
             <button class="btn btn-xs btn-danger btn-block" (click)="cancelOrder(order)">Cancel Order</button>
-            <button class="btn btn-xs btn-primary btn-block">Reprint for Kitchen</button>
-            <button class="btn btn-xs btn-primary btn-block">Print for Customer</button>
-            <button class="btn btn-xs btn-primary btn-block" (click)="isCloseOrderModalVisible = true">Close Order</button>
+            <button class="btn btn-xs btn-primary btn-block" (click)="sendPrintCommand(order.id, null, 'reprint')">Reprint for Kitchen</button>
+            <button class="btn btn-xs btn-primary btn-block" (click)="changeOrderStatus(order, 'printed-for-customer')">Print for Customer</button>
+            <button class="btn btn-xs btn-primary btn-block" (click)="showCloseOrderModal(order)">Close Order</button>
           </div>
         </div>
 
@@ -82,12 +82,13 @@
     </nb-card-body>
     <nb-card-footer>
       <button class="btn btn-xs btn-danger" (click)="ref.close()">Cancel</button>
-      <button class="btn btn-xs btn-primary" (click)="changeOrderStatus(newStatus.value, data)">Save</button>
+      <button class="btn btn-xs btn-primary" (click)="changeOrderStatus(data, newStatus.value)">Save</button>
     </nb-card-footer>
   </nb-card>
 </ng-template>
 
-<div class="modal" [class.is-active]="isCloseOrderModalVisible">
+
+<div *ngIf="closingOrder != null" class="modal" [class.is-active]="isCloseOrderModalVisible">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -99,34 +100,35 @@
       <div class="field">
         <label class="label">Receivable Amount</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Text input" disabled>
+          <div class="input" disabled>{{closingOrder.receivable_amount}}</div>
+          
         </div>
       </div>
 
       <div class="field">
         <label class="label">Cash Received</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Text input">
+          <input class="input" type="number" [(ngModel)]="cash_received" >
         </div>
       </div>
 
       <div class="field">
         <label class="label">Card Received</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Text input">
+          <input class="input" type="number" [(ngModel)]="card_received" >
         </div>
       </div>
 
       <div class="field">
         <label class="label">Balance</label>
         <div class="control">
-          <input class="input" type="text" placeholder="Text input" disabled>
+          <div class="input" disabled>{{ (closingOrder.receivable_amount - cash_received - card_received) * -1 }}</div>
         </div>
       </div>
 
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-primary is-fullwidth">Close Order</button>
+      <button class="button is-primary is-fullwidth" (click)="closeOrder()">Close Order</button>
     </footer>
   </div>
 </div>

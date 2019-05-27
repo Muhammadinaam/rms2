@@ -65,7 +65,7 @@
     <tr class="is-selected">
       <td>Total Payable</td>
       <td>
-        {{order.order_amount_before_discount - order.discount_amount + order.sales_tax_amount + order.delivery_charges | currency:currencyCode }}
+        {{order.receivable_amount | currency:currencyCode }}
       </td>
     </tr>
   </table>
@@ -124,7 +124,7 @@
           ( <input type="checkbox" [(ngModel)]="showDetails"> Show Details )
         </td>
         <td colspan="1">
-          {{ order.receivable_amount | currency:currencyCode }}
+          {{order.receivable_amount | currency:currencyCode }}
         </td>
       </tr>
     </table>

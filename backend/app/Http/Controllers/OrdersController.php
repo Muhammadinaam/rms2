@@ -340,15 +340,18 @@ class OrdersController extends Controller
 
     public function changeOrderStatus()
     {
+        return $this->changeOrderStatusMethod(request()->order_id, request()->status_idt);
+    }
+
+    private function changeOrderStatusMethod($order_id, $status_idt)
+    {
         try
         {
-            $order_id = request()->order_id;
-
-            $status = OrderStatus::where('idt', request()->status_idt)
+            $status = OrderStatus::where('idt', $status_idt)
                 ->first();
 
             if($status == null)
-                throw new \Exception('Order Status: ' . request()->status_idt . ' is not valid.');
+                throw new \Exception('Order Status: ' . $status_idt . ' is not valid.');
 
             $order = Order::with('order_status')->where('id', $order_id)->first();
 
@@ -378,6 +381,11 @@ class OrdersController extends Controller
 
                     $this->freeOrdersTables($order->id);
                 }
+                else if($status->idt == 'printed-for-customer')
+                {
+                    $this->insertPrintJob(
+                        $this->printJobTypes['print-for-customer'], $order->id, null );
+                }
 
                 DB::commit();
             }
@@ -387,11 +395,11 @@ class OrdersController extends Controller
                 throw $ex;
             }
 
-            return ['message' => 'Saved Successfully'];
+            return ['success' => true, 'message' => 'Command Executed Successfully'];
         }
         catch(\Exception $ex)
         {
-            return ['message' => $ex->getMessage()];
+            return ['success' => false, 'message' => $ex->getMessage()];
         }
     }
 
@@ -403,5 +411,45 @@ class OrdersController extends Controller
                 'order_id' => $order_id,
                 'order_edit_id' => $order_edit_id,
             ]);
+    }
+
+    public function sendPrintCommand()
+    {
+        $this->insertPrintJob(
+            request()->print_type,
+            request()->order_id,
+            request()->order_edit_id
+        );
+
+        return ['success' => true, 'message' => 'Command Executed Successfully'];
+    }
+
+    public function closeOrder()
+    {
+
+        try
+        {
+            $status = OrderStatus::where('idt', 'closed')
+            ->first();
+
+            $order = Order::where('id', request()->order_id)
+            ->update([
+                'received_through_cash' => request()->cash_received,
+                'received_through_card' => request()->card_received,
+                'received_by' => Auth::user()->id,
+                'order_status_id' => $status->id,
+            ]);
+
+            Table::where('order_id', request()->order_id)
+                ->update([
+                    'order_id' => null
+                ]);
+
+            return ['success' => true, 'message' => 'Order Closed'];
+        }
+        catch(\Exception $ex)
+        {
+            return ['success' => false, 'message' => 'Error: ' . $ex->getMessage()];
+        }
     }
 }
