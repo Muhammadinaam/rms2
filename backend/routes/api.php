@@ -28,6 +28,11 @@ Route::post('orders', 'OrdersController@store');
 Route::get('get-order-status', 'OrdersController@getOrderStatus');
 Route::get('categories', 'CategoriesController@index');
 
+Route::get('orders/{id}', 'OrdersController@edit');
+Route::get('order_edits/{id}', 'OrdersController@showOrderEdit');
+Route::get('get-print-jobs', 'OrdersController@getPrintJobs');
+Route::get('delete-print-job/{print_job_id}', 'OrdersController@deletePrintJob');
+
 Route::middleware(['auth:api'])->group(function () {
     Route::post('store-image', 'ImagesController@storeImage');
     Route::resource('users', 'UsersController');
@@ -56,7 +61,7 @@ Route::middleware(['auth:api'])->group(function () {
         return Auth::user();
     });
 
-    
+    Route::get('sales-report', 'ReportsController@salesReport');   
 
 });
 

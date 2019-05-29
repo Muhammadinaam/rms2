@@ -1,1 +1,33 @@
-<h1>You do not have permission to view this report</h1>
+<table class="table">
+    <thead>
+        <th>From</th>
+        <th>To</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <input type="date" [(ngModel)]="from">
+            </td>
+            <td>
+                <input type="date" [(ngModel)]="to">
+            </td>
+            <td>
+                <button class="btn btn-xs btn-primary" (click)="showReport()">Show Report</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <th>Order Number</th>
+        <th>Amount</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of reportData">
+            <td>{{row['order_number']}}</td>
+            <td>{{row['receivable_amount']}}</td>
+        </tr>
+    </tbody>
+</table>

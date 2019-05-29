@@ -263,7 +263,7 @@ class OrdersController extends Controller
                     'instructions' => $item['instructions'],
                     'item_price_with_options' => $item['item_price_with_options'],
                     'quantity' => $item['quantity'],
-                    'item_total_price' => $item['item_total_price'],
+                    'item_total_price' => $item['item_price_with_options'] * $item['quantity'],
                 ]);
 
             foreach($item['options'] as $option)
@@ -451,5 +451,22 @@ class OrdersController extends Controller
         {
             return ['success' => false, 'message' => 'Error: ' . $ex->getMessage()];
         }
+    }
+
+    public function getPrintJobs()
+    {
+        return DB::table('orders_print_jobs')
+            ->orderBy('id')
+            ->limit(10)
+            ->get();
+    }
+
+    public function deletePrintJob($print_job_id)
+    {
+        DB::table('orders_print_jobs')
+            ->where('id', $print_job_id)
+            ->delete();
+
+        return ['success' => true, 'message' => 'Deleted Successfully'];
     }
 }

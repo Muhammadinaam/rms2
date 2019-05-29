@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { BaseEndPointService } from '../../../common-services-components/services/base-end-point.service';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'sales-report',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SalesReportComponent implements OnInit {
 
-  constructor() { }
+  from;
+  to;
+  reportData;
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
+  }
+
+  showReport(){
+    this.http.get(BaseEndPointService.getBaseEndPoint() + 
+      '/api/sales-report?from=' + this.from + '&to=' + this.to)
+      .subscribe(resp => {
+        this.reportData = resp;
+      });
   }
 
 }
