@@ -263,6 +263,8 @@ class OrdersController extends Controller
                     'instructions' => $item['instructions'],
                     'item_price_with_options' => $item['item_price_with_options'],
                     'quantity' => $item['quantity'],
+                    'printer' => $item['printer'],
+                    'is_taxable' => $item['is_taxable'],
                     'item_total_price' => $item['item_price_with_options'] * $item['quantity'],
                 ]);
 

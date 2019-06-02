@@ -61,11 +61,20 @@ public class SettingsController {
     private void btnSaveClicked(){
         Preferences prefs = Preferences.userRoot();
 
-        prefs.put("posPrinter", posPrinter.getSelectionModel().getSelectedItem().toString());
-        prefs.put("kitchen1Name", kitchen1Name.getText());
-        prefs.put("kitchen2Name", kitchen2Name.getText());
-        prefs.put("kitchen3Name", kitchen3Name.getText());
-        prefs.put("kitchen4Name", kitchen4Name.getText());
+        if( posPrinter.getSelectionModel().getSelectedItem() != null )
+            prefs.put("posPrinter", posPrinter.getSelectionModel().getSelectedItem().toString());
+
+        if(kitchen1Name.getText() != null)
+            prefs.put("kitchen1Name", kitchen1Name.getText());
+
+        if(kitchen2Name.getText() != null)
+            prefs.put("kitchen2Name", kitchen2Name.getText());
+
+        if(kitchen3Name.getText() != null)
+            prefs.put("kitchen3Name", kitchen3Name.getText());
+
+        if(kitchen4Name.getText() != null)
+            prefs.put("kitchen4Name", kitchen4Name.getText());
 
 
         if( kitchen1Printer.getSelectionModel().getSelectedItem() != null )

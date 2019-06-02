@@ -30,6 +30,8 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     category_image: '',
     id: '',
     name: '',
+    printer: '',
+    is_taxable: true,
     price: 0,
     image: '',
     instructions: '',
