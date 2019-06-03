@@ -23,6 +23,8 @@ import { NbDialogModule } from '@nebular/theme';
 import { OrderAddEditComponent } from './orders/order-add-edit/order-add-edit.component';
 import { CommonServicesComponentsModule } from '../common-services-components/common-services-components.module';
 import { SalesReportComponent } from './reports/sales-report/sales-report.component';
+import { FromToFilterComponent } from './widgets/from-to-filter/from-to-filter.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -37,6 +39,8 @@ const PAGES_COMPONENTS = [
     FormsModule,
     NbDialogModule.forChild(null),
     CommonServicesComponentsModule,
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
   ],
   declarations: [
     ...PAGES_COMPONENTS,
@@ -55,6 +59,7 @@ const PAGES_COMPONENTS = [
     TablesAddEditComponent,
     OrderAddEditComponent,
     SalesReportComponent,
+    FromToFilterComponent,
   ],
 })
 export class PagesModule {

@@ -15,6 +15,9 @@
 
 @import './bootstrap-rtl';
 
+// datetime picker
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
 // install the framework and custom global styles
 @include nb-install() {
 
@@ -79,4 +82,11 @@
 
 .modal-card-head {
   padding: 10px !important;
+}
+
+@media print
+{
+  .menu-sidebar, nav {
+    display: none !important;
+  }
 }

@@ -130,19 +130,7 @@ export class OrderService {
 
   calculateOrderAmounts() {
 
-    this.order.order_amount_before_discount = 0;
-    this.order.items.forEach(item => {
-      this.order.order_amount_before_discount += +item.price * item.quantity;
-
-      item.options.forEach(option => {
-        option.options_items.forEach(option_item => {
-          this.order.order_amount_before_discount += +option_item.price * item.quantity;
-        });
-      });
-    });
-
     this.order.discount_percent = 0;
-    
     if(this.order.id != null || this.order.id != '')  // if new order then set discount according to rate in settings
     {
       if(this.order.order_type_idt == 'wd')
@@ -151,10 +139,34 @@ export class OrderService {
       }
     }
 
-    this.order.discount_amount = this.order.order_amount_before_discount * this.order.discount_percent / 100;
     this.order.sales_tax_percent = this.salesTaxPercent;
-    this.order.sales_tax_amount = 
-      (this.order.order_amount_before_discount - this.order.discount_amount) * this.order.sales_tax_percent / 100;
+    this.order.sales_tax_amount = 0;
+
+    this.order.order_amount_before_discount = 0;
+    this.order.items.forEach(item => {
+      this.order.order_amount_before_discount += +item.price * item.quantity;
+      
+      if(item.is_taxable)
+      {
+        this.order.sales_tax_amount += (+item.price * +item.quantity) * (1 - +this.order.discount_percent)/100 * +this.order.sales_tax_percent;
+      }
+
+      item.options.forEach(option => {
+        option.options_items.forEach(option_item => {
+          this.order.order_amount_before_discount += +option_item.price * item.quantity;
+
+          if(item.is_taxable)
+          {
+            this.order.sales_tax_amount += (+option_item.price * +item.quantity) * (1 - +this.order.discount_percent)/100 * +this.order.sales_tax_percent;
+          }
+
+        });
+      });
+    });
+
+    this.order.discount_amount = this.order.order_amount_before_discount * this.order.discount_percent / 100;
+    
+    
     
     let order_amount = this.order.order_amount_before_discount;
     let deliveryChargesFunction = eval(this.deliveryChargesFunction);

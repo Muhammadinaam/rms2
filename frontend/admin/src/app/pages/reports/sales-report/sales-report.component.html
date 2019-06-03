@@ -1,24 +1,8 @@
-<table class="table">
-    <thead>
-        <th>From</th>
-        <th>To</th>
-        <th></th>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <input type="date" [(ngModel)]="from">
-            </td>
-            <td>
-                <input type="date" [(ngModel)]="to">
-            </td>
-            <td>
-                <button class="btn btn-xs btn-primary" (click)="showReport()">Show Report</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<from-to-filter (submitEvent)="showReport($event)"></from-to-filter>
 
+<h2>Sales Report</h2>
+<p>From: {{from}}</p>
+<p>To: {{to}}</p>
 <table class="table">
     <thead>
         <th>Order Number</th>
@@ -31,3 +15,24 @@
         </tr>
     </tbody>
 </table>
+
+<br><br>
+<div *ngIf="amountsSummary != null && amountsSummary.length > 0">
+    <h4>Amounts Summary</h4>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td>Sales Tax / Vat</td>   <td>{{amountsSummary[0]['sales_tax_amount']}}</td>
+            </tr>
+            <tr>
+                <td>Discount</td>   <td>{{amountsSummary[0]['discount_amount']}}</td>
+            </tr>
+            <tr>
+                <td>Card Collection</td>   <td>{{amountsSummary[0]['received_through_card']}}</td>
+            </tr>
+            <tr>
+                <td>Cash Collection</td>   <td>{{amountsSummary[0]['received_through_cash']}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

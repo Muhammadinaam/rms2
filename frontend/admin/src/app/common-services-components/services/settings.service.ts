@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseEndPointService } from '../../common-services-components/services/base-end-point.service';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +9,7 @@ import { BaseEndPointService } from '../../common-services-components/services/b
 export class SettingsService {
   
   orderTypes;
+  public initialized = false;
   
   constructor(private http: HttpClient) 
   {
@@ -48,7 +50,7 @@ export class SettingsService {
 
   Init() {
  
-    return new Promise<void>((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         console.log("Init() called");
         ////do your initialisation stuff here  
         this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/get-all-settings')
@@ -59,13 +61,18 @@ export class SettingsService {
             .subscribe(data => {
               this.orderTypes = data;
 
-              resolve();
+              this.initialized = true;
+              resolve(true);
             });
 
           }, 
-          () => {
-            alert('Error occurred in loading site settings, please retry');
-            reject();
+          (error) => {
+            //alert('Error occurred in loading site settings, please retry');
+
+            this.initialized = false;
+            resolve(error);
+            
+            //reject();
           });
 
           

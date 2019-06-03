@@ -1,0 +1,12 @@
+<div class="nav2">
+    <button class="button menu-button" (click)="setMenuModalVisibility(true)">Menu</button>
+    <button class="button order-button" (click)="setOrderModalVisibility(true)">
+        Your Order&nbsp;
+        <small *ngIf="order.items.length == 0">
+            (Empty)
+        </small>
+        <small *ngIf="order.items.length > 0">
+            (Amount: {{order.order_amount_before_discount - order.discount_amount + order.sales_tax_amount + order.delivery_charges | currency:currencyCode }})
+        </small>
+    </button>
+</div>

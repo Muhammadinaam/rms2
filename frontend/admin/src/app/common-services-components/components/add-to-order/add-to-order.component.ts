@@ -86,6 +86,8 @@ export class AddToOrderComponent implements OnInit, OnChanges {
       this.orderItem.name = this.item.name;
       this.orderItem.price = this.item.price;
       this.orderItem.image = this.item.image;
+      this.orderItem.printer = this.item.printer;
+      this.orderItem.is_taxable = this.item.is_taxable;
     }
 
     if(this.category)

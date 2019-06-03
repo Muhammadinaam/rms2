@@ -22,6 +22,7 @@ export class ItemsListComponent implements OnInit {
     { header: 'Price', dataName: 'price', modifier: null, },
     { header: 'Information', dataName: 'information', modifier: null, },
     { header: 'Printer', dataName: 'printer', modifier: null, },
+    { header: 'Taxable', dataName: 'is_taxable', modifier: this.isActivatedModifier, },
     { header: 'Activated', dataName: 'is_activated', modifier: this.isActivatedModifier, },
   ];
 

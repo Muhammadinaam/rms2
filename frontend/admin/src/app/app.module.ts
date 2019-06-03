@@ -35,7 +35,7 @@ export function initializeApp1(settingsService: SettingsService) {
     NgbModule.forRoot(),
     ThemeModule.forRoot(),
     CoreModule.forRoot(),
-    ToastrModule.forRoot() // ToastrModule added
+    ToastrModule.forRoot(), // ToastrModule added
   ],
   bootstrap: [AppComponent],
   providers: [

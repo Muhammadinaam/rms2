@@ -1,0 +1,42 @@
+
+
+<nb-card class="d-print-none">
+
+  <nb-card-body>
+    
+    <div class="row">
+      
+      <div class="col-md-5">
+        <div class="field">
+          <label class="label">From</label>
+          <div class="control">
+            <input class="input" [(ngModel)]="fromDateTime" [owlDateTime]="from" [owlDateTimeTrigger]="from" >
+            <owl-date-time #from></owl-date-time>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="field">
+          <label class="label">To</label>
+          <div class="control">
+            <input class="input" [(ngModel)]="toDateTime" [owlDateTime]="to" [owlDateTimeTrigger]="to" >
+            <owl-date-time #to></owl-date-time>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2">
+        <button style="margin-top: 24px;" class="button" (click)="submitClicked()">Submit</button>
+      </div>
+
+    </div>
+    
+
+  </nb-card-body>
+
+
+</nb-card>
+
+
+
