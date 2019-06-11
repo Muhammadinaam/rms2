@@ -27,7 +27,7 @@
     <div *ngFor="let category of categories" class="category m-2 p-1 shadow-normal" 
       [class.bg-info]='category == selectedCategory' [class.text-white]='category == selectedCategory' 
       (click)="selectCategory(category)">
-        <img src="{{basePath + '/images/' + category.image}}" alt=""> {{category.name}}
+        <img src="{{basePath + '/images/' + category.image}}" alt=""> <span>{{category.name}}</span>
     </div>
 
   </div>
@@ -60,7 +60,7 @@
 
     <div *ngFor="let item of items" class="item m-2 p-1 shadow-normal" 
       (click)="showAddToOrderModal(item)">
-        <img src="{{basePath + '/images/' + item.image}}" alt=""> {{item.name}}
+        <img src="{{basePath + '/images/' + item.image}}" alt=""> <span>{{item.name}}</span>
     </div>
 
   </div>

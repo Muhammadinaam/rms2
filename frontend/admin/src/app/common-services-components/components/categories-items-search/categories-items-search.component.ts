@@ -35,7 +35,14 @@ export class CategoriesItemsSearchComponent implements OnInit {
   }
 
   selectCategory(category){
-    this.selectedCategory = category;
+    
+    if(this.selectedCategory != null && this.selectedCategory['id'] == category['id']){
+      this.selectedCategory = null;
+    }
+    else{
+      this.selectedCategory = category;
+    }
+
     this.searchItem();
   }
 
