@@ -1,10 +1,10 @@
 {
-  "name": "com.devzone.instafood",
+  "name": "com.devzone.instafoodapp",
   "displayName": "instafood",
   "version": "1.0.0",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "description": "InstaFood App",
   "main": "index.js",
-  "author": "Apache Cordova Team",
+  "author": "Devzone",
   "license": "Apache-2.0",
   "scripts": {
     "ng": "ng",
