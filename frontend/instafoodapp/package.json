@@ -1,11 +1,11 @@
 {
   "name": "com.devzone.instafoodapp",
-  "displayName": "instafood",
-  "version": "1.0.0",
-  "description": "InstaFood App",
+  "displayName": "InstaFoodApp",
+  "version": "1.1.0",
+  "description": "Instafood App",
   "main": "index.js",
-  "author": "Devzone",
   "license": "Apache-2.0",
+  "author": "Devzone",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
