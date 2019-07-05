@@ -9,8 +9,8 @@ export class BaseEndPointService {
 
   static getBaseEndPoint()
   {
-    // return 'http://localhost/rms2/backend/public';
-    return 'http://instafood.devzonesolutions.com/public';
+    return 'http://localhost/rms2/backend/public';
+    //return 'http://instafood.devzonesolutions.com/public';
   }
 
   static getClientInfo()

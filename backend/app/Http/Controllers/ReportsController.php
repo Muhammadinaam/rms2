@@ -29,14 +29,6 @@ class ReportsController extends Controller
 
     public function amountsSummary()
     {
-        return DB::table('orders')
-            ->select(
-                DB::raw('sum(sales_tax_amount) as sales_tax_amount'),
-                DB::raw('sum(received_through_card) as received_through_card'),
-                DB::raw('sum(receivable_amount - received_through_card) as received_through_cash'),
-                DB::raw('sum(discount_amount) as discount_amount'),
-            )->where('order_status_id', $this->OrderCloseStatucIdt)
-            ->whereBetween('created_at', [request()->from, request()->to])
-            ->get();
+        return []
     }
 }

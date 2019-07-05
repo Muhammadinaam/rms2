@@ -436,9 +436,6 @@ class OrdersController extends Controller
 
             $order = Order::where('id', request()->order_id)
             ->update([
-                'received_through_cash' => request()->cash_received,
-                'received_through_card' => request()->card_received,
-                'received_by' => Auth::user()->id,
                 'order_status_id' => $status->id,
             ]);
 
