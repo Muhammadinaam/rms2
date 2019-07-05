@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SettingsService } from '../../../admin/src/app/common-services-components/services/settings.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +10,17 @@ import { SettingsService } from '../../../admin/src/app/common-services-componen
 export class AppComponent {
   title = 'Restaurant';
 
-  constructor(public settingsService: SettingsService)
+  constructor(public settingsService: SettingsService, private router: Router)
   {
     
   }
 
   refresh(){
-    window.location.reload();
+    //window.location.reload();
+    this.settingsService.Init()
+      .then(() => {
+        this.router.navigate(['/']);
+      })
   }
 
 }
