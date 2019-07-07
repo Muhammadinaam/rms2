@@ -17,6 +17,7 @@ export class OrderAddEditComponent implements OnInit {
   editingId: any;
 
   searchModalVisible = false;
+  loading: boolean;
 
   constructor(
     private orderService: OrderService,
@@ -28,12 +29,23 @@ export class OrderAddEditComponent implements OnInit {
   ngOnInit() {
     this.orderService.reset();
     this.order = this.orderService.order;
+
+    this.loading = true;
+    
+
+
     this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/free-tables')
       .subscribe(data => {
         this.freeTables = data;
         this.loadEditingOrder();
+        this.loading = false;
+        
+      }, 
+      error => {
+        alert("Error occurred in loading Tables Data");
       });
 
+    
   }
 
   loadEditingOrder() {

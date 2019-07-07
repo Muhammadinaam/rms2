@@ -10,6 +10,7 @@ import cloneDeep from 'lodash/cloneDeep';
   providedIn: 'root'
 })
 export class OrderService {
+  isOrderAmountCalculatedCorrectly: boolean;
 
   closeOrder(closingOrder: any, cash_received: number, card_received: number) {
     let data = {
@@ -26,7 +27,7 @@ export class OrderService {
     return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/change-order-status', data);
   }
   
-  webDiscountPercent;
+  onlineDiscountPercent;
   salesTaxPercent;
   minimumOrderAmount;
   deliveryChargesFunction;
@@ -65,6 +66,7 @@ export class OrderService {
     this.resetOrder();
     this.removedItems.length = 0;
     this.newItems.length = 0;
+    this.getSettings();
   }
 
   resetOrder(){
@@ -110,7 +112,7 @@ export class OrderService {
 
   private getSettings()
   {
-    this.webDiscountPercent = this.settingsService.getWebDiscountPercent();  
+    this.onlineDiscountPercent = this.settingsService.getOnlineDiscountPercent();  
     this.salesTaxPercent = this.settingsService.getSalesTaxPercent();
     this.deliveryChargesFunction = this.settingsService.getDeliveryChargesFunction();
     this.minimumOrderAmount = this.settingsService.getSettingFromArray('minimum-order-amount');
@@ -130,12 +132,43 @@ export class OrderService {
 
   calculateOrderAmounts() {
 
+    if(this.order && this.order.items) {
+
+      // when items count = 1, then it means we are making new order so we will reset settings
+      if(this.order.items.length == 1 || this.isOrderAmountCalculatedCorrectly == false) {
+        this.settingsService.Init()
+        .then(() => {
+
+          if(this.settingsService.initialized == true) {
+            this.getSettings();
+            this.performOrderCalculations();
+            this.isOrderAmountCalculatedCorrectly = true;
+          }
+          else
+          {
+            this.isOrderAmountCalculatedCorrectly = false;
+          }
+
+        });
+      } else {
+        this.performOrderCalculations();
+        this.isOrderAmountCalculatedCorrectly = true;
+      }
+
+    }
+
+    
+
+    
+  }
+
+  performOrderCalculations() {
     this.order.discount_percent = 0;
     if(this.order.id != null || this.order.id != '')  // if new order then set discount according to rate in settings
     {
-      if(this.order.order_type_idt == 'wd')
+      if(this.order.order_type_idt == 'od')
       {
-        this.order.discount_percent = this.webDiscountPercent;
+        this.order.discount_percent = this.onlineDiscountPercent;
       }
     }
 
@@ -195,6 +228,7 @@ export class OrderService {
   }
 
   saveOrder() {
+
     let data = {
       'order': this.order,
       'removed_items': this.removedItems,
@@ -224,6 +258,12 @@ export class OrderService {
       (this.order.tables == null || this.order.tables.length == 0)
     ){
       alert('Please add tables for Dine In Order');
+      return false;
+    }
+
+    if(!this.isOrderAmountCalculatedCorrectly) {
+      alert('There was some error in order amount calculation. Please try again.');
+      this.calculateOrderAmounts();
       return false;
     }
 

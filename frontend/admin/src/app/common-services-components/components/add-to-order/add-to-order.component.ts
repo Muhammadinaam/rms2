@@ -169,7 +169,7 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     // });
 
     if(this.showAlertOnItemAdd){
-      alert("Item added to Order. Click \"Your Order\" Button at Top to Checkout");
+      alert("Item added to Order. Click \"Your Order\" Button/Tab to Checkout");
     }
   }
 

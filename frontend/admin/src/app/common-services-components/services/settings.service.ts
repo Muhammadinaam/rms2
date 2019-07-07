@@ -35,8 +35,8 @@ export class SettingsService {
   getSalesTaxPercent() {
     return this.getSettingFromArray('sales-tax-percent');
   }
-  getWebDiscountPercent() {
-    return this.getSettingFromArray('web-discount-percent');
+  getOnlineDiscountPercent() {
+    return this.getSettingFromArray('online-discount-percent');
   }
 
   getCurrencyCode() {

@@ -24,6 +24,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
         }
       },
       {
+        title: 'Receipt Types',
+        icon: 'nb-grid-a-outline',
+        link: '/pages/receipttypes',
+        data: {
+          permission_idt: 'receipttypes-list',
+        }
+      },
+      {
         title: 'Categories',
         icon: 'nb-grid-a-outline',
         link: '/pages/categories',

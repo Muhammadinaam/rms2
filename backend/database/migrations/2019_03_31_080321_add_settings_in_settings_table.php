@@ -18,10 +18,17 @@ class AddSettingsInSettingsTable extends Migration
             ->insert([
                 [
                     'group' => 'General Settings',
-                    'name' => 'Web Discount %',
-                    'idt' => 'web-discount-percent',
+                    'name' => 'Online Discount %',
+                    'idt' => 'online-discount-percent',
                     'type' => 'number',
-                    'instructions' => null,
+                    'instructions' => 'Discount on orders through Website or Mobile App',
+                ],
+                [
+                    'group' => 'General Settings',
+                    'name' => 'General Discount %',
+                    'idt' => 'general-discount-percent',
+                    'type' => 'number',
+                    'instructions' => 'Discount on orders other than through Website or Mobile App',
                 ],
                 [
                     'group' => 'General Settings',
@@ -49,7 +56,8 @@ class AddSettingsInSettingsTable extends Migration
     {
         DB::table('settings')
             ->whereIn('idt', [
-                'web-discount-percent',
+                'online-discount-percent',
+                'general-discount-percent',
                 'sales-tax-percent',
                 'currency-code',
             ])

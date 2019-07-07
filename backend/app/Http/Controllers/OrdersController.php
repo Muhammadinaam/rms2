@@ -177,7 +177,7 @@ class OrdersController extends Controller
         {
             $isSavingNewOrder = true;
             $order_status_idt = 'preparing';
-            if( $order_data['order_type_idt'] == 'wd')
+            if( $order_data['order_type_idt'] == 'od')
             {
                 $order_status_idt = 'phone-confirmation-pending';
             }

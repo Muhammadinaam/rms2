@@ -25,6 +25,8 @@ import { CommonServicesComponentsModule } from '../common-services-components/co
 import { SalesReportComponent } from './reports/sales-report/sales-report.component';
 import { FromToFilterComponent } from './widgets/from-to-filter/from-to-filter.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { ReceipttypesListComponent } from './receipttypes/receipttypes-list/receipttypes-list.component';
+import { ReceipttypesAddEditComponent } from './receipttypes/receipttypes-add-edit/receipttypes-add-edit.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -60,6 +62,8 @@ const PAGES_COMPONENTS = [
     OrderAddEditComponent,
     SalesReportComponent,
     FromToFilterComponent,
+    ReceipttypesListComponent,
+    ReceipttypesAddEditComponent,
   ],
 })
 export class PagesModule {

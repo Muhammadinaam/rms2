@@ -24,8 +24,8 @@ class AddOrderTypesTable extends Migration
         DB::table('order_types')
             ->insert([
                 [
-                    'idt' => 'wd',
-                    'name' => 'Web Delivery',
+                    'idt' => 'od',
+                    'name' => 'Online Delivery',
                 ],
                 [
                     'idt' => 'di',
@@ -36,7 +36,7 @@ class AddOrderTypesTable extends Migration
                     'name' => 'Take Away',
                 ],
                 [
-                    'idt' => 'od',
+                    'idt' => 'otd',
                     'name' => 'Other Delivery',
                 ]
             ]);

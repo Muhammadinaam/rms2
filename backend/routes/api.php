@@ -40,6 +40,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::resource('categories', 'CategoriesController')->except('index');
     
     Route::resource('items', 'ItemsController');
+    Route::resource('receipttypes', 'ReceipttypesController');
 
     Route::resource('tables', 'TablesController');
     Route::get('floors', 'TablesController@getFloors');

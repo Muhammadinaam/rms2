@@ -16,6 +16,8 @@ import { TablesListComponent } from './tables/tables-list/tables-list.component'
 import { TablesAddEditComponent } from './tables/tables-add-edit/tables-add-edit.component';
 import { OrderAddEditComponent } from './orders/order-add-edit/order-add-edit.component';
 import { SalesReportComponent } from './reports/sales-report/sales-report.component'
+import { ReceipttypesListComponent } from './receipttypes/receipttypes-list/receipttypes-list.component';
+import { ReceipttypesAddEditComponent } from './receipttypes/receipttypes-add-edit/receipttypes-add-edit.component';
 
 const routes: Routes = [{
   path: '',
@@ -38,6 +40,19 @@ const routes: Routes = [{
     {
       path: 'users/create',
       component: UserAddEditComponent,
+    },
+
+    {
+      path: 'receipttypes',
+      component: ReceipttypesListComponent,
+    },
+    {
+      path: 'receipttypes/:id/edit',
+      component: ReceipttypesAddEditComponent,
+    },
+    {
+      path: 'receipttypes/create',
+      component: ReceipttypesAddEditComponent,
     },
 
     {
