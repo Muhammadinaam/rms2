@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LoaderService } from '../../../@theme/services/loader.service';
-import * as moment from 'moment';
 import { NbDialogService } from '@nebular/theme';
 import { BaseEndPointService } from '../../../common-services-components/services/base-end-point.service';
 import { OrderService } from '../../../common-services-components/services/order.service';
@@ -89,15 +88,6 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
     return order.order_status_idt == 'phone-confirmation-pending' || order.order_status_idt == 'preparing';
   }
 
-  calculateTime(order)
-  {
-    let created_at = moment(order.created_at);
-    let current = moment();
-    let diff = current.diff(created_at, 'minutes');
-
-    return diff;
-  }
-
   cancelOrder(order){
     if(confirm("Are you sure to cancel order?")){
       this.changeOrderStatus(order, 'cancelled');
@@ -161,11 +151,11 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   }
 
   setDiscountAmount() {
-    this.discount_amount = this.selectedOrder.receivable_amount * this.discount_percent / 100;
+    this.discount_amount = Math.round(this.selectedOrder.receivable_amount * this.discount_percent / 100);
   }
 
   setDiscountPercent() {
-    this.discount_percent = this.discount_amount / this.selectedOrder.receivable_amount * 100;
+    this.discount_percent = Math.round(this.discount_amount / this.selectedOrder.receivable_amount * 100);
   }
 
 }

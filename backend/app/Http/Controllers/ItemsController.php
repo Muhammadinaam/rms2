@@ -81,7 +81,7 @@ class ItemsController extends Controller
         $item->image = request()->image;
         $item->information = request()->information;
         $item->printer = request()->printer;
-        $item->is_taxable = request()->is_taxable;
+        $item->is_taxable = request()->is_taxable == null ? 0 : request()->is_taxable;
         $item->is_activated = request()->is_activated;
 
         $item->save();

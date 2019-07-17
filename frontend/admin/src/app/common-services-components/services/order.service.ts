@@ -194,7 +194,7 @@ export class OrderService {
       
       if(item.is_taxable)
       {
-        this.order.sales_tax_amount += (+item.price * +item.quantity) * (1 - +this.order.discount_percent)/100 * +this.order.sales_tax_percent;
+        this.order.sales_tax_amount += (+item.price * +item.quantity) * (1 - +this.order.discount_percent/100) * +this.order.sales_tax_percent/100;
       }
 
       item.options.forEach(option => {
@@ -203,7 +203,7 @@ export class OrderService {
 
           if(item.is_taxable)
           {
-            this.order.sales_tax_amount += (+option_item.price * +item.quantity) * (1 - +this.order.discount_percent)/100 * +this.order.sales_tax_percent;
+            this.order.sales_tax_amount += (+option_item.price * +item.quantity) * (1 - +this.order.discount_percent/100) * +this.order.sales_tax_percent/100;
           }
 
         });

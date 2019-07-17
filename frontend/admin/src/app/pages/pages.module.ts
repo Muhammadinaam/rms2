@@ -28,6 +28,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ReceipttypesListComponent } from './receipttypes/receipttypes-list/receipttypes-list.component';
 import { ReceipttypesAddEditComponent } from './receipttypes/receipttypes-add-edit/receipttypes-add-edit.component';
 import { HasPermissionPipe } from './pipes/has-permission.pipe';
+import { OrderPendingTimePipe } from './pipes/order-pending-time.pipe';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -66,6 +67,7 @@ const PAGES_COMPONENTS = [
     ReceipttypesListComponent,
     ReceipttypesAddEditComponent,
     HasPermissionPipe,
+    OrderPendingTimePipe,
   ],
 })
 export class PagesModule {

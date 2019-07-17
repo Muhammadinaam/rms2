@@ -33,20 +33,20 @@ export class AuthService {
     .shareReplay();
   }
 
-  public async getLoggedInUser(){
-    if(this.user == null) { 
-      console.log('getting from db');
-      this.user = await this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/logged-in-user').toPromise();
-    }
+  public getLoggedInUserFromBackend(){
     
+    return this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/logged-in-user')
+    
+  }
+
+  public getLoggedInUser() {
     return this.user;
   }
 
-  public async loggedInUserHasPermission(permission)
+  public loggedInUserHasPermission(permission)
   {
     if(this.user == null) {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      await this.getLoggedInUser();
+      return false;
     }
 
     //console.log(this.user);

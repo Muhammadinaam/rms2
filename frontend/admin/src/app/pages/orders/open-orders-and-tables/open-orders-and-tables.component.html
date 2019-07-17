@@ -27,7 +27,7 @@
             </small>
 
             <br><br>
-            <small *ngIf="isOrderPendingOrPreparing(order)" class="text-red">Time: <b>{{calculateTime(order)}}</b> (minutes)</small>
+            <small *ngIf="isOrderPendingOrPreparing(order)" class="text-red">Time: <b>{{order | orderPendingTime}}</b> (minutes)</small>
 
             <br><br>
             <button class="btn btn-xs btn-info btn-block" (click)="openChangeStatusDialog(dialog, order)">Change Status</button>
@@ -35,7 +35,7 @@
             <button class="btn btn-xs btn-danger btn-block" (click)="cancelOrder(order)">Cancel Order</button>
             <button class="btn btn-xs btn-primary btn-block" (click)="sendPrintCommand(order.id, null, 'reprint')">Reprint for Kitchen</button>
             <button class="btn btn-xs btn-primary btn-block" (click)="changeOrderStatus(order, 'printed-for-customer')">Print for Customer</button>
-            <button *ngIf="('give-discount' | hasPermission | async)" class="btn btn-xs btn-danger btn-block" (click)="showDiscountModal(order)">Give Discount</button>
+            <button *ngIf="('give-discount' | hasPermission)" class="btn btn-xs btn-danger btn-block" (click)="showDiscountModal(order)">Give Discount</button>
             <button class="btn btn-xs btn-primary btn-block" (click)="showCloseOrderModal(order)">Close Order</button>
           </div>
         </div>
@@ -145,9 +145,9 @@
     <section class="modal-card-body">
       
       <div class="field">
-        <label class="label">Receivable Amount</label>
+        <label class="label">Receivable Amount Without Discount</label>
         <div class="control">
-          <div class="input" disabled>{{selectedOrder.receivable_amount}}</div>
+          <div class="input" disabled>{{+selectedOrder.receivable_amount + +selectedOrder.discount_amount | number:'0.0-2'}}</div>
           
         </div>
       </div>
@@ -176,7 +176,7 @@
       <div class="field">
         <label class="label">Net Amount</label>
         <div class="control">
-          <div class="input" disabled>{{ (selectedOrder.receivable_amount - cash_received - card_received) * -1 }}</div>
+          <div class="input" disabled>{{ (selectedOrder.receivable_amount + +selectedOrder.discount_amount - discount_amount) | number:'0.0-2' }}</div>
         </div>
       </div>
 

@@ -50,9 +50,10 @@ export class UserService implements DataServiceInterface {
         {'idt' : 'cancel-orders', 'title' : 'Cancel Orders'},
         {'idt' : 'give-discount', 'title' : 'Give Discount'},
     ],
-    'Reports' :
+    'Reports and Settings' :
     [
-        {'idt' : 'sales-report', 'title' : 'Sales Report'},
+      {'idt' : 'settings', 'title' : 'Settings'},
+      {'idt' : 'sales-report', 'title' : 'Sales Report'},
     ]
   };
 

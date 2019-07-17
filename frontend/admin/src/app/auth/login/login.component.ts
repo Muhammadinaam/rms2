@@ -33,7 +33,15 @@ export class LoginComponent implements OnInit {
         {
           if(data.access_token != null)
           {
-            this.router.navigate(['']);
+            this.authService.getLoggedInUserFromBackend()
+              .subscribe(user => {
+                this.authService.user = user
+                this.router.navigate(['']);
+              }, 
+              error => {
+                console.log(error);
+                alert('Error occurred in getting user information');
+              })
           }
         },
         error => 
