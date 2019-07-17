@@ -49,6 +49,7 @@ export class OrderAddEditComponent implements OnInit {
   }
 
   loadEditingOrder() {
+    this.loading = true;
     this.activatedRoute.params.subscribe( params => {
         if(params.id) {
             this.editingId = params.id;
@@ -59,7 +60,7 @@ export class OrderAddEditComponent implements OnInit {
                   this.order = this.orderService.order;
 
                   this.setMappings();
-
+                  this.loading = false;
                 });
         }
       });
@@ -120,7 +121,6 @@ export class OrderAddEditComponent implements OnInit {
     {
       observable.subscribe(resp => {
         let message = '';
-
         if(resp['message']){
           message = resp['message'];
         }

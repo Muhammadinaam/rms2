@@ -35,6 +35,7 @@
             <button class="btn btn-xs btn-danger btn-block" (click)="cancelOrder(order)">Cancel Order</button>
             <button class="btn btn-xs btn-primary btn-block" (click)="sendPrintCommand(order.id, null, 'reprint')">Reprint for Kitchen</button>
             <button class="btn btn-xs btn-primary btn-block" (click)="changeOrderStatus(order, 'printed-for-customer')">Print for Customer</button>
+            <button *ngIf="('give-discount' | hasPermission | async)" class="btn btn-xs btn-danger btn-block" (click)="showDiscountModal(order)">Give Discount</button>
             <button class="btn btn-xs btn-primary btn-block" (click)="showCloseOrderModal(order)">Close Order</button>
           </div>
         </div>
@@ -88,7 +89,7 @@
 </ng-template>
 
 
-<div *ngIf="closingOrder != null" class="modal" [class.is-active]="isCloseOrderModalVisible">
+<div *ngIf="selectedOrder != null" class="modal" [class.is-active]="isCloseOrderModalVisible">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -100,7 +101,7 @@
       <div class="field">
         <label class="label">Receivable Amount</label>
         <div class="control">
-          <div class="input" disabled>{{closingOrder.receivable_amount}}</div>
+          <div class="input" disabled>{{selectedOrder.receivable_amount}}</div>
           
         </div>
       </div>
@@ -122,13 +123,66 @@
       <div class="field">
         <label class="label">Balance</label>
         <div class="control">
-          <div class="input" disabled>{{ (closingOrder.receivable_amount - cash_received - card_received) * -1 }}</div>
+          <div class="input" disabled>{{ (selectedOrder.receivable_amount - cash_received - card_received) * -1 }}</div>
         </div>
       </div>
 
     </section>
     <footer class="modal-card-foot">
       <button class="button is-primary is-fullwidth" (click)="closeOrder()">Close Order</button>
+    </footer>
+  </div>
+</div>
+
+
+<div *ngIf="selectedOrder != null" class="modal" [class.is-active]="isDiscountModalVisible">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <div class="modal-card-title">Give Discount</div>
+      <button class="delete" aria-label="close" (click)="isDiscountModalVisible = false"></button>
+    </header>
+    <section class="modal-card-body">
+      
+      <div class="field">
+        <label class="label">Receivable Amount</label>
+        <div class="control">
+          <div class="input" disabled>{{selectedOrder.receivable_amount}}</div>
+          
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Discount (%)</label>
+        <div class="control">
+          <input class="input" type="number" [(ngModel)]="discount_percent" (change)="setDiscountAmount()" >
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Dicount Amount</label>
+        <div class="control">
+          <input class="input" type="number" [(ngModel)]="discount_amount" (change)="setDiscountPercent()" >
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Dicount Remarks</label>
+        <div class="control">
+          <input class="input" type="text" [(ngModel)]="discount_remarks" >
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label">Net Amount</label>
+        <div class="control">
+          <div class="input" disabled>{{ (selectedOrder.receivable_amount - cash_received - card_received) * -1 }}</div>
+        </div>
+      </div>
+
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-primary is-fullwidth" (click)="saveDiscount()">Save Discount</button>
     </footer>
   </div>
 </div>

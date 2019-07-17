@@ -48,6 +48,7 @@ export class UserService implements DataServiceInterface {
         {'idt' : 'edit-orders', 'title' : 'Edit Orders'},
         {'idt' : 'close-orders', 'title' : 'Close Orders'},
         {'idt' : 'cancel-orders', 'title' : 'Cancel Orders'},
+        {'idt' : 'give-discount', 'title' : 'Give Discount'},
     ],
     'Reports' :
     [

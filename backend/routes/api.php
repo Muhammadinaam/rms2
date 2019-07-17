@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +16,7 @@ use Illuminate\Http\Request;
 
 Route::get('/test', function (Request $request) {
     //return ['test' => 'passed'];
-
-    return \App\User::find(1)->permissions;
+    return \App\User::find(1);
 });
 
 Route::get('get-category-with-items', 'CategoriesController@getCategoryWithItems');
@@ -59,7 +59,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('close-order', 'OrdersController@closeOrder');
 
     Route::get('logged-in-user', function(){
-        return Auth::user();
+        return User::with('userPermissions')->find(Auth::id());
     });
 
     Route::get('sales-report', 'ReportsController@salesReport');   

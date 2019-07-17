@@ -68,10 +68,12 @@ class UsersController extends Controller
         UserPermission::where('user_id', $user->id)->delete();
         foreach(request()->permissions as $permission_idt => $value)
         {
-            $userPermission = new UserPermission();
-            $userPermission->user_id = $user->id;
-            $userPermission->permission_idt = $permission_idt;
-            $userPermission->save();
+            if($value) {
+                $userPermission = new UserPermission();
+                $userPermission->user_id = $user->id;
+                $userPermission->permission_idt = $permission_idt;
+                $userPermission->save();
+            }
         }
     }
 

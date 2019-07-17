@@ -5,6 +5,7 @@ import 'rxjs/add/operator/do';
 import * as moment from "moment";
 import { Router } from '@angular/router';
 import { BaseEndPointService } from '../../common-services-components/services/base-end-point.service'
+import { of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,8 +33,37 @@ export class AuthService {
     .shareReplay();
   }
 
-  public getLoggedInUser(){
-    return this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/logged-in-user');
+  public async getLoggedInUser(){
+    if(this.user == null) { 
+      console.log('getting from db');
+      this.user = await this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/logged-in-user').toPromise();
+    }
+    
+    return this.user;
+  }
+
+  public async loggedInUserHasPermission(permission)
+  {
+    if(this.user == null) {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      await this.getLoggedInUser();
+    }
+
+    //console.log(this.user);
+    if(this.user.user_type == 'Super Admin') {
+      return true;
+    }
+    else
+    {
+      let hasPermision = false;
+      this.user.user_permissions.forEach(user_permission => {
+        if(user_permission.permission_idt == permission) {
+          
+          hasPermision = true;
+        }
+      });
+      return hasPermision;
+    }
   }
 
   private setSession(authResult) {
@@ -46,6 +76,7 @@ export class AuthService {
   logout() {
       localStorage.removeItem("id_token");
       localStorage.removeItem("expires_at");
+      this.user = null;
       this.redirectToLogin();
   }
 

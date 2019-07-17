@@ -23,9 +23,8 @@ export class HeaderComponent implements OnInit {
               private authService: AuthService) {
   }
 
-  ngOnInit() {
-    this.authService.getLoggedInUser()
-      .subscribe(user => this.user = user);
+  async ngOnInit() {
+    this.user = await this.authService.getLoggedInUser();
   }
 
   toggleSidebar(): boolean {

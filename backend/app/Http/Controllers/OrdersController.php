@@ -47,7 +47,6 @@ class OrdersController extends Controller
 
         } catch (\Exception $ex) {
         
-            throw $ex;
             return ['success' => false, 'message' => $ex->getMessage()];
 
         }
@@ -77,7 +76,6 @@ class OrdersController extends Controller
 
         } catch (\Exception $ex) {
         
-            throw $ex;
             return ['success' => false, 'message' => $ex->getMessage()];
 
         }
@@ -155,6 +153,7 @@ class OrdersController extends Controller
         $order->customer_phone = $order_data['customer_phone'];
         $order->order_amount_before_discount = $order_data['order_amount_before_discount'] != null ? $order_data['order_amount_before_discount'] : 0;
         $order->discount_percent = $order_data['discount_percent'] != null ? $order_data['discount_percent'] : 0;
+        $order->discount_remarks = $order_data['discount_remarks'];
         $order->discount_amount = $order_data['discount_amount'] != null ? $order_data['discount_amount'] : 0;
         $order->sales_tax_percent = $order_data['sales_tax_percent'] != null ? $order_data['sales_tax_percent'] : 0;
         $order->sales_tax_amount = $order_data['sales_tax_amount'] != null ? $order_data['sales_tax_amount'] : 0;

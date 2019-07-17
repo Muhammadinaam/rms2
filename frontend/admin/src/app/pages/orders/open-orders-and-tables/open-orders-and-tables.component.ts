@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { NbDialogService } from '@nebular/theme';
 import { BaseEndPointService } from '../../../common-services-components/services/base-end-point.service';
 import { OrderService } from '../../../common-services-components/services/order.service';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'open-orders-and-tables',
@@ -20,14 +21,19 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   assignableStatuses:any = [];
   changeStatusDialogRef;
   isCloseOrderModalVisible = false;
-  closingOrder = null;
+  selectedOrder = null;
   cash_received = 0;
   card_received = 0;
+  isDiscountModalVisible: boolean;
+  discount_percent = 0;
+  discount_amount = 0;
+  discount_remarks = '';
   
   constructor(private http: HttpClient, 
     private loaderService: LoaderService,
     private dialogService: NbDialogService,
-    private orderService: OrderService) { }
+    private orderService: OrderService,
+    public authService: AuthService) { }
 
   openChangeStatusDialog(dialog, order){
     this.isTimerStopped = true;
@@ -117,12 +123,12 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   }
 
   closeOrder(){
-    if(this.closingOrder.receivable_amount - this.cash_received - this.card_received > 0){
+    if(this.selectedOrder.receivable_amount - this.cash_received - this.card_received > 0){
       alert('Received amount is less than Order Amount');
       return;
     }
 
-    this.orderService.closeOrder(this.closingOrder, this.cash_received, this.card_received)
+    this.orderService.closeOrder(this.selectedOrder, this.cash_received, this.card_received)
       .subscribe(resp => {
         alert(resp['message']);
         if(resp['success'] == true){
@@ -140,10 +146,26 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   }
 
   showCloseOrderModal(order) {
-    this.closingOrder = order;
+    this.selectedOrder = order;
     this.isCloseOrderModalVisible = true;
   }
 
-  
+  showDiscountModal(order) {
+    this.selectedOrder = order;
+    this.isDiscountModalVisible = true;
+  }
+
+  saveDiscount()
+  {
+    alert('saveDiscount');
+  }
+
+  setDiscountAmount() {
+    this.discount_amount = this.selectedOrder.receivable_amount * this.discount_percent / 100;
+  }
+
+  setDiscountPercent() {
+    this.discount_percent = this.discount_amount / this.selectedOrder.receivable_amount * 100;
+  }
 
 }

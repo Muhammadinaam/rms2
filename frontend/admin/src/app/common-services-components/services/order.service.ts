@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { isFunction } from 'util';
+import { isFunction, isNumber } from 'util';
 import { BaseEndPointService } from './base-end-point.service';
 import { SettingsService } from './settings.service';
 import cloneDeep from 'lodash/cloneDeep';
@@ -28,6 +28,7 @@ export class OrderService {
   }
   
   onlineDiscountPercent;
+  generalDiscountPercent
   salesTaxPercent;
   minimumOrderAmount;
   deliveryChargesFunction;
@@ -42,6 +43,7 @@ export class OrderService {
     customer_phone: '',
     order_amount_before_discount: 0,
     discount_percent: 0,
+    discount_remarks: '',
     discount_amount: 0,
     sales_tax_percent: 0,
     sales_tax_amount: 0,
@@ -79,6 +81,7 @@ export class OrderService {
     this.order.customer_phone = '';
     this.order.order_amount_before_discount = 0;
     this.order.discount_percent = 0;
+    this.order.discount_remarks = '';
     this.order.discount_amount = 0;
     this.order.sales_tax_percent = 0;
     this.order.sales_tax_amount = 0;
@@ -95,6 +98,7 @@ export class OrderService {
       'customer_phone',
       'order_amount_before_discount',
       'discount_percent',
+      'discount_remarks',
       'discount_amount',
       'sales_tax_percent',
       'sales_tax_amount',
@@ -112,7 +116,8 @@ export class OrderService {
 
   private getSettings()
   {
-    this.onlineDiscountPercent = this.settingsService.getOnlineDiscountPercent();  
+    this.onlineDiscountPercent = this.settingsService.getOnlineDiscountPercent();
+    this.generalDiscountPercent = this.settingsService.getGeneralDiscountPercent();
     this.salesTaxPercent = this.settingsService.getSalesTaxPercent();
     this.deliveryChargesFunction = this.settingsService.getDeliveryChargesFunction();
     this.minimumOrderAmount = this.settingsService.getSettingFromArray('minimum-order-amount');
@@ -169,6 +174,14 @@ export class OrderService {
       if(this.order.order_type_idt == 'od')
       {
         this.order.discount_percent = this.onlineDiscountPercent;
+        this.order.discount_remarks = 'Default discount on online orders';
+      }
+      else
+      {
+        if(!isNaN(this.generalDiscountPercent)) {
+          this.order.discount_percent = this.generalDiscountPercent;
+          this.order.discount_remarks = 'Default discount on non-online orders';
+        }
       }
     }
 
@@ -228,7 +241,7 @@ export class OrderService {
   }
 
   saveOrder() {
-
+    
     let data = {
       'order': this.order,
       'removed_items': this.removedItems,

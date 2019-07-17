@@ -27,6 +27,7 @@ import { FromToFilterComponent } from './widgets/from-to-filter/from-to-filter.c
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { ReceipttypesListComponent } from './receipttypes/receipttypes-list/receipttypes-list.component';
 import { ReceipttypesAddEditComponent } from './receipttypes/receipttypes-add-edit/receipttypes-add-edit.component';
+import { HasPermissionPipe } from './pipes/has-permission.pipe';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -64,6 +65,7 @@ const PAGES_COMPONENTS = [
     FromToFilterComponent,
     ReceipttypesListComponent,
     ReceipttypesAddEditComponent,
+    HasPermissionPipe,
   ],
 })
 export class PagesModule {
