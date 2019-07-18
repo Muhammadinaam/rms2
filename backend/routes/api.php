@@ -57,12 +57,14 @@ Route::middleware(['auth:api'])->group(function () {
     Route::post('change-order-status', 'OrdersController@changeOrderStatus');
     Route::post('send-print-command', 'OrdersController@sendPrintCommand');
     Route::post('close-order', 'OrdersController@closeOrder');
+    Route::post('save-discount', 'OrdersController@saveDiscount');
 
     Route::get('logged-in-user', function(){
         return User::with('userPermissions')->find(Auth::id());
     });
 
     Route::get('sales-report', 'ReportsController@salesReport');   
+
 
 });
 

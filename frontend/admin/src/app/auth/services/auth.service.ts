@@ -39,14 +39,11 @@ export class AuthService {
     
   }
 
-  public getLoggedInUser() {
-    return this.user;
-  }
-
-  public loggedInUserHasPermission(permission)
+  public async loggedInUserHasPermission(permission)
   {
+    
     if(this.user == null) {
-      return false;
+      this.user = await this.getLoggedInUserFromBackend().toPromise();
     }
 
     //console.log(this.user);

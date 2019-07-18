@@ -11,13 +11,13 @@ export class HasPermissionPipe implements PipeTransform {
 
   }
 
-  transform(value: any, args?: any) {
-    let result = this.hasPermission(value);
+  async transform(value: any, args?: any) {
+    let result = await this.hasPermission(value);
     return result;
   }
 
-  hasPermission(permission) {
-    let result = this.authService.loggedInUserHasPermission(permission);
+  async hasPermission(permission) {
+    let result = await this.authService.loggedInUserHasPermission(permission);
     return result;
   }
 

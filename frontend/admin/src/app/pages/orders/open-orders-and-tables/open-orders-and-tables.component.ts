@@ -89,14 +89,17 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   }
 
   cancelOrder(order){
-    if(confirm("Are you sure to cancel order?")){
-      this.changeOrderStatus(order, 'cancelled');
+
+    let cancellationRemarks = prompt("Please enter Cancellation Reason");
+
+    if( cancellationRemarks != null ) {
+      this.changeOrderStatus(order, 'cancelled', cancellationRemarks);
     }
   }
 
-  changeOrderStatus(order, status)
+  changeOrderStatus(order, status, cancellationRemarks = null)
   {
-    this.orderService.changeOrderStatus(order, status)
+    this.orderService.changeOrderStatus(order, status, cancellationRemarks)
       .subscribe(resp => {
         alert(resp['message']);
         
@@ -147,15 +150,34 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
 
   saveDiscount()
   {
-    alert('saveDiscount');
+    if(this.discount_amount > 0 && this.discount_remarks == '') {
+      alert('Please enterr discount remarks');
+      return;
+    }
+
+    if(this.discount_amount < 0) {
+      alert('Discount should be zero or more');
+      return;
+    }
+
+    this.orderService.saveDiscount( 
+      this.selectedOrder.id, 
+      this.discount_percent, 
+      this.discount_amount, 
+      this.discount_remarks )
+      .subscribe(data => {
+        alert(data['message']);
+        this.isDiscountModalVisible = false;
+      },
+      err => alert('Error occurred'));
   }
 
   setDiscountAmount() {
-    this.discount_amount = Math.round(this.selectedOrder.receivable_amount * this.discount_percent / 100);
+    this.discount_amount = Math.round( this.selectedOrder.order_amount_before_discount * this.discount_percent / 100);
   }
 
   setDiscountPercent() {
-    this.discount_percent = Math.round(this.discount_amount / this.selectedOrder.receivable_amount * 100);
+    this.discount_percent = Math.round(this.discount_amount / this.selectedOrder.order_amount_before_discount * 100);
   }
 
 }

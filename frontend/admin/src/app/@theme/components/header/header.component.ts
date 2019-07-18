@@ -24,7 +24,16 @@ export class HeaderComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.user = await this.authService.getLoggedInUser();
+    this.user = await this.authService.getLoggedInUserFromBackend().toPromise();
+
+    if(this.user == null) {
+      this.authService.getLoggedInUserFromBackend()
+        .subscribe(user => {
+          this.authService.user = user;
+          this.user = user;
+        });
+    }
+
   }
 
   toggleSidebar(): boolean {

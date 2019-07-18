@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
-import cloneDeep from 'lodash/cloneDeep';
+import * as _ from 'lodash';
 //import { ToastrService } from 'ngx-toastr';
 import { SettingsService } from '../../services/settings.service';
 import { OrderService } from '../../services/order.service';
@@ -157,7 +157,7 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     }
 
     this.updateOrderItem();
-    var orderItem = cloneDeep(this.orderItem);
+    var orderItem = _.cloneDeep(this.orderItem);
     this.orderService.addItemInOrder(orderItem);
     this.setModalVisibility(false);
     this.itemAddedToOrder.emit();

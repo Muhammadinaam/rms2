@@ -4,12 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { isFunction, isNumber } from 'util';
 import { BaseEndPointService } from './base-end-point.service';
 import { SettingsService } from './settings.service';
-import cloneDeep from 'lodash/cloneDeep';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+  
   isOrderAmountCalculatedCorrectly: boolean;
 
   closeOrder(closingOrder: any, cash_received: number, card_received: number) {
@@ -22,8 +23,8 @@ export class OrderService {
     return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/close-order', data);
   }
 
-  changeOrderStatus(order: any, status: any) {
-    let data = {order_id: order.id, status_idt: status};
+  changeOrderStatus(order: any, status: any, cancellationRemarks:any = null) {
+    let data = {order_id: order.id, status_idt: status, cancellation_remarks: cancellationRemarks};
     return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/change-order-status', data);
   }
   
@@ -125,7 +126,7 @@ export class OrderService {
 
   addItemInOrder(item) {
 
-    let newItem = cloneDeep(item);
+    let newItem = _.cloneDeep(item);
     this.newItems.push(item);
 
     this.order.items.push(item);
@@ -136,7 +137,6 @@ export class OrderService {
   
 
   calculateOrderAmounts() {
-
     if(this.order && this.order.items) {
 
       // when items count = 1, then it means we are making new order so we will reset settings
@@ -168,8 +168,8 @@ export class OrderService {
   }
 
   performOrderCalculations() {
-    this.order.discount_percent = 0;
-    if(this.order.id != null || this.order.id != '')  // if new order then set discount according to rate in settings
+    
+    if(this.order.id == null || this.order.id == '')  // if new order then set discount according to rate in settings
     {
       if(this.order.order_type_idt == 'od')
       {
@@ -293,7 +293,7 @@ export class OrderService {
 
   deleteItem(item_index: any) {
 
-    let item = cloneDeep(this.order.items[item_index]);
+    let item = _.cloneDeep(this.order.items[item_index]);
     if(item['id'] != null && item['id'] != '')
     {
       this.removedItems.push(item);
@@ -310,6 +310,15 @@ export class OrderService {
       'print_type': print_type
     };
     return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/send-print-command', data);
+  }
+
+  saveDiscount(id: any, discount_percent: number, discount_amount: number, discount_remarks: string) {
+    return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/save-discount', {
+      order_id: id,
+      discount_percent: discount_percent,
+      discount_amount: discount_amount,
+      discount_remarks: discount_remarks,
+    });
   }
 
   // cloneItem(item){

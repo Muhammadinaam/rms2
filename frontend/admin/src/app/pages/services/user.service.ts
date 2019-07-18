@@ -30,6 +30,18 @@ export class UserService implements DataServiceInterface {
         {'idt' : 'add-users', 'title' : 'Add Users'},
         {'idt' : 'edit-users', 'title' : 'Edit Users'},
     ],
+    'Tables Management' :
+    [
+        {'idt' : 'tables-list', 'title' : 'View Tables List'},
+        {'idt' : 'add-tables', 'title' : 'Add Tables'},
+        {'idt' : 'edit-tables', 'title' : 'Edit Tables'},
+    ],
+    'Receipt Types Management' :
+    [
+        {'idt' : 'receipttypes-list', 'title' : 'View Receipt Types'},
+        {'idt' : 'add-receipttypes', 'title' : 'Add Receipt Types'},
+        {'idt' : 'edit-receipttypes', 'title' : 'Edit Receipt Types'},
+    ],
     'Categories Management' :
     [
         {'idt' : 'categories-list', 'title' : 'View Categories List'},

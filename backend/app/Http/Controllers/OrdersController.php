@@ -341,10 +341,10 @@ class OrdersController extends Controller
 
     public function changeOrderStatus()
     {
-        return $this->changeOrderStatusMethod(request()->order_id, request()->status_idt);
+        return $this->changeOrderStatusMethod(request()->order_id, request()->status_idt, request()->cancellation_remarks);
     }
 
-    private function changeOrderStatusMethod($order_id, $status_idt)
+    private function changeOrderStatusMethod($order_id, $status_idt, $cancellation_remarks = null)
     {
         try
         {
@@ -366,6 +366,7 @@ class OrdersController extends Controller
                 $old_status = $order->order_status;
 
                 $order->order_status_id = $status->id;
+                $order->cancellation_remarks = $cancellation_remarks;
                 $order->save();
 
                 if($old_status->idt == 'phone-confirmation-pending' && 
@@ -466,5 +467,36 @@ class OrdersController extends Controller
             ->delete();
 
         return ['success' => true, 'message' => 'Deleted Successfully'];
+    }
+
+    public function saveDiscount()
+    {
+        try
+        {
+            $order = Order::find(request()->order_id);
+
+            $order->sales_tax_amount = $order->sales_tax_amount * 
+                (100 / (100 - $order->discount_percent)) *
+                ((100 - request()->discount_percent) / 100);
+
+            $order->discount_percent = request()->discount_percent;
+            $order->discount_amount = request()->discount_amount;
+            $order->discount_remarks = request()->discount_remarks;
+
+            $order->receivable_amount = $order->order_amount_before_discount
+                - $order->discount_amount 
+                + $order->sales_tax_amount 
+                + $order->delivery_charges;
+
+            $order->discount_given_by = \Auth::user()->id;
+
+            $order->save();
+
+            return ['message' => 'Saved Successfully'];
+        }
+        catch(\Exception $ex)
+        {
+            return ['message' => 'Error Occurred: ' . $ex->getMessage()];
+        }
     }
 }

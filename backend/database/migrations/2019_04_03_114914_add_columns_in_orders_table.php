@@ -17,7 +17,8 @@ class AddColumnsInOrdersTable extends Migration
             
             $table->decimal('receivable_amount')->after('delivery_charges');
             $table->bigInteger('cancelled_by')->nullable()->after('receivable_amount');
-            $table->bigInteger('order_booked_by')->nullable()->after('cancelled_by');
+            $table->string('cancellation_remarks')->nullable()->after('cancelled_by');
+            $table->bigInteger('order_booked_by')->nullable()->after('cancellation_remarks');
 
         });
     }
@@ -35,6 +36,7 @@ class AddColumnsInOrdersTable extends Migration
                 [
                     'receivable_amount',
                     'cancelled_by',
+                    'cancellation_remarks',
                     'order_booked_by',
                 ]);
 
