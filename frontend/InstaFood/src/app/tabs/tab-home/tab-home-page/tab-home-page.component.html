@@ -1,25 +1,17 @@
 <!-- <ion-header>
   <ion-toolbar>
     <ion-title>
-      Home
+      Tab One
     </ion-title>
   </ion-toolbar>
 </ion-header> -->
-
 <ion-content>
     <ion-card class="welcome-card">
-      
       <!-- <img src="/assets/shapes.svg" alt="" /> -->
 
-      <ion-slides pager="true">
-        <ion-slide>
-          <h1>Slide 1</h1>
-        </ion-slide>
-        <ion-slide>
-          <h1>Slide 2</h1>
-        </ion-slide>
-        <ion-slide>
-          <h1>Slide 3</h1>
+      <ion-slides *ngIf="imageSources.length > 0" pager="true" [options]="slideOpts">
+        <ion-slide *ngFor="let imageSource of imageSources">
+          <img src="{{imageSource}}" alt="" />
         </ion-slide>
       </ion-slides>
 
@@ -31,5 +23,6 @@
         <p>Now that your app has been created, you'll want to start building out features and components. Check out some of the resources below for next steps.</p>
       </ion-card-content>
     </ion-card>
+
     
 </ion-content>

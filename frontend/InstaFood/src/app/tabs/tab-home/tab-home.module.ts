@@ -6,7 +6,9 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [ TabHomePageComponent ],
+  declarations: [
+    TabHomePageComponent
+  ],
   imports: [
     IonicModule,
     CommonModule,

@@ -21,6 +21,9 @@ export class HomeComponent implements OnInit {
   deliveryHoursStart = '0:00AM';
   deliveryHoursEnd = '0:00AM';
 
+  android_app_link = '';
+  iphone_app_link = '';
+
   constructor(
     private http: HttpClient,
     private menuModalService: MenuModalService,
@@ -60,6 +63,9 @@ export class HomeComponent implements OnInit {
     if(deliveryHoursArray.length == 2){
       this.deliveryHoursEnd = deliveryHoursArray[1];
     }
+
+    this.android_app_link = this.settingsService.getSettingFromArray('android-app-link');
+    this.iphone_app_link = this.settingsService.getSettingFromArray('iphone-app-link');
   }
 
   setMenuModalVisibility(visibility)

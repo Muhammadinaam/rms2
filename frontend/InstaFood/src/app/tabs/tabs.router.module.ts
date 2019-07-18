@@ -6,27 +6,37 @@ const routes: Routes = [
   {
     path: 'tabs',
     component: TabsPage,
-
     children: [
       {
-        path: 'tab-home',
+        path: 'tabHome',
         children: [
           {
             path: '',
-            loadChildren: '../tab-home/tab-home.module#TabHomeModule'
+            loadChildren: '../tabs/tab-home/tab-home.module#TabHomeModule'
           }
         ]
       },
+      
       {
         path: '',
-        redirectTo: '/tabs/tab-home',
+        redirectTo: '/tabs/tabHome',
+        pathMatch: 'full'
+      },
+      {
+        path: '**',
+        redirectTo: '/tabs/tabHome',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab-home',
+    redirectTo: '/tabs/tabHome',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/tabs/tabHome',
     pathMatch: 'full'
   }
 ];

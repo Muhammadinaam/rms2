@@ -3,9 +3,9 @@
 <section class="hero ">
   <div class="hero-body">
     <div class="container">
-      <h4 class="title has-text-centered">Welcome to {{settingsService.getSettingFromArray('restaurant-name')}}</h4>
+      <h4 class="title has-text-centered">Welcome to {{'restaurant-name' | getSettingFromArray }}</h4>
       <p class="has-text-justified">
-          {{settingsService.getSettingFromArray('welcome-note')}}
+          {{'welcome-note' | getSettingFromArray }}
       </p>
     </div>
   </div>
@@ -20,12 +20,12 @@
         <p class="has-text-danger">Online Delivery Times: {{deliveryHoursStart}} - {{deliveryHoursEnd}}</p>
 
         <br>
-        <p>Minimum Order: {{settingsService.getSettingFromArray('minimum-order-amount')}}</p>
+        <p>Minimum Order: {{'minimum-order-amount' | getSettingFromArray}}</p>
         
         <br>
-        <p>{{settingsService.getSettingFromArray('delivery-charges-note')}}</p>
+        <p>{{'delivery-charges-note' | getSettingFromArray}}</p>
 
-        <p>Delivery areas are {{settingsService.getSettingFromArray('delivery-areas')}}</p>
+        <p>Delivery areas are {{'delivery-areas' | getSettingFromArray}}</p>
     </div>
   </div>
 </section>
@@ -70,15 +70,15 @@
   
   
       <div class="column is-2 has-text-centered"
-      *ngIf="settingsService.getSettingFromArray('android-app-link') != null || settingsService.getSettingFromArray('iphone-app-link') != null">
+      *ngIf="android_app_link != null || iphone_app_link != null">
         <p class="subtitle">Download App</p>
-        <div *ngIf="settingsService.getSettingFromArray('android-app-link') != null">
-          <a target="_blank" href="{{settingsService.getSettingFromArray('android-app-link')}}">
+        <div *ngIf="android_app_link != null">
+          <a target="_blank" href="{{android_app_link}}">
             <img src="assets/images/google-play-badge.png" alt="">
           </a>
         </div>
-        <div *ngIf="settingsService.getSettingFromArray('iphone-app-link') != null">
-          <a target="_blank" href="{{settingsService.getSettingFromArray('iphone-app-link')}}">
+        <div *ngIf="iphone_app_link != null">
+          <a target="_blank" href="{{iphone_app_link">
             <img style="margin:6%;width:88%" src="assets/images/app-store-badge.svg" alt="">
           </a>
         </div>
@@ -86,18 +86,18 @@
   
   
       <div class="column">
-          <div class="content" [innerHTML]="settingsService.getSettingFromArray('instructions')"></div>
+          <div class="content" [innerHTML]="'instructions' | getSettingFromArray"></div>
       </div>
       <div class="column">
           <img src="assets/images/logo.png">
 
           <div class="has-text-centered">
             <p class="subtitle is-marginless">Address</p>
-            <p>{{settingsService.getSettingFromArray('address')}}</p>
+            <p>{{'address' | getSettingFromArray}}</p>
 
             <br>
             <p class="subtitle ">Call</p>
-            <p class="title">{{settingsService.getSettingFromArray('telephone')}}</p>
+            <p class="title">{{'telephone' | getSettingFromArray}}</p>
           </div>
 
       </div>

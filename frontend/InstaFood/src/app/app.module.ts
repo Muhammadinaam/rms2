@@ -8,28 +8,30 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { SettingsService } from '../../../admin/src/app/common-services-components/services/settings.service';
-import { CommonServicesComponentsModule } from '../../../admin/src/app/common-services-components/common-services-components.module';
-import { UserService } from './api/user.service';
 
-
+export function initializeApp1(settingsService: SettingsService) {
+  return (): Promise<any> => { 
+    return settingsService.Init();
+  }
+}
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule, 
-    HttpClientModule,
     IonicModule.forRoot(), 
     AppRoutingModule,
-    CommonServicesComponentsModule
+    HttpClientModule
   ],
   providers: [
-    //SettingsService,
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SettingsService,
+    { provide: APP_INITIALIZER,useFactory: initializeApp1, deps: [SettingsService], multi: true},
   ],
   bootstrap: [AppComponent]
 })
