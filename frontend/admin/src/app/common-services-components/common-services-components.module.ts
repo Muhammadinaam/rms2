@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 //import { ToastrModule } from '../../../../admin/node_modules/ngx-toastr';
 import { OrderItemsAmountsComponent } from './components/order-items-amounts/order-items-amounts.component';
 import { CategoriesItemsSearchComponent } from './components/categories-items-search/categories-items-search.component';
+import { GetSettingFromArrayPipe } from './get-setting-from-array.pipe';
 
 
 @NgModule({
   declarations: [
     AddToOrderComponent,
     OrderItemsAmountsComponent,
-    CategoriesItemsSearchComponent    
+    CategoriesItemsSearchComponent,
+    GetSettingFromArrayPipe    
   ],
   imports: [
     CommonModule,
@@ -21,7 +23,8 @@ import { CategoriesItemsSearchComponent } from './components/categories-items-se
   exports: [
     AddToOrderComponent,
     OrderItemsAmountsComponent,
-    CategoriesItemsSearchComponent
+    CategoriesItemsSearchComponent,
+    GetSettingFromArrayPipe
   ]
 })
 export class CommonServicesComponentsModule { }

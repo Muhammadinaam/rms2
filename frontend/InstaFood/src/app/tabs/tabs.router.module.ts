@@ -8,7 +8,7 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
-        path: 'tabHome',
+        path: 'tab-home',
         children: [
           {
             path: '',
@@ -16,29 +16,37 @@ const routes: Routes = [
           }
         ]
       },
-      
       {
-        path: '',
-        redirectTo: '/tabs/tabHome',
-        pathMatch: 'full'
+        path: 'tab-items',
+        children: [
+          {
+            path: '',
+            loadChildren: '../tabs/tab-items/tab-items.module#TabItemsModule'
+          }
+        ]
       },
       {
-        path: '**',
-        redirectTo: '/tabs/tabHome',
+        path: '',
+        redirectTo: '/tabs/tab-home',
         pathMatch: 'full'
-      }
+      },
+      // {
+      //   path: '**',
+      //   redirectTo: '/tabs/tab-home',
+      //   pathMatch: 'full'
+      // }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tabHome',
+    redirectTo: '/tabs/tab-home',
     pathMatch: 'full'
   },
-  {
-    path: '**',
-    redirectTo: '/tabs/tabHome',
-    pathMatch: 'full'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: '/tabs/tab-home',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({

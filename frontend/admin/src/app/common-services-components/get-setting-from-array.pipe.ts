@@ -1,9 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SettingsService } from '../../../../admin/src/app/common-services-components/services/settings.service';
+import { SettingsService } from './services/settings.service';
 
 @Pipe({
   name: 'getSettingFromArray',
-  pure: true
+  pure: true,
 })
 export class GetSettingFromArrayPipe implements PipeTransform {
 

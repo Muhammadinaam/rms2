@@ -24,7 +24,6 @@ import { SliderComponent } from './components/slider/slider.component';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import {CommonServicesComponentsModule} from '../../../admin/src/app/common-services-components/common-services-components.module';
 import { SettingsService } from '../../../admin/src/app/common-services-components/services/settings.service';
-import { GetSettingFromArrayPipe } from './pipes/get-setting-from-array.pipe';
 
 export function initializeApp1(settingsService: SettingsService) {
   return (): Promise<any> => { 
@@ -48,7 +47,6 @@ export function initializeApp1(settingsService: SettingsService) {
     ContactComponent,
     MapComponent,
     SliderComponent,
-    GetSettingFromArrayPipe
   ],
   imports: [
     BrowserModule,

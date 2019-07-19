@@ -187,10 +187,19 @@ class CategoriesController extends Controller
 
     public function getCategoryWithItems()
     {
+        $category = Category::with(['items', 'options.options_items']);
+
         if(request()->has('name'))
+        {   
+            $category = $category->where('name', request()->name)
+                ->first();
+
+            return $category;
+        }
+
+        if(request()->has('id'))
         {
-            $category = Category::with(['items', 'options.options_items'])
-                ->where('name', request()->name)
+            $category = $category->where('id', request()->id)
                 ->first();
 
             return $category;

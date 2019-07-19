@@ -24,7 +24,7 @@ export function initializeApp1(settingsService: SettingsService) {
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     StatusBar,

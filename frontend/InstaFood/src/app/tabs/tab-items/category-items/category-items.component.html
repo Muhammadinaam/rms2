@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="primary">
+          <ion-button (click)="backToCategories()">
+            <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-title>{{ category != null ? category.name : 'Loading...'}}</ion-title>
+      </ion-toolbar>
+</ion-header>
+<ion-content>
+  
+  <div *ngIf="loading" class="ion-text-center">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  <ion-grid *ngIf="!loading">
+    
+    <div *ngIf="category != null">
+      <div class="ion-text-center" *ngIf="category == null || category.items == null || category.items.length == 0">
+        No Items Found
+      </div>
+      <ion-card *ngFor="let item of category.items">
+        <img src="{{ basePath + '/images/' + item.image}}" alt="">
+      </ion-card>
+    </div>
+
+  </ion-grid>
+  
+</ion-content>

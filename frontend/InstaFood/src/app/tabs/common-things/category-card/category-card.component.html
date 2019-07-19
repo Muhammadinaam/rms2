@@ -1,0 +1,6 @@
+<ion-card class="welcome-card" (click)="categoryClicked(category.id)">
+  <img src="{{basePath + '/images/' + category.image}}" alt="">
+  <ion-card-content class="ion-text-center">
+    {{category.name}}
+  </ion-card-content>
+</ion-card>
