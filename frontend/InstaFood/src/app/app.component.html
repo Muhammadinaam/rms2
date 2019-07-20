@@ -1,3 +1,6 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <div *ngIf="!settingsService.initialized">
+    <no-internet></no-internet>
+  </div>
+  <ion-router-outlet *ngIf="settingsService.initialized"></ion-router-outlet>
 </ion-app>

@@ -2,7 +2,7 @@
     <ion-toolbar>
         <ion-buttons slot="primary">
           <ion-button (click)="backToCategories()">
-            <ion-icon slot="icon-only" name="arrow-round-back"></ion-icon>
+            <ion-icon color="primary" slot="icon-only" name="arrow-round-back"></ion-icon>
           </ion-button>
         </ion-buttons>
         <ion-title>{{ category != null ? category.name : 'Loading...'}}</ion-title>
@@ -21,9 +21,29 @@
       </div>
       <ion-card *ngFor="let item of category.items">
         <img src="{{ basePath + '/images/' + item.image}}" alt="">
+        <div class="ion-text-center">
+          <br>
+          <ion-card-title>{{item.name}}</ion-card-title>
+          <ion-card-subtitle>{{item.price | currency:currency }}</ion-card-subtitle>
+          <br>
+          
+          <ion-button size="small" color="primary" (click)="addToOrderClicked(item, category)" >
+            <ion-icon slot="start" name="cart"></ion-icon>
+            Add to Order
+          </ion-button>
+
+        </div>
       </ion-card>
     </div>
 
   </ion-grid>
   
 </ion-content>
+
+<add-to-order 
+  [item]="selectedItem" 
+  [category]="selectedItemCategory" 
+  [(isVisible)]="AddToOrderModalVisibility"
+  [showAlertOnItemAdd]="false"
+  (itemAddedToOrder)="itemAddedToOrder()">
+</add-to-order>

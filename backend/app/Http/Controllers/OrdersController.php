@@ -47,6 +47,7 @@ class OrdersController extends Controller
 
         } catch (\Exception $ex) {
         
+            
             return ['success' => false, 'message' => $ex->getMessage()];
 
         }

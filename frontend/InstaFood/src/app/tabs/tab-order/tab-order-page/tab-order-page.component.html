@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Your Order
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  
+  <ion-card>
+    <ion-card-content>
+
+      <checkout [order]="order" redirectPath="/tabs/tab-track-order" (orderSaved)="orderSaved($event)"></checkout>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>

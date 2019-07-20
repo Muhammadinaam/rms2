@@ -1,5 +1,7 @@
 {
   "name": "instaFood",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { OrderItemsAmountsComponent } from './components/order-items-amounts/order-items-amounts.component';
 import { CategoriesItemsSearchComponent } from './components/categories-items-search/categories-items-search.component';
 import { GetSettingFromArrayPipe } from './get-setting-from-array.pipe';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { GetSettingFromArrayPipe } from './get-setting-from-array.pipe';
     AddToOrderComponent,
     OrderItemsAmountsComponent,
     CategoriesItemsSearchComponent,
-    GetSettingFromArrayPipe    
+    GetSettingFromArrayPipe,
+    CheckoutComponent    
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { GetSettingFromArrayPipe } from './get-setting-from-array.pipe';
     AddToOrderComponent,
     OrderItemsAmountsComponent,
     CategoriesItemsSearchComponent,
-    GetSettingFromArrayPipe
+    GetSettingFromArrayPipe,
+    CheckoutComponent
   ]
 })
 export class CommonServicesComponentsModule { }

@@ -32,6 +32,7 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     clearInterval(this.intervalID);
+    
   }
 
   refreshStatus()

@@ -26,6 +26,33 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'tab-order',
+        children: [
+          {
+            path: '',
+            loadChildren: '../tabs/tab-order/tab-order.module#TabOrderModule'
+          }
+        ]
+      },
+      {
+        path: 'tab-track-order',
+        children: [
+          {
+            path: '',
+            loadChildren: '../tabs/tab-track-order/tab-track-order.module#TabTrackOrderModule'
+          }
+        ]
+      },
+      {
+        path: 'tab-track-order/:tracking_number',
+        children: [
+          {
+            path: '',
+            loadChildren: '../tabs/tab-track-order/tab-track-order.module#TabTrackOrderModule'
+          }
+        ]
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab-home',
         pathMatch: 'full'

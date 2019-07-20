@@ -43,48 +43,9 @@ export class OrderModalComponent implements OnInit {
     }
   }
 
-  saveOrder()
-  {
-    this.order.order_type_idt = 'wd'; // wed-delivery
-
-    if(
-      this.order.customer_name == '' ||
-      this.order.customer_address == '' ||
-      this.order.customer_phone == '')
-    {
-      alert('Please provide Name, Address and Phone');
-      return;
-    }
-
-    if(this.orderService.minimumOrderAmount > this.order.order_amount_before_discount)
-    {
-      alert('Minimum Order Amount is ' 
-      + this.orderService.minimumOrderAmount 
-      + ', please add more items');
-      return;
-    }
-
-    this.loading = true
-    this.orderService.saveOrder()
-      .subscribe(data => {
-        if(data['success'] == true)
-        {
-          this.orderService.order.items = [];
-          this.toastr.success("Order Saved Successfully", '', {
-            positionClass: 'toast-bottom-center',
-          });
-          this.router.navigate(['/track-order', data['tracking_number']])
-          this.visibility = false;
-        }
-        else
-        {
-          alert(data['message']);
-        }
-      },
-      (error) => {
-        alert('Error occurred, please try again');
-      })
-      .add(() => this.loading = false);
+  orderSaved() {
+    this.visibility = false;
+    this.toastr.show("Order Saved");
   }
 
 }

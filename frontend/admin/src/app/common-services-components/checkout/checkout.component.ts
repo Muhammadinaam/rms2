@@ -1,0 +1,66 @@
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { OrderAddEditComponent } from '../../pages/orders/order-add-edit/order-add-edit.component';
+import { OrderService } from '../services/order.service';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'checkout',
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.scss']
+})
+export class CheckoutComponent implements OnInit {
+
+  @Input() order;
+  @Input() redirectPath: string = "track-order";
+
+  loading
+
+  @Output() orderSaved:EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(private orderService: OrderService, private router: Router) { }
+
+  ngOnInit() {
+  }
+
+  saveOrder()
+  {
+    this.order.order_type_idt = 'od'; // online-delivery
+
+    if(
+      this.order.customer_name == '' ||
+      this.order.customer_address == '' ||
+      this.order.customer_phone == '')
+    {
+      alert('Please provide Name, Address and Phone');
+      return;
+    }
+
+    if(this.orderService.minimumOrderAmount > this.order.order_amount_before_discount)
+    {
+      alert('Minimum Order Amount is ' 
+      + this.orderService.minimumOrderAmount 
+      + ', please add more items');
+      return;
+    }
+
+    this.loading = true
+    this.orderService.saveOrder()
+      .subscribe(data => {
+        if(data['success'] == true)
+        {
+          this.orderService.order.items = [];
+          this.router.navigate(['/' + this.redirectPath , data['tracking_number']])
+          this.orderSaved.emit(data['tracking_number']);
+        }
+        else
+        {
+          alert(data['message']);
+        }
+      },
+      (error) => {
+        alert('Error occurred, please try again');
+      })
+      .add(() => this.loading = false);
+  }
+
+}

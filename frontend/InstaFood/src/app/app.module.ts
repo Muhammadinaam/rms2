@@ -10,6 +10,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SettingsService } from '../../../admin/src/app/common-services-components/services/settings.service';
+import { IonicStorageModule } from '@ionic/storage';
+import { NoInternetComponent } from './no-internet/no-internet.component';
+import { Network } from '@ionic-native/network/ngx';
 
 export function initializeApp1(settingsService: SettingsService) {
   return (): Promise<any> => { 
@@ -18,15 +21,17 @@ export function initializeApp1(settingsService: SettingsService) {
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NoInternetComponent],
   entryComponents: [],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
     HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
+    Network,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
