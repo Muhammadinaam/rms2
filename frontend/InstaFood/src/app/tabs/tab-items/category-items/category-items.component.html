@@ -24,7 +24,7 @@
         <div class="ion-text-center">
           <br>
           <ion-card-title>{{item.name}}</ion-card-title>
-          <ion-card-subtitle>{{item.price | currency:currency }}</ion-card-subtitle>
+          <ion-card-subtitle>{{ (item.is_taxable ? (item.price*(1+(salesTaxRate/100))) : item.price) | currency:currency }} <small>(including VAT)</small></ion-card-subtitle>
           <br>
           
           <ion-button size="small" color="primary" (click)="addToOrderClicked(item, category)" >

@@ -19,6 +19,7 @@ export class CategoryItemsComponent implements OnInit {
   AddToOrderModalVisibility: any;
   selectedItem: any;
   selectedItemCategory: any;
+  salesTaxRate: number;
 
   constructor(private router: Router, 
     private activatedRoute: ActivatedRoute,
@@ -38,6 +39,7 @@ export class CategoryItemsComponent implements OnInit {
     });
 
     this.currency = this.settingsService.getSettingFromArray('currency-code');
+    this.salesTaxRate = +this.settingsService.getSalesTaxPercent();
   }
 
   backToCategories() {

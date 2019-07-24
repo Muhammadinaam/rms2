@@ -5,6 +5,7 @@ import { NbDialogService } from '@nebular/theme';
 import { BaseEndPointService } from '../../../common-services-components/services/base-end-point.service';
 import { OrderService } from '../../../common-services-components/services/order.service';
 import { AuthService } from '../../../auth/services/auth.service';
+import { SettingsService } from '../../../common-services-components/services/settings.service';
 
 @Component({
   selector: 'open-orders-and-tables',
@@ -13,6 +14,7 @@ import { AuthService } from '../../../auth/services/auth.service';
 })
 export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
 
+  currencyCode = this.settingsService.getCurrencyCode();
   openOrders: any = [];
   freeTables:any = [];
   refreshTimer;
@@ -21,18 +23,20 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   changeStatusDialogRef;
   isCloseOrderModalVisible = false;
   selectedOrder = null;
-  cash_received = 0;
-  card_received = 0;
   isDiscountModalVisible: boolean;
   discount_percent = 0;
   discount_amount = 0;
   discount_remarks = '';
+  receiptTypes:any;
+
+  paid_amount:number = 0;
   
   constructor(private http: HttpClient, 
     private loaderService: LoaderService,
     private dialogService: NbDialogService,
     private orderService: OrderService,
-    public authService: AuthService) { }
+    public authService: AuthService,
+    public settingsService: SettingsService) { }
 
   openChangeStatusDialog(dialog, order){
     this.isTimerStopped = true;
@@ -56,6 +60,11 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
     this.refreshTimer = setInterval(() => {
       this.refresh();
     }, 20000);
+
+    this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/receipttypes?all=1')
+      .subscribe(receiptTypes => {
+        this.receiptTypes = receiptTypes;
+      });
 
   }
   
@@ -115,20 +124,67 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
     this.isTimerStopped = state;
   }
 
-  closeOrder(){
-    if(this.selectedOrder.receivable_amount - this.cash_received - this.card_received > 0){
-      alert('Received amount is less than Order Amount');
-      return;
-    }
+  closeOrder() {
 
-    this.orderService.closeOrder(this.selectedOrder, this.cash_received, this.card_received)
+    if(this.isPaymentValid()) {
+
+      this.orderService.closeOrder(this.selectedOrder, this.receiptTypes)
       .subscribe(resp => {
         alert(resp['message']);
         if(resp['success'] == true){
           this.isCloseOrderModalVisible = false;
           this.refresh();
         }
+      }, err => {
+        alert('Error occurred: ' + err.error.message);
       });
+
+    }
+  }
+
+  isPaymentValid(): boolean {
+
+    this.paid_amount = 0;
+    let amount_cannot_be_more_than_bill_total = 0;
+    let amount_cannot_be_more_than_bill_names = '';
+    let isPaymentValid:any = true;
+    this.receiptTypes.forEach(receiptType => {
+      receiptType.amount = receiptType.amount == '' ? 0 : receiptType.amount;
+      this.paid_amount += +receiptType.amount;
+
+      if( receiptType.amount < 0 ) {
+        alert(receiptType.name + ' is less than zero');
+        isPaymentValid = false;
+      }
+
+      if(receiptType.amount_can_be_more_than_bill == 0 ) {
+        amount_cannot_be_more_than_bill_total += Math.round(receiptType.amount);
+        amount_cannot_be_more_than_bill_names += '* ' + receiptType.name + '  ';
+      }
+
+      if(receiptType.customer_name_required && receiptType.amount != 0 && (receiptType.customer == null || receiptType.customer == '') ) {
+        alert('Please provide customer name');
+        isPaymentValid = false;
+      }
+
+    });
+
+    if(isPaymentValid == false) {
+      return false;
+    }
+
+    if(amount_cannot_be_more_than_bill_total > this.selectedOrder.receivable_amount){
+      alert('Sum of [' + amount_cannot_be_more_than_bill_names + '] should not be more than bill amount');
+      isPaymentValid = false;
+    }
+
+    if(this.paid_amount < this.selectedOrder.receivable_amount) {
+      alert('Received amount is less than bill amount')
+      return false;
+    }
+
+    return true;
+
   }
 
   sendPrintCommand(order_id, order_edit_id, print_type){
@@ -141,6 +197,11 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   showCloseOrderModal(order) {
     this.selectedOrder = order;
     this.isCloseOrderModalVisible = true;
+
+    this.receiptTypes.forEach(receiptType => {
+      receiptType.amount = 0;
+      receiptType.customer_name = '';
+    });
   }
 
   showDiscountModal(order) {
@@ -178,6 +239,13 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
 
   setDiscountPercent() {
     this.discount_percent = Math.round(this.discount_amount / this.selectedOrder.order_amount_before_discount * 100);
+  }
+
+  paymentChanged() {
+    this.paid_amount = 0;
+    this.receiptTypes.forEach(receiptType => {
+      this.paid_amount += +receiptType.amount;
+    });
   }
 
 }

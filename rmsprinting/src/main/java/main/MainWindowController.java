@@ -146,6 +146,8 @@ public class MainWindowController implements FxmlHelperControllerInterface {
         System.out.println(posApiUrl + "/delete-print-job/" + printJob.get("id").toString());
         System.out.println(deleteJobsResponse.getBody().toString());
 
+        log.add( "Print Job sent to printer" );
+
     }
 
     private String printOrderItems(JSONObject order) {
@@ -260,7 +262,7 @@ public class MainWindowController implements FxmlHelperControllerInterface {
         String btnStartStopText = isPrintingStarted ? "Stop" : "Start";
         btnStartStop.setText( btnStartStopText );
         btnSettings.setDisable( isPrintingStarted );
-        String lblRunningOrStoppedText = isPrintingStarted ? "Printing Services is Running" : "Printing Services is Stopped";
+        String lblRunningOrStoppedText = isPrintingStarted ? "Printing Service is Running" : "Printing Service is Stopped";
         lblRunningOrStopped.setText(lblRunningOrStoppedText);
         Paint lblRunningOrStoppedColor = isPrintingStarted ? Color.GREEN  : Color.RED;
         lblRunningOrStopped.setTextFill(lblRunningOrStoppedColor);

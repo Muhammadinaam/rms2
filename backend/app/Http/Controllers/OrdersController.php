@@ -8,6 +8,7 @@ use App\OrderStatus;
 use App\Table;
 use DB;
 use Auth;
+use App\Receipt;
 use Illuminate\Support\Str;
 
 class OrdersController extends Controller
@@ -432,23 +433,52 @@ class OrdersController extends Controller
 
         try
         {
+            DB::beginTransaction();
+
             $status = OrderStatus::where('idt', 'closed')
             ->first();
 
-            $order = Order::where('id', request()->order_id)
-            ->update([
-                'order_status_id' => $status->id,
-            ]);
+            $order = Order::find(request()->order_id);
+
+            $order->order_status_id = $status->id;
+            $order->save();
 
             Table::where('order_id', request()->order_id)
                 ->update([
                     'order_id' => null
                 ]);
 
-            return ['success' => true, 'message' => 'Order Closed'];
+            //Receipt
+
+            $total_received_amount = 0;
+            foreach(request()->receipts as $receiptData) {
+                $total_received_amount += $receiptData['amount'];
+            }
+            $returned_amount = $total_received_amount - $order->receivable_amount;
+
+            foreach(request()->receipts as $receiptData) {
+
+                $amount_can_be_more_than_bill = $receiptData['amount_can_be_more_than_bill'];
+
+                $receipt = new Receipt;
+                $receipt->session_id = 1;
+                $receipt->order_id = request()->order_id;
+                $receipt->received_by = Auth::user()->id;
+                $receipt->receipttype_id = $receiptData['id'];
+                $receipt->received_amount = $receiptData['amount'];
+                $receipt->returned_amount = $amount_can_be_more_than_bill == 1 ? $returned_amount : 0;
+                $receipt->actual_amount = $amount_can_be_more_than_bill == 1 ? 
+                    $receiptData['amount'] - $receipt['returned_amount'] : $receiptData['amount'];
+                $receipt->save();
+            }
+
+            DB::commit();
+
+            return ['success' => true, 'message' => 'Order Closed, Balance: ' . $returned_amount];
         }
         catch(\Exception $ex)
         {
+            DB::rollBack();
             return ['success' => false, 'message' => 'Error: ' . $ex->getMessage()];
         }
     }

@@ -42,6 +42,7 @@ export class AddToOrderComponent implements OnInit, OnChanges {
   };
 
   orderItemReset;
+  salesTaxRate: any;
 
   constructor(
     private settingsService: SettingsService,
@@ -50,6 +51,7 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     ) { }
 
   ngOnInit() {
+    this.salesTaxRate = +this.settingsService.getSalesTaxPercent();
   }
   
   ngOnChanges(changes: SimpleChanges) {

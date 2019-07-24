@@ -8,7 +8,7 @@
       <section class="modal-card-body">
         <div *ngIf="item">
           <b>{{item.name}}</b> 
-          <small> ({{item.price | currency:currencyCode }})</small>
+          <small> ({{ (item.is_taxable ? (item.price*(1+(salesTaxRate/100))) : item.price)  | currency:currencyCode }})</small>
   
           <br><br>
   
@@ -59,7 +59,7 @@
                       <select [(ngModel)]="singleOptions[option.id]" (change)="optionsChanged()">
                         <option selected></option>
                         <option *ngFor="let option_item of option.options_items" value="{{option_item.id}}">
-                          {{option_item.name + ' - ' + (option_item.price|currency:currencyCode)}}
+                          {{option_item.name}} - {{(item.is_taxable ? (option_item.price*(1+(salesTaxRate/100))) : option_item.price) | currency:currencyCode}}
                         </option>
                       </select>
                     </div>
@@ -74,7 +74,7 @@
                   <div *ngFor="let option_item of option.options_items" class="column is-half">
                     <label class="checkbox">
                       <input type="checkbox" [(ngModel)]="multipleOptions[option_item.id]" (change)="optionsChanged()">
-                      {{option_item.name + ' - ' + (option_item.price|currency:currencyCode)}}
+                      {{option_item.name}} - {{(item.is_taxable ? (option_item.price*(1+(salesTaxRate/100))) : option_item.price) | currency:currencyCode}}
                     </label>
                   </div>
                 </div>

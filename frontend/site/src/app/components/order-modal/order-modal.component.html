@@ -8,7 +8,7 @@
       <section class="modal-card-body">
         
         <!-- {{order|json}} -->
-        <checkout [order]="order" (orderSaved)="orderSaved()"></checkout>
+        <checkout [order]="order" [orderTypeIdt]='wd' (orderSaved)="orderSaved()"></checkout>
         
   
       </section>

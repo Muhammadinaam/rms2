@@ -24,8 +24,12 @@ class AddOrderTypesTable extends Migration
         DB::table('order_types')
             ->insert([
                 [
-                    'idt' => 'od',
-                    'name' => 'Online Delivery',
+                    'idt' => 'wd',
+                    'name' => 'Website Delivery',
+                ],
+                [
+                    'idt' => 'ad',
+                    'name' => 'App Delivery',
                 ],
                 [
                     'idt' => 'di',

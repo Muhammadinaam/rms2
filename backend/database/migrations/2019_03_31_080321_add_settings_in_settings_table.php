@@ -18,10 +18,17 @@ class AddSettingsInSettingsTable extends Migration
             ->insert([
                 [
                     'group' => 'General Settings',
-                    'name' => 'Online Discount %',
-                    'idt' => 'online-discount-percent',
+                    'name' => 'Website Discount %',
+                    'idt' => 'website-discount-percent',
                     'type' => 'number',
-                    'instructions' => 'Discount on orders through Website or Mobile App',
+                    'instructions' => 'Discount on orders through Website',
+                ],
+                [
+                    'group' => 'General Settings',
+                    'name' => 'App Discount %',
+                    'idt' => 'app-discount-percent',
+                    'type' => 'number',
+                    'instructions' => 'Discount on orders through Mobile App',
                 ],
                 [
                     'group' => 'General Settings',

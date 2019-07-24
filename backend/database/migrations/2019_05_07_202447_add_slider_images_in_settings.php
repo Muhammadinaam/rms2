@@ -19,6 +19,20 @@ class AddSliderImagesInSettings extends Migration
             ->insert([
                 [
                     'group' => 'Site Settings',
+                    'name' => 'Header Logo Image',
+                    'idt' => 'header-logo-image',
+                    'type' => 'image',
+                    'instructions' => null
+                ],
+                [
+                    'group' => 'Site Settings',
+                    'name' => 'Logo Image',
+                    'idt' => 'logo-image',
+                    'type' => 'image',
+                    'instructions' => null
+                ],
+                [
+                    'group' => 'Site Settings',
                     'name' => 'Slider Image 1',
                     'idt' => 'slider-image-1',
                     'type' => 'image',

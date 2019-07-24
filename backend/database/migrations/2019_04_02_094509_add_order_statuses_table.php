@@ -19,6 +19,7 @@ class AddOrderStatusesTable extends Migration
             
             $table->string('idt');
             $table->string('name');
+            $table->string('description');
         });
 
         DB::table('order_statuses')
@@ -27,30 +28,42 @@ class AddOrderStatusesTable extends Migration
                 [
                     'idt' => 'phone-confirmation-pending',
                     'name' => 'Phone Confirmation Pending',
+                    'description' => 'We will call you to confirm your order'
+                ],
+                [
+                    'idt' => 'phone-not-confirmed',
+                    'name' => 'Phone Not Confirmed',
+                    'description' => 'We were not able to call you at provided number. Please call us'
                 ],
                 [
                     'idt' => 'preparing',
                     'name' => 'Preparing',
+                    'description' => 'We are preparing your order'
                 ],
                 [
                     'idt' => 'on-the-way',
                     'name' => 'On The Way',
+                    'description' => 'Your order is on the way'
                 ],
                 [
                     'idt' => 'served',
                     'name' => 'Served',
+                    'description' => 'Order has been served'
                 ],
                 [
                     'idt' => 'printed-for-customer',
                     'name' => 'Printed For Customer',
+                    'description' => 'Order has been printed for customer'
                 ],
                 [
                     'idt' => 'cancelled',
                     'name' => 'Cancelled',
+                    'description' => 'Order has been cancelled'
                 ],
                 [
                     'idt' => 'closed',
                     'name' => 'Closed',
+                    'description' => 'Order has been closed'
                 ]
             ]);
     }

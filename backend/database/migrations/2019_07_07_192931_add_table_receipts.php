@@ -21,9 +21,11 @@ class AddTableReceipts extends Migration
             $table->bigInteger('session_id');
             $table->bigInteger('received_by');
             $table->bigInteger('receipttype_id');
-            $table->decimal('received_amount');
-            $table->decimal('returned_amount');
-            $table->decimal('actual_amount');
+            $table->string('customer')->nullable()->default(null);
+            $table->decimal('received_amount')->default(0);
+            $table->decimal('returned_amount')->default(0);
+            $table->decimal('actual_amount')->default(0);
+            $table->string('remarks')->nullable();
 
             $table->timestamps();
         });

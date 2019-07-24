@@ -19,7 +19,7 @@ export class ReceipttypesListComponent implements OnInit {
     { header: 'Name', dataName: 'name', modifier: null, },
     { header: 'Amount Can Be More Than Bill', dataName: 'amount_can_be_more_than_bill', modifier: this.yesNoModifier, },
     { header: 'Customer Name Required', dataName: 'customer_name_required', modifier: this.yesNoModifier, },
-    { header: 'Auto Add in Receipt', dataName: 'auto_add', modifier: this.yesNoModifier, },
+    //{ header: 'Auto Add in Receipt', dataName: 'auto_add', modifier: this.yesNoModifier, },
     { header: 'Activated', dataName: 'is_activated', modifier: this.yesNoModifier, },
   ];
 

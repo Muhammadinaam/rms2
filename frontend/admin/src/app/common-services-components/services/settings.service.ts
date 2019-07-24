@@ -33,11 +33,15 @@ export class SettingsService {
     return this.getSettingFromArray('delivery-charges-function');
   }
   getSalesTaxPercent() {
-    return this.getSettingFromArray('sales-tax-percent');
+    return +this.getSettingFromArray('sales-tax-percent');
   }
 
-  getOnlineDiscountPercent() {
-    return this.getSettingFromArray('online-discount-percent');
+  getWebsiteDiscountPercent() {
+    return this.getSettingFromArray('website-discount-percent');
+  }
+
+  getAppDiscountPercent() {
+    return this.getSettingFromArray('app-discount-percent');
   }
 
   getGeneralDiscountPercent() {
@@ -50,7 +54,14 @@ export class SettingsService {
 
   getSettingFromArray(idt)
   {
-    return this.allSettingsArray.find( s => s.idt == idt)['value'];
+    let setting = this.allSettingsArray.find( s => s.idt == idt)
+
+    if(setting == null) {
+      alert('Error occurred in getting setting ['+idt+']');
+      return null;
+    }
+
+    return setting['value'];
   }
 
   Init() {

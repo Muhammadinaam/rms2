@@ -21,6 +21,7 @@ export class MenuComponent implements OnInit {
   
 
   loading: boolean;
+  salesTaxRate: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -39,6 +40,8 @@ export class MenuComponent implements OnInit {
           .add(() => this.loading = false);
       }
     });
+
+    this.salesTaxRate = +this.settingsService.getSalesTaxPercent();
 
   }
 

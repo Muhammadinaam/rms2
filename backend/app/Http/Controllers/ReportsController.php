@@ -29,6 +29,6 @@ class ReportsController extends Controller
 
     public function amountsSummary()
     {
-        return []
+        return [];
     }
 }

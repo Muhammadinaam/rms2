@@ -5,7 +5,7 @@
     <div class="container">
       <h4 class="title has-text-centered">Welcome to {{'restaurant-name' | getSettingFromArray }}</h4>
       <p class="has-text-justified">
-          {{'welcome-note' | getSettingFromArray }}
+          {{ 'welcome-note' | getSettingFromArray }}
       </p>
     </div>
   </div>
@@ -89,7 +89,7 @@
           <div class="content" [innerHTML]="'instructions' | getSettingFromArray"></div>
       </div>
       <div class="column">
-          <img src="assets/images/logo.png">
+          <img src="{{basePath}}/images/{{ 'logo-image' | getSettingFromArray }}">
 
           <div class="has-text-centered">
             <p class="subtitle is-marginless">Address</p>

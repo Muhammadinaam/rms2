@@ -13,11 +13,10 @@ export class OrderService {
   
   isOrderAmountCalculatedCorrectly: boolean;
 
-  closeOrder(closingOrder: any, cash_received: number, card_received: number) {
+  closeOrder(closingOrder: any, receipts: any) {
     let data = {
       order_id: closingOrder.id,
-      cash_received: cash_received,
-      card_received: card_received
+      'receipts': receipts
     };
 
     return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/close-order', data);
@@ -28,7 +27,8 @@ export class OrderService {
     return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/change-order-status', data);
   }
   
-  onlineDiscountPercent;
+  websiteDiscountPercent;
+  appDiscountPercent;
   generalDiscountPercent
   salesTaxPercent;
   minimumOrderAmount;
@@ -117,7 +117,8 @@ export class OrderService {
 
   private getSettings()
   {
-    this.onlineDiscountPercent = this.settingsService.getOnlineDiscountPercent();
+    this.websiteDiscountPercent = this.settingsService.getWebsiteDiscountPercent();
+    this.appDiscountPercent = this.settingsService.getAppDiscountPercent();
     this.generalDiscountPercent = this.settingsService.getGeneralDiscountPercent();
     this.salesTaxPercent = this.settingsService.getSalesTaxPercent();
     this.deliveryChargesFunction = this.settingsService.getDeliveryChargesFunction();
@@ -171,10 +172,15 @@ export class OrderService {
     
     if(this.order.id == null || this.order.id == '')  // if new order then set discount according to rate in settings
     {
-      if(this.order.order_type_idt == 'od')
+      if(this.order.order_type_idt == 'wd')
       {
-        this.order.discount_percent = this.onlineDiscountPercent;
-        this.order.discount_remarks = 'Default discount on online orders';
+        this.order.discount_percent = this.websiteDiscountPercent;
+        this.order.discount_remarks = 'Default discount on website orders';
+      }
+      else if(this.order.order_type_idt == 'ad')
+      {
+        this.order.discount_percent = this.appDiscountPercent;
+        this.order.discount_remarks = 'Default discount on mobile app orders';
       }
       else
       {

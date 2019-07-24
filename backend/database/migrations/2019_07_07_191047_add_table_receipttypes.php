@@ -20,7 +20,7 @@ class AddTableReceipttypes extends Migration
             $table->string('name');
             $table->boolean('amount_can_be_more_than_bill')->default(false);
             $table->boolean('customer_name_required')->default(false);
-            $table->boolean('auto_add')->default(false);
+            //$table->boolean('auto_add')->default(false);
             $table->boolean('is_activated')->default(true);
             
             $table->timestamps();
@@ -31,12 +31,12 @@ class AddTableReceipttypes extends Migration
                 [
                     'name' => 'Cash',
                     'amount_can_be_more_than_bill' => true,
-                    'auto_add' => true,
+                    //'auto_add' => true,
                 ],
                 [
                     'name' => 'Card',
                     'amount_can_be_more_than_bill' => false,
-                    'auto_add' => true,
+                    //'auto_add' => true,
                 ]
             ]);
     }

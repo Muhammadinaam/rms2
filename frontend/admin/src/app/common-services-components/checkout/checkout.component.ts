@@ -11,6 +11,7 @@ export class CheckoutComponent implements OnInit {
 
   @Input() order;
   @Input() redirectPath: string = "track-order";
+  @Input() orderTypeIdt = 'wd';
 
   loading
 
@@ -23,7 +24,7 @@ export class CheckoutComponent implements OnInit {
 
   saveOrder()
   {
-    this.order.order_type_idt = 'od'; // online-delivery
+    this.order.order_type_idt = this.orderTypeIdt;
 
     if(
       this.order.customer_name == '' ||

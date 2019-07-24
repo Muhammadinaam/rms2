@@ -29,6 +29,11 @@
                   <input class="form-control" type="{{setting.type}}" [(ngModel)]="setting.value">
                 </div>
 
+                <div *ngIf="setting.type == 'textarea'">
+                  <textarea class="form-control" [(ngModel)]="setting.value">
+                  </textarea>
+                </div>
+
                 <div *ngIf="setting.type == 'image'">
                   <img *ngIf="setting['imageURL']" class="img-thumbnail" style="max-width: 200px;" [src]="setting['imageURL']" alt="Image">
                   <input class="form-control" type="file" accept="image/*" (change)="showImage($event, setting);">

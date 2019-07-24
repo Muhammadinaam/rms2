@@ -35,7 +35,7 @@ class AddMoreSettings extends Migration
                     'group' => 'Site Settings',
                     'name' => 'Welcome Note',
                     'idt' => 'welcome-note',
-                    'type' => 'text',
+                    'type' => 'textarea',
                     'instructions' => 'Example: At Chillies, we are passionate about good food. We deliver excellent food and service consistently with the help of our well-groomed staffs, so we stand out from the rest. We have an extensive traditional and authentic menu to choose from. We believe our food is exceptional due to the standards of selecting the finest ingredients and spices to make meal a good experience to remember. We would welcome you to try out our menu. We promise you that with all the passion and effort that we put into our food, it would be miles ahead of your expectations.'
                 ],
                 [
@@ -80,6 +80,36 @@ class AddMoreSettings extends Migration
                     'type' => 'text',
                     'instructions' => null
                 ],
+
+                [
+                    'group' => 'Site Settings',
+                    'name' => 'Facebook Link',
+                    'idt' => 'facebook-link',
+                    'type' => 'text',
+                    'instructions' => null
+                ],
+                [
+                    'group' => 'Site Settings',
+                    'name' => 'Twitter Link',
+                    'idt' => 'twitter-link',
+                    'type' => 'text',
+                    'instructions' => null
+                ],
+                [
+                    'group' => 'Site Settings',
+                    'name' => 'Instagram Link',
+                    'idt' => 'instagram-link',
+                    'type' => 'text',
+                    'instructions' => null
+                ],
+                [
+                    'group' => 'Site Settings',
+                    'name' => 'Youtube Link',
+                    'idt' => 'youtube-link',
+                    'type' => 'text',
+                    'instructions' => null
+                ],
+
                 [
                     'group' => 'Site Settings',
                     'name' => 'Android App Link',
@@ -126,6 +156,10 @@ class AddMoreSettings extends Migration
                 'address',
                 'email',
                 'telephone',
+                'facebook-link',
+                'twitter-link',
+                'instagram-link',
+                'youtube-link',
                 'android-app-link',
                 'iphone-app-link',
                 'instructions',

@@ -15,6 +15,7 @@ export class NavbarComponent implements OnInit {
   categories:any = [];
   mobileMenuVisibility: boolean = false;
   loading: boolean;
+  basePath = BaseEndPointService.getBaseEndPoint();
 
   constructor(
     private http: HttpClient, 

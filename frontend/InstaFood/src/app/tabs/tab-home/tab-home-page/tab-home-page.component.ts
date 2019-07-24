@@ -27,6 +27,7 @@ export class TabHomePageComponent implements OnInit {
     initialSlide: 1,
     speed: 400
   }
+  logoImage: string;
 
   constructor(
     private settingsService: SettingsService,
@@ -41,6 +42,9 @@ export class TabHomePageComponent implements OnInit {
       if(imageURL != null && imageURL != ''){
         this.imageSources.push( BaseEndPointService.getBaseEndPoint() + '/images/' + imageURL );
       }
+
+      this.logoImage = BaseEndPointService.getBaseEndPoint() + '/images/' + 
+        this.settingsService.getSettingFromArray('logo-image');
     }
 
     console.log(this.imageSources);

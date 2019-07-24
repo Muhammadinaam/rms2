@@ -22,6 +22,7 @@ class AddIsAssignableColumnInOrderStatusesTable extends Migration
         DB::table('order_statuses')
             ->whereIn('order_statuses.idt', [
                 //'phone-confirmation-pending',
+                'phone-not-confirmed',
                 'preparing',
                 'on-the-way',
                 'served'
