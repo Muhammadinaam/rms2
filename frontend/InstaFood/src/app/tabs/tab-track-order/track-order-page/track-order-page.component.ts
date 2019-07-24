@@ -2,39 +2,53 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Storage } from '@ionic/storage';
 import { OrderService } from '../../../../../../admin/src/app/common-services-components/services/order.service';
+import { SettingsService } from '../../../../../../admin/src/app/common-services-components/services/settings.service';
+import { Network } from '@ionic-native/network/ngx';
 
 @Component({
   selector: 'app-track-order-page',
   templateUrl: './track-order-page.component.html',
   styleUrls: ['./track-order-page.component.scss'],
 })
-export class TrackOrderPageComponent implements OnInit, OnDestroy {
+export class TrackOrderPageComponent {
   
   loading = false;
   tracking_number = '';
   status = '';
   intervalID;
 
-  constructor(private storage: Storage, private orderService: OrderService) { }
+  constructor(private storage: Storage, 
+    private orderService: OrderService,
+    private settingsService: SettingsService,
+    private network: Network) { 
+      this.network.onDisconnect().subscribe(() => {
+        this.settingsService.initialized = false;
+        window.location.reload();
+      });
+    }
 
-  ngOnInit() {
+  ionViewDidEnter() {
+    
     this.storage.get('tracking_number')
       .then(tracking_number => {
         this.tracking_number = tracking_number
+        this.refreshStatus();
       });
 
-    this.refreshStatus();
+    
     this.intervalID = setInterval(() => {
       this.refreshStatus();
     }, 20000);
   }
 
-  ngOnDestroy(): void {
+  ionViewWillLeave(): void {
+    
     clearInterval(this.intervalID);
   }
 
   refreshStatus()
   {
+    
     if(this.tracking_number == '')
       return;
 
@@ -42,6 +56,7 @@ export class TrackOrderPageComponent implements OnInit, OnDestroy {
     .subscribe(order_status => {
       let status = order_status['order_status'];
 
+      
       if(status == null)
       {
         

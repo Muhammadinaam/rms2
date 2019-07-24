@@ -10,7 +10,7 @@ import { ToastController } from '@ionic/angular';
   templateUrl: './category-items.component.html',
   styleUrls: ['./category-items.component.scss'],
 })
-export class CategoryItemsComponent implements OnInit {
+export class CategoryItemsComponent {
 
   loading:boolean;
   category;
@@ -27,7 +27,7 @@ export class CategoryItemsComponent implements OnInit {
     private settingsService: SettingsService,
     public toastController: ToastController) { }
 
-  ngOnInit() {
+  ionViewDidEnter() {
     this.activatedRoute.params.subscribe( params => {
       if(params.id) {
 
