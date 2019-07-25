@@ -110,7 +110,10 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   {
     this.orderService.changeOrderStatus(order, status, cancellationRemarks)
       .subscribe(resp => {
-        alert(resp['message']);
+
+        if(resp['success'] != true) {
+          alert(resp['message']);
+        }
         
         if(this.changeStatusDialogRef != null)
           this.changeStatusDialogRef.close();

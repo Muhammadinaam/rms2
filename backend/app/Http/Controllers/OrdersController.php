@@ -312,7 +312,7 @@ class OrdersController extends Controller
         $tracking_number = request()->tracking_number;
 
         $order_status = DB::table('orders')
-            ->select('order_statuses.idt', 'order_statuses.name')
+            ->select('order_statuses.idt', 'order_statuses.name', 'order_statuses.description')
             ->join('order_statuses', 'orders.order_status_id', '=', 'order_statuses.id')
             ->where('orders.tracking_number', $tracking_number)
             ->first();

@@ -16,6 +16,7 @@ export class TrackOrderPageComponent {
   tracking_number = '';
   status = '';
   intervalID;
+  statusDescription = '';
 
   constructor(private storage: Storage, 
     private orderService: OrderService,
@@ -65,9 +66,15 @@ export class TrackOrderPageComponent {
 
       let idt = status['idt'];
       console.log(idt);
-      this.status = idt == 'phone-confirmation-pending' || idt == 'preparing' || idt == 'on-the-way' || idt == 'served' ? 
-        status['name'] :
-        'Tracking link expired';
+
+      if(idt == 'phone-confirmation-pending' || idt == 'preparing' || idt == 'on-the-way' || idt == 'served') {
+        this.status = status['name'];
+        this.statusDescription = status['description'];
+      } else {
+        this.status = 'Tracking link expired';
+        this.statusDescription = '';
+      }
+
 
     });
   }
