@@ -20,6 +20,7 @@ export class CategoryItemsComponent {
   selectedItem: any;
   selectedItemCategory: any;
   salesTaxRate: number;
+  isOptionsModalVisible:boolean = false;
 
   constructor(private router: Router, 
     private activatedRoute: ActivatedRoute,
@@ -57,16 +58,30 @@ export class CategoryItemsComponent {
     this.selectedItemCategory = category;
   }
 
-  async itemAddedToOrder() {
-    const toast = await this.toastController.create({
-      message: 'Item added to Order. Please check [Your Order] tab.',
-      duration: 3000,
-      animated: true,
-      color: "success",
-      position: "middle",
-      translucent: false,
-      showCloseButton: true
-    });
-    toast.present();
+  itemAddedToOrder() {
+
+    // const toast = await this.toastController.create({
+    //   message: 'Item added to Order. Please check [Your Order] tab.',
+    //   duration: 3000,
+    //   animated: true,
+    //   color: "success",
+    //   position: "middle",
+    //   translucent: false,
+    //   showCloseButton: true
+    // });
+    // toast.present();
+
+    this.isOptionsModalVisible = true;
+
+  }
+
+  addMoreItemsClicked() {
+    this.isOptionsModalVisible = false;
+    this.router.navigate(['/tabs/tab-items']);
+  }
+
+  goToCheckoutClicked() {
+    this.isOptionsModalVisible = false;
+    this.router.navigate(['/tabs/tab-order']);
   }
 }
