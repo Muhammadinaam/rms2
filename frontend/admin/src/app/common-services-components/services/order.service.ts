@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 })
 export class OrderService {
   
-  isOrderAmountCalculatedCorrectly: boolean;
+  public isOrderAmountCalculatedCorrectly: boolean;
 
   closeOrder(closingOrder: any, receipts: any) {
     let data = {

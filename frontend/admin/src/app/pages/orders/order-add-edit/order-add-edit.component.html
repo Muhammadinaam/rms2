@@ -76,7 +76,7 @@
 
 
                   <!-- take-away -->
-                  <div *ngIf="order_type_idt.value == 'ta' || order_type_idt.value == 'wd' || order_type_idt.value == 'od'">
+                  <div *ngIf="order_type_idt.value == 'ta' || order_type_idt.value == 'wd' || order_type_idt.value == 'ad' || order_type_idt.value == 'otd'">
 
                       <div class="field has-addons">
                         <div class="control">
@@ -94,7 +94,7 @@
                   <!-- take-away -->
 
                   <!-- delivery -->
-                  <div *ngIf="order_type_idt.value == 'wd' || order_type_idt.value == 'od'">
+                  <div *ngIf="order_type_idt.value == 'wd' || order_type_idt.value == 'ad' || order_type_idt.value == 'otd'">
 
                       <div class="field has-addons">
                         <div class="control">
@@ -148,7 +148,7 @@
                     class="button is-default is-pulled-left d-block d-sm-block d-md-none">
                     Search Item
                   </button>
-                  <button type="submit" class="button is-info is-pulled-right" [disabled]="dataForm.invalid">Save</button>
+                  <button type="submit" class="button is-info is-pulled-right" [disabled]="dataForm.invalid || !orderService.isOrderAmountCalculatedCorrectly">Save</button>
                 </div>
               </div>
               <!-- order-container -->
