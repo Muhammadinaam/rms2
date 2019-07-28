@@ -94,7 +94,8 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
 
   isOrderPendingOrPreparing(order)
   {
-    return order.order_status_idt == 'phone-confirmation-pending' || order.order_status_idt == 'preparing';
+    return order.order_status_idt == 'phone-confirmation-pending' || 
+    order.order_status_idt == 'preparing' || order.order_status_idt == 'phone-not-confirmed';
   }
 
   cancelOrder(order){
@@ -152,7 +153,8 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
     let amount_cannot_be_more_than_bill_names = '';
     let isPaymentValid:any = true;
     this.receiptTypes.forEach(receiptType => {
-      receiptType.amount = receiptType.amount == '' ? 0 : receiptType.amount;
+      
+      receiptType.amount = receiptType.amount == '' || receiptType.amount == null ? 0 : receiptType.amount;
       this.paid_amount += +receiptType.amount;
 
       if( receiptType.amount < 0 ) {
@@ -162,7 +164,7 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
 
       if(receiptType.amount_can_be_more_than_bill == 0 ) {
         amount_cannot_be_more_than_bill_total += Math.round(receiptType.amount);
-        amount_cannot_be_more_than_bill_names += '* ' + receiptType.name + '  ';
+        amount_cannot_be_more_than_bill_names += receiptType.name + ', ';
       }
 
       if(receiptType.customer_name_required && receiptType.amount != 0 && (receiptType.customer == null || receiptType.customer == '') ) {
@@ -176,9 +178,10 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
       return false;
     }
 
-    if(amount_cannot_be_more_than_bill_total > this.selectedOrder.receivable_amount){
+    let diff = Math.abs( Math.round(amount_cannot_be_more_than_bill_total) - Math.round(this.selectedOrder.receivable_amount) );
+    if( diff > 1 ){
       alert('Sum of [' + amount_cannot_be_more_than_bill_names + '] should not be more than bill amount');
-      isPaymentValid = false;
+      return false;
     }
 
     if(this.paid_amount < this.selectedOrder.receivable_amount) {

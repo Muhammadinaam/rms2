@@ -15,8 +15,8 @@
             <small>Type: <b>{{order.order_type_name}}</b></small>
             <br>
             <span class="badge" 
-              [class.badge-danger]="isOrderPendingOrPreparing(order)"
-              [class.badge-primary]="!isOrderPendingOrPreparing(order)">
+              [class.badge-danger]="order | isOrderPendingOrPreparing "
+              [class.badge-primary]="!order | isOrderPendingOrPreparing ">
               {{order.order_status_name}}
             </span>
             <br>
@@ -27,7 +27,7 @@
             </small>
 
             <br><br>
-            <small *ngIf="isOrderPendingOrPreparing(order)" class="text-red">Time: <b>{{order | orderPendingTime}}</b> (minutes)</small>
+            <small *ngIf=" order | isOrderPendingOrPreparing " class="text-red">Time: <b>{{order | orderPendingTime}}</b> (minutes)</small>
 
             <br><br>
             <button class="btn btn-xs btn-info btn-block" (click)="openChangeStatusDialog(dialog, order)">Change Status</button>
@@ -129,7 +129,7 @@
             </td> -->
 
             <td>
-              <input type="number" (change)="paymentChanged()" [(ngModel)]="receiptType.amount">
+              <input type="number" (change)="paymentChanged()" (keyup)="paymentChanged()" [(ngModel)]="receiptType.amount">
             </td>
           </tr>
         </tbody>

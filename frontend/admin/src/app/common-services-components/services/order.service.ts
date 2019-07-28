@@ -157,8 +157,10 @@ export class OrderService {
 
         });
       } else {
+
         this.performOrderCalculations();
         this.isOrderAmountCalculatedCorrectly = true;
+        
       }
 
     }

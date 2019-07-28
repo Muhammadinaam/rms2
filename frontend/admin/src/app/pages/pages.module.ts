@@ -29,6 +29,7 @@ import { ReceipttypesListComponent } from './receipttypes/receipttypes-list/rece
 import { ReceipttypesAddEditComponent } from './receipttypes/receipttypes-add-edit/receipttypes-add-edit.component';
 import { HasPermissionPipe } from './pipes/has-permission.pipe';
 import { OrderPendingTimePipe } from './pipes/order-pending-time.pipe';
+import { IsOrderPendingOrPreparingPipe } from './pipes/is-order-pending-or-preparing.pipe';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -68,6 +69,7 @@ const PAGES_COMPONENTS = [
     ReceipttypesAddEditComponent,
     HasPermissionPipe,
     OrderPendingTimePipe,
+    IsOrderPendingOrPreparingPipe,
   ],
 })
 export class PagesModule {

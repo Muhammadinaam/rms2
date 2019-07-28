@@ -18,6 +18,7 @@ export class OrderAddEditComponent implements OnInit {
 
   searchModalVisible = false;
   loading: boolean;
+  submitting: boolean;
 
   constructor(
     private orderService: OrderService,
@@ -117,6 +118,8 @@ export class OrderAddEditComponent implements OnInit {
   onSubmit(){
     let observable = this.orderService.saveOrder();
 
+    this.submitting = true;
+
     if(observable != null)
     {
       observable.subscribe(resp => {
@@ -139,6 +142,8 @@ export class OrderAddEditComponent implements OnInit {
           this.orderService.reset();
           this.router.navigate(['pages/orders-and-tables']);
         }
+      }).add(() => {
+        this.submitting = false;
       });
     }
   }

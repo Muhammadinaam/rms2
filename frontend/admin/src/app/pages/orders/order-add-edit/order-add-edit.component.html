@@ -30,7 +30,7 @@
                       <div class="select is-fullwidth is-small">
                         <select name="order_type_idt" [(ngModel)]="order.order_type_idt" #order_type_idt="ngModel" required>
                           <option value=""></option>
-                          <option *ngFor="let orderType of settingsService.orderTypes" value="{{orderType.idt}}">
+                          <option *ngFor="let orderType of settingsService.orderTypes" value="{{orderType.idt}}" [disabled]="(orderType.idt == 'wd' || orderType.idt == 'ad') && order.order_type_idt != orderType.idt">
                             {{orderType.name}}
                           </option>
                         </select>
@@ -39,9 +39,18 @@
                     </div>
                   </div>
 
+                  <!-- <div class="control">
+                      
+                    <label *ngFor="let orderType of settingsService.orderTypes" class="radio">
+                      <input type="radio" name="order_type_idt" [(ngModel)]="order.order_type_idt" value="{{orderType.idt}}" [disabled]="orderType.idt == 'wd' || orderType.idt == 'ad'">
+                      {{orderType.name}}
+                    </label>
+
+                  </div> -->
+
     
                   <!-- dine-in -->
-                  <div *ngIf="order_type_idt.value == 'di'">
+                  <div *ngIf="order.order_type_idt == 'di'">
                     <div class="field has-addons">
                       <div class="control">
                         <a class="button is-static is-small">
@@ -76,7 +85,7 @@
 
 
                   <!-- take-away -->
-                  <div *ngIf="order_type_idt.value == 'ta' || order_type_idt.value == 'wd' || order_type_idt.value == 'ad' || order_type_idt.value == 'otd'">
+                  <div *ngIf="order.order_type_idt == 'ta' || order.order_type_idt == 'wd' || order.order_type_idt == 'ad' || order.order_type_idt == 'otd'">
 
                       <div class="field has-addons">
                         <div class="control">
@@ -94,7 +103,7 @@
                   <!-- take-away -->
 
                   <!-- delivery -->
-                  <div *ngIf="order_type_idt.value == 'wd' || order_type_idt.value == 'ad' || order_type_idt.value == 'otd'">
+                  <div *ngIf="order.order_type_idt == 'wd' || order.order_type_idt == 'ad' || order.order_type_idt == 'otd'">
 
                       <div class="field has-addons">
                         <div class="control">
@@ -148,7 +157,7 @@
                     class="button is-default is-pulled-left d-block d-sm-block d-md-none">
                     Search Item
                   </button>
-                  <button type="submit" class="button is-info is-pulled-right" [disabled]="dataForm.invalid || !orderService.isOrderAmountCalculatedCorrectly">Save</button>
+                  <button type="submit" class="button is-info is-pulled-right" [disabled]="dataForm.invalid || !orderService.isOrderAmountCalculatedCorrectly || submitting">Save</button>
                 </div>
               </div>
               <!-- order-container -->
