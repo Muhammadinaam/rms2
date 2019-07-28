@@ -13,6 +13,7 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
   tracking_number = '';
   status = '';
   intervalID;
+  statusDescription: string = '';
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -52,9 +53,13 @@ export class TrackOrderComponent implements OnInit, OnDestroy {
 
         let idt = status['idt'];
         console.log(idt);
-        this.status = idt == 'phone-confirmation-pending' || idt == 'preparing' || idt == 'on-the-way' || idt == 'served' ? 
-          status['name'] :
-          'Tracking link expired';
+        if(idt == 'phone-confirmation-pending' || idt == 'preparing' || idt == 'on-the-way' || idt == 'served' ||idt == 'phone-not-confirmed') {
+          this.status = status['name'];
+          this.statusDescription = status['description'];
+        } else {
+          this.status = 'Tracking link expired';
+          this.statusDescription = '';
+        }
 
       });
   }
