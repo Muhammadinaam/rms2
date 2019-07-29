@@ -78,11 +78,12 @@
     <p class="title is-6">Items</p>
 
     <table class="table is-fullwidth">
-      <tr *ngFor="let item of order.items; let item_index = index;">
+      <ng-container *ngFor="let item of order.items; let item_index = index;">
+      <tr >
         <td>
-          {{item.quantity}}x
+          {{item.quantity}}x 
           <b>{{item.name}} </b> 
-          <small>({{item.price | currency:currencyCode}})</small>
+          <!-- <small>({{item.price | currency:currencyCode}})</small> -->
           <p class="m-0">
             <small *ngFor="let option of item.options">
               <span *ngFor="let option_item of option.options_items">
@@ -96,15 +97,38 @@
             </small>
           </p>
         </td>
-        <td>{{item.item_price_with_options * item.quantity | currency:currencyCode }}</td>
-        <td>
-          <button class="delete" (click)="orderService.deleteItem(item_index)"></button>
+        
+        <td style="width: 90px;">
+          {{item.item_price_with_options * item.quantity | currency:currencyCode }}
+
+          <div class="field">
+            <div class="field has-addons">
+              <div class="control">
+                  <a class="button is-info is-small" (click)="addToQty(item, -1)">
+                    -
+                  </a>
+                </div>
+              <div class="control is-expanded">
+                <input class="input is-small p-0 has-text-centered" readonly [(ngModel)]="item.quantity" (change)="itemChanged()">
+              </div>
+              <div class="control">
+                <a class="button is-info is-small" (click)="addToQty(item, 1)">
+                  +
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </td>
+        <td class="has-text-centered">
+          <button type="button" class="delete" (click)="deleteItem(item_index)"></button><br>
+          <button type="button" class="button is-info is-small mt-1" (click)="editClicked(item)">Edit</button>
         </td>
       </tr>
+    </ng-container>
     </table>
 
   
-    <hr>
     <table class="table is-fullwidth">
       <tr *ngIf="showDetails">
         <th>Order Amount</th> 
@@ -132,3 +156,7 @@
     
     
   </div>
+
+  <add-to-order #addToOrderComp
+    [showAlertOnItemAdd]="false" >
+  </add-to-order>

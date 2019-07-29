@@ -3,6 +3,8 @@ import * as _ from 'lodash';
 //import { ToastrService } from 'ngx-toastr';
 import { SettingsService } from '../../services/settings.service';
 import { OrderService } from '../../services/order.service';
+import { HttpClient } from '@angular/common/http';
+import { BaseEndPointService } from '../../services/base-end-point.service';
 
 @Component({
   selector: 'add-to-order',
@@ -12,6 +14,9 @@ import { OrderService } from '../../services/order.service';
 export class AddToOrderComponent implements OnInit, OnChanges {
 
   currencyCode = this.settingsService.getCurrencyCode();
+
+  isEditingExistingItem:boolean = false;
+  editingItemId = '';
 
   singleOptions = {};
   multipleOptions = {};
@@ -47,11 +52,15 @@ export class AddToOrderComponent implements OnInit, OnChanges {
   constructor(
     private settingsService: SettingsService,
     private orderService: OrderService,
+    private http: HttpClient
     //private toastr: ToastrService
     ) { }
 
   ngOnInit() {
     this.salesTaxRate = +this.settingsService.getSalesTaxPercent();
+    
+    
+
   }
   
   ngOnChanges(changes: SimpleChanges) {
@@ -69,6 +78,17 @@ export class AddToOrderComponent implements OnInit, OnChanges {
   {
     this.isVisible = visibility;
     this.isVisibleChange.emit(this.isVisible);
+
+    
+    if(visibility == true && this.isEditingExistingItem && this.editingItemId != '')
+    {
+      this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/items/' + this.editingItemId)
+        .subscribe(item => {
+          this.item = item;
+          this.category = item['category'];
+          this.reset(); 
+        });
+    }
 
     this.reset();
   }
@@ -112,6 +132,7 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     this.orderItem.item_price_with_options = 0;
     this.orderItem.item_price_with_options = +this.orderItem.price; // price without options
 
+    
     this.category.options.forEach(option => {
       var optionToAdd = {};
       optionToAdd['options_items'] = [];

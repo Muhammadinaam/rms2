@@ -3,7 +3,7 @@
     <div class="modal-card">
       <header class="modal-card-head is-radiusless">
         <div class="modal-card-title">Add to Order / Cart</div>
-        <button class="delete" aria-label="close" (click)="setModalVisibility(false)"></button>
+        <button class="delete" type="button" aria-label="close" (click)="setModalVisibility(false)"></button>
       </header>
       <section class="modal-card-body">
         <div *ngIf="item">
@@ -88,7 +88,9 @@
         </div>
       </section>
       <footer class="modal-card-foot is-radiusless">
-          <button class="button is-success is-fullwidth" (click)="addItemInOrder()">Add</button>
+          <button type="button" class="button is-success is-fullwidth" (click)="addItemInOrder()">
+            {{ isEditingExistingItem ? 'Save' : 'Add' }}
+          </button>
       </footer>
     </div>
   </div>

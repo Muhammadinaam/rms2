@@ -11,6 +11,8 @@ import * as _ from 'lodash';
 })
 export class OrderService {
   
+  public showPopupBeforeAddingItem:boolean = true;
+
   public isOrderAmountCalculatedCorrectly: boolean;
 
   closeOrder(closingOrder: any, receipts: any) {
@@ -127,6 +129,14 @@ export class OrderService {
 
   addItemInOrder(item) {
 
+    if(this.order.items == null) {
+      this.isOrderAmountCalculatedCorrectly = false;
+    }
+
+    if(this.order.items != null && this.order.items.length == 0) {
+      this.isOrderAmountCalculatedCorrectly = false;
+    }
+
     let newItem = _.cloneDeep(item);
     this.newItems.push(item);
 
@@ -140,8 +150,8 @@ export class OrderService {
   calculateOrderAmounts() {
     if(this.order && this.order.items) {
 
-      // when items count = 1, then it means we are making new order so we will reset settings
-      if(this.order.items.length == 1 || this.isOrderAmountCalculatedCorrectly == false) {
+      
+      if(this.isOrderAmountCalculatedCorrectly == false) {
         this.settingsService.Init()
         .then(() => {
 

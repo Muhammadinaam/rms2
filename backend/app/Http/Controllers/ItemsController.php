@@ -49,6 +49,11 @@ class ItemsController extends Controller
         return Item::find($id);
     }
 
+    public function show($id) 
+    {
+        return Item::with('category.options.options_items')->find($id);
+    }
+
     public function update($id)
     {
         $this->validate(request(), [

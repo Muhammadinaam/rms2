@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseEndPointService } from '../../services/base-end-point.service';
+import { OrderService } from '../../services/order.service';
+import { AddToOrderComponent } from '../add-to-order/add-to-order.component';
 
 @Component({
   selector: 'categories-items-search',
@@ -23,7 +25,10 @@ export class CategoriesItemsSearchComponent implements OnInit {
 
   @Output() itemAddedToOrder = new EventEmitter();
 
-  constructor(private http: HttpClient) { }
+  @ViewChild('addToOrderComp')
+  addToOrderComp: AddToOrderComponent;
+
+  constructor(private http: HttpClient, public orderSerivce: OrderService) { }
 
   ngOnInit() {
     this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/categories?withitems=1&withoptions=1&all=1')
@@ -89,10 +94,29 @@ export class CategoriesItemsSearchComponent implements OnInit {
     });
   }
 
-  showAddToOrderModal(item){
-    this.selectedItem = item;
+  itemClicked(item) {
 
+    this.selectedItem = item;
     this.selectedItemCategory = this.allCategories.find(x => x.id == item.category_id);
+
+    if(this.orderSerivce.showPopupBeforeAddingItem) {
+      this.showAddToOrderModal(item);
+    } else {
+
+      this.addToOrderComp.item = this.selectedItem;
+      this.addToOrderComp.category = this.selectedItemCategory;
+      
+      
+      this.addToOrderComp.reset();
+
+      this.addToOrderComp.addItemInOrder();
+      
+    }
+
+  }
+
+  showAddToOrderModal(item){
+    
 
     this.AddToOrderModalVisibility = true;
   }
