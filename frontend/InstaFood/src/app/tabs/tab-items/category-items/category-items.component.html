@@ -55,24 +55,21 @@
       <p class="modal-card-title">Item Added</p>
       <button class="delete" aria-label="close" (click)="isOptionsModalVisible = false"></button>
     </header>
-    <section class="modal-card-body">
+    <section class="modal-card-body has-text-centered">
       <p>Item Added to your order</p>
       <br>
-      <div class="field is-grouped">
         
-        
-        <ion-button size="small" color="primary" (click)="addMoreItemsClicked()"  >
-          <ion-icon slot="start" name="apps"></ion-icon>
-          Add More Items
-        </ion-button>
+      <ion-button size="small" color="primary" (click)="addMoreItemsClicked()"  >
+        <ion-icon slot="start" name="apps"></ion-icon>
+        Add More Items
+      </ion-button>
 
-        <ion-button size="small" color="success" (click)="goToCheckoutClicked()" >
-          <ion-icon slot="start" name="cart"></ion-icon>
-          Checkout
-        </ion-button>
+      <br>
+      <ion-button size="small" color="success" (click)="goToCheckoutClicked()" >
+        <ion-icon slot="start" name="cart"></ion-icon>
+        Checkout
+      </ion-button>
 
-        
-      </div>
     </section>
     
   </div>

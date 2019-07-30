@@ -61,6 +61,7 @@ export const MENU_ITEMS: NbMenuItem[] = [
     title: 'Reports',
     icon: 'nb-tables',
     children: [
+
       {
         title: 'Sales Report',
         link: '/pages/sales-report',
@@ -69,6 +70,24 @@ export const MENU_ITEMS: NbMenuItem[] = [
           permission_idt: 'sales-report',
         }
       },
+      {
+        title: 'Top Selling Items',
+        link: '/pages/top-selling-items-report',
+        icon: 'nb-tables',
+        data: {
+          permission_idt: 'top-selling-items-report',
+        }
+      },
+      {
+        title: 'Top Areacodes',
+        link: '/pages/top-areacodes-report',
+        icon: 'nb-tables',
+        data: {
+          permission_idt: 'top-areacodes-report',
+        }
+      },
+
+
     ],
   },
   {

@@ -66,6 +66,8 @@ export class UserService implements DataServiceInterface {
     [
       {'idt' : 'settings', 'title' : 'Settings'},
       {'idt' : 'sales-report', 'title' : 'Sales Report'},
+      {'idt' : 'top-selling-items-report', 'title' : 'Top Selling Items'},
+      {'idt' : 'top-areacodes-report', 'title' : 'Top Areacodes'},
     ]
   };
 

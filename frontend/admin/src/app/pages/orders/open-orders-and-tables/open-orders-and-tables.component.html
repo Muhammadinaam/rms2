@@ -3,7 +3,22 @@
   <nb-card class="col-md-12">
     <nb-card-header>
       Open Orders
+
       <button class="float-right" nbButton size="xsmall" [routerLink]="['/pages/orders/create']" >Add New Order</button>
+
+      <div class="field has-addons col-md-4 float-right">
+          <div class="control is-expanded">
+            <input class="input is-fullwidth" type="text" 
+              placeholder="Search Order" [(ngModel)]="searchOrderText" 
+              (keyup)="searchOrder()">
+          </div>
+          <div class="control">
+            <a class="button " (click)="clearOrderSearch()">
+              x
+            </a>
+          </div>
+        </div>
+      
     </nb-card-header>
       <div class="row">
         

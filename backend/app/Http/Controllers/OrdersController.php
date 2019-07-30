@@ -36,7 +36,7 @@ class OrdersController extends Controller
             
             DB::beginTransaction();
 
-            $this->saveOrder($order, $order_data, false, null, null);
+            $this->saveOrder($order, $order_data, false, null, null, null);
 
             DB::commit();
 
@@ -59,6 +59,7 @@ class OrdersController extends Controller
         $order_data = request()->order;
         $new_items = request()->new_items;
         $removed_items = request()->removed_items;
+        $qty_changed_items = request()->qty_changed_items;
 
         $order = Order::find($order_data['id']);
 
@@ -66,7 +67,7 @@ class OrdersController extends Controller
             
             DB::beginTransaction();
 
-            $this->saveOrder($order, $order_data, true, $new_items, $removed_items);
+            $this->saveOrder($order, $order_data, true, $new_items, $removed_items, $qty_changed_items);
 
             DB::commit();
 
@@ -140,7 +141,7 @@ class OrdersController extends Controller
         return $period . '-' . $new_number . '-' . $order_type;
     }
 
-    public function saveOrder($order, $order_data, $is_editing, $new_items, $removed_items)
+    public function saveOrder($order, $order_data, $is_editing, $new_items, $removed_items, $qty_changed_items)
     {
         $order_type_id = DB::table('order_types')->where('idt', $order_data['order_type_idt'])->first()->id;
 
@@ -228,6 +229,7 @@ class OrdersController extends Controller
 
             $this->saveOrderItems(null, $order_edit->id, $new_items, 'new_item');
             $this->saveOrderItems(null, $order_edit->id, $removed_items, 'removed_item');
+            $this->saveOrderItems(null, $order_edit->id, $qty_changed_items, 'quantity_changed');
         }
 
         // Print job

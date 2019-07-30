@@ -30,6 +30,7 @@ import { ReceipttypesAddEditComponent } from './receipttypes/receipttypes-add-ed
 import { HasPermissionPipe } from './pipes/has-permission.pipe';
 import { OrderPendingTimePipe } from './pipes/order-pending-time.pipe';
 import { IsOrderPendingOrPreparingPipe } from './pipes/is-order-pending-or-preparing.pipe';
+import {NgPipesModule} from 'ngx-pipes';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -46,6 +47,7 @@ const PAGES_COMPONENTS = [
     CommonServicesComponentsModule,
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
+    NgPipesModule
   ],
   declarations: [
     ...PAGES_COMPONENTS,

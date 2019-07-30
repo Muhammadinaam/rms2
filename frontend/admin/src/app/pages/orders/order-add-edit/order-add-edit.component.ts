@@ -61,8 +61,11 @@ export class OrderAddEditComponent implements OnInit {
                   this.order = this.orderService.order;
 
                   this.setMappings();
+                  this.orderService.calculateOrderAmounts();
                   this.loading = false;
                 });
+        } else {
+          this.order.order_type_idt = 'ta';
         }
       });
   }
@@ -116,6 +119,16 @@ export class OrderAddEditComponent implements OnInit {
   }
 
   onSubmit(){
+
+    if(this.orderService.isOrderAmountCalculatedCorrectly == false) {
+      this.orderService.calculateOrderAmounts();
+      if(this.orderService.isOrderAmountCalculatedCorrectly == false) {
+
+        alert("Order amounts were not calculated correclty. Please try again.");
+        return;
+      }
+    }
+
     let observable = this.orderService.saveOrder();
 
     this.submitting = true;

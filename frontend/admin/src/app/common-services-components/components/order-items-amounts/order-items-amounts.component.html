@@ -81,7 +81,6 @@
       <ng-container *ngFor="let item of order.items; let item_index = index;">
       <tr >
         <td>
-          {{item.quantity}}x 
           <b>{{item.name}} </b> 
           <!-- <small>({{item.price | currency:currencyCode}})</small> -->
           <p class="m-0">
@@ -122,7 +121,7 @@
         </td>
         <td class="has-text-centered">
           <button type="button" class="delete" (click)="deleteItem(item_index)"></button><br>
-          <button type="button" class="button is-info is-small mt-1" (click)="editClicked(item)">Edit</button>
+          <button type="button" class="button is-info is-small mt-1" (click)="editClicked(item, item_index)">Edit</button>
         </td>
       </tr>
     </ng-container>

@@ -15,6 +15,7 @@ import { SettingsService } from '../../../common-services-components/services/se
 export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
 
   currencyCode = this.settingsService.getCurrencyCode();
+  openOrdersAll: any = [];
   openOrders: any = [];
   freeTables:any = [];
   refreshTimer;
@@ -29,7 +30,11 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   discount_remarks = '';
   receiptTypes:any;
 
+  searchOrderText = '';
+
   paid_amount:number = 0;
+  openOrdersAllCoundNew: number;
+  openOrdersAllCoundOld: number;
   
   constructor(private http: HttpClient, 
     private loaderService: LoaderService,
@@ -67,6 +72,11 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
       });
 
   }
+
+  playNewOrderSound() {
+    let audio = new Audio('/assets/sounds/new_order.wav');
+    audio.play();
+  }
   
   ngOnDestroy(): void {
     this.loaderService.isLoaderEnabled = true;
@@ -87,7 +97,16 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
 
       this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/open-orders')
       .subscribe(data => {
-        this.openOrders = data;
+        this.openOrdersAll = data;
+        this.openOrdersAllCoundNew = this.openOrdersAll.length;
+
+        
+        if(this.openOrdersAllCoundNew > this.openOrdersAllCoundOld) {
+          this.playNewOrderSound();
+        }
+        this.openOrdersAllCoundOld = this.openOrdersAll.length;
+
+        this.searchOrder();
       });
 
   }
@@ -99,8 +118,13 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   }
 
   cancelOrder(order){
+    
+    
+    let cancellationRemarks = "";
 
-    let cancellationRemarks = prompt("Please enter Cancellation Reason");
+    while(cancellationRemarks == "") {
+      cancellationRemarks = prompt("Please enter Cancellation Reason");
+    }
 
     if( cancellationRemarks != null ) {
       this.changeOrderStatus(order, 'cancelled', cancellationRemarks);
@@ -178,8 +202,7 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
       return false;
     }
 
-    let diff = Math.abs( Math.round(amount_cannot_be_more_than_bill_total) - Math.round(this.selectedOrder.receivable_amount) );
-    if( diff > 1 ){
+    if( Math.round(amount_cannot_be_more_than_bill_total) > Math.round(this.selectedOrder.receivable_amount) ){
       alert('Sum of [' + amount_cannot_be_more_than_bill_names + '] should not be more than bill amount');
       return false;
     }
@@ -252,6 +275,21 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
     this.receiptTypes.forEach(receiptType => {
       this.paid_amount += +receiptType.amount;
     });
+  }
+
+  searchOrder() {
+    this.openOrders.length = 0;
+    this.openOrdersAll.forEach(openOrder => {
+      let order_number:string = openOrder.order_number;
+      if(order_number.indexOf(this.searchOrderText) != -1 ) {
+        this.openOrders.push(openOrder);
+      }
+    })
+  }
+
+  clearOrderSearch() {
+    this.searchOrderText = "";
+    this.searchOrder();
   }
 
 }

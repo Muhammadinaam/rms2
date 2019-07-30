@@ -29,9 +29,10 @@ export class CheckoutComponent implements OnInit {
     if(
       this.order.customer_name == '' ||
       this.order.customer_address == '' ||
-      this.order.customer_phone == '')
+      this.order.customer_phone == '' || 
+      this.order.customer_zipcode == '')
     {
-      alert('Please provide Name, Address and Phone');
+      alert('Please provide Name, Address, Zipcode and Phone');
       return;
     }
 

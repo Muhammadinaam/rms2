@@ -30,7 +30,10 @@
                       <div class="select is-fullwidth is-small">
                         <select name="order_type_idt" [(ngModel)]="order.order_type_idt" #order_type_idt="ngModel" required>
                           <option value=""></option>
-                          <option *ngFor="let orderType of settingsService.orderTypes" value="{{orderType.idt}}" [disabled]="(orderType.idt == 'wd' || orderType.idt == 'ad') && order.order_type_idt != orderType.idt">
+                          <option 
+                            *ngFor="let orderType of settingsService.orderTypes" 
+                            value="{{orderType.idt}}" 
+                            [disabled]="(orderType.idt == 'wd' || orderType.idt == 'ad') && order.order_type_idt != orderType.idt">
                             {{orderType.name}}
                           </option>
                         </select>
@@ -157,7 +160,8 @@
                     class="button is-default is-pulled-left d-block d-sm-block d-md-none">
                     Search Item
                   </button>
-                  <button type="submit" class="button is-info is-pulled-right" [disabled]="dataForm.invalid || !orderService.isOrderAmountCalculatedCorrectly || submitting">Save</button>
+                  
+                  <button type="submit" class="button is-info is-pulled-right" [disabled]="dataForm.invalid || submitting">Save</button>
                 </div>
               </div>
               <!-- order-container -->

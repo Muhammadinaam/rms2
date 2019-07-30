@@ -17,17 +17,16 @@ class ReportsController extends Controller
     public function salesReport()
     {
         $sales_by_orders_data = \DB::table('orders')
-            ->select('order_number', 'receivable_amount')
             ->where('order_status_id', $this->OrderCloseStatucIdt)
             ->whereBetween('created_at', [request()->from, request()->to])
             ->get();
 
-        $amounts_summary = $this->amountsSummary();
+        $receipts_summary = $this->receiptsSummary();
 
-        return compact('sales_by_orders_data', 'amounts_summary');
+        return compact('sales_by_orders_data', 'receipts_summary');
     }
 
-    public function amountsSummary()
+    public function receiptsSummary()
     {
         return [];
     }

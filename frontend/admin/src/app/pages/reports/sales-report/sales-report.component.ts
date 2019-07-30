@@ -31,6 +31,14 @@ export class SalesReportComponent implements OnInit {
       '/api/sales-report?from=' + fromStr + '&to=' + toStr)
       .subscribe(resp => {
         this.reportData = resp['sales_by_orders_data'];
+
+        this.reportData.forEach(reportRow => {
+          reportRow['order_amount_before_discount'] = +reportRow['order_amount_before_discount'];
+          reportRow['discount_amount'] = +reportRow['discount_amount'];
+          reportRow['sales_tax_amount'] = +reportRow['sales_tax_amount'];
+          reportRow['receivable_amount'] = +reportRow['receivable_amount'];
+        });
+
         this.amountsSummary = resp['amounts_summary'];
       });
   }

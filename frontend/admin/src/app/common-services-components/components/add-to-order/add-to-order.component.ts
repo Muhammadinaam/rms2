@@ -14,6 +14,7 @@ import { BaseEndPointService } from '../../services/base-end-point.service';
 export class AddToOrderComponent implements OnInit, OnChanges {
 
   currencyCode = this.settingsService.getCurrencyCode();
+  loading = false;
 
   isEditingExistingItem:boolean = false;
   editingItemId = '';
@@ -48,6 +49,8 @@ export class AddToOrderComponent implements OnInit, OnChanges {
 
   orderItemReset;
   salesTaxRate: any;
+  editingItemIndex: any;
+  editingItem: any;
 
   constructor(
     private settingsService: SettingsService,
@@ -70,7 +73,9 @@ export class AddToOrderComponent implements OnInit, OnChanges {
 
   addToQty(qty)
   {
-    this.orderItem.quantity += qty;
+    let quantity = +this.orderItem.quantity;
+
+    this.orderItem.quantity = +quantity + +qty;
     this.orderItem.quantity = this.orderItem.quantity <= 0 ? 1 : this.orderItem.quantity;
   }  
 
@@ -82,15 +87,55 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     
     if(visibility == true && this.isEditingExistingItem && this.editingItemId != '')
     {
+      this.loading = true;
       this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/items/' + this.editingItemId)
         .subscribe(item => {
           this.item = item;
           this.category = item['category'];
+          
           this.reset(); 
+
+          this.mapEditingItem();
+
+        }).add(() => {
+          this.loading = false;
         });
     }
 
     this.reset();
+  }
+
+  mapEditingItem() {
+    this.orderItem.quantity = this.editingItem.quantity;
+    this.orderItem.instructions = this.editingItem.instructions;
+
+    this.category.options.forEach(option => {
+      
+      option.options_items.forEach(option_item => {
+        
+        if(option.type == 'Single'){
+          this.editingItem.options.forEach(editingItemOption => {
+            
+            if(option.id == editingItemOption.id && editingItemOption.options_items != null && editingItemOption.options_items.length == 1 ) {
+              this.singleOptions[option.id] = editingItemOption.options_items[0].id;
+            }
+          });
+        }
+        else if(option.type == 'Multiple'){
+          this.editingItem.options.forEach(editingItemOption => {
+            if(option.id == editingItemOption.id && editingItemOption.options_items != null && editingItemOption.options_items.length > 0 ) {
+              editingItemOption.options_items.forEach(editingItemOptionItem => {
+                this.multipleOptions[editingItemOptionItem.id] = true;
+              });
+            }
+          });
+        }
+
+      })
+
+      
+    });
+
   }
 
   reset()
@@ -99,7 +144,10 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     this.multipleOptions = {};
     
     this.orderItem = this.orderItemReset;
+
     this.orderItem.quantity = 1;
+    
+
     this.orderItem.instructions = '';
     this.orderItem.item_price_with_options = 0;
     if(this.item)
@@ -127,20 +175,18 @@ export class AddToOrderComponent implements OnInit, OnChanges {
 
   updateOrderItem()
   {
+    
     this.orderItem.options = [];
     this.orderItem.item_total_price = 0;
-    this.orderItem.item_price_with_options = 0;
     this.orderItem.item_price_with_options = +this.orderItem.price; // price without options
-
     
     this.category.options.forEach(option => {
+      
       var optionToAdd = {};
       optionToAdd['options_items'] = [];
       optionToAdd['id'] = option.id;
       optionToAdd['name'] = option.name;
       option.options_items.forEach(option_item => {
-        
-        
         
         if(option.type == 'Single'){
           Object.keys(this.singleOptions).forEach(singleOptionKey => {
@@ -172,8 +218,33 @@ export class AddToOrderComponent implements OnInit, OnChanges {
     });
   }
 
+  saveItemInOrder() {
+    
+    if(this.isEditingExistingItem) {
+      this.updateItemInOrder();
+    } else {
+      this.addItemInOrder();
+    }
+  }
+
+  updateItemInOrder() {
+
+    this.orderItem.quantity = +this.orderItem.quantity;
+    if( Number.isInteger(this.orderItem.quantity) == false )
+    {
+      return 'Item quantity is not correct';
+    }
+
+    this.updateOrderItem();
+    var orderItem = _.cloneDeep(this.orderItem);
+    this.orderService.updateItemInOrder(orderItem, this.editingItemIndex);
+    this.setModalVisibility(false);
+    this.reset();
+  }
+
   addItemInOrder()
   {
+    this.orderItem.quantity = +this.orderItem.quantity;
     if( Number.isInteger(this.orderItem.quantity) == false )
     {
       return 'Item quantity is not correct';

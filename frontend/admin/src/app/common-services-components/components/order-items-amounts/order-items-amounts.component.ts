@@ -37,6 +37,11 @@ export class OrderItemsAmountsComponent implements OnInit {
       item.quantity = 1;
     }
 
+    if(item.isAlreadyAddedToQtyChangedItems == null || item.isAlreadyAddedToQtyChangedItems == false) {
+      this.orderService.qtyChangedItems.push(item);
+      item.isAlreadyAddedToQtyChangedItems = true;
+    }
+
     this.orderService.calculateOrderAmounts();
   }
 
@@ -48,10 +53,12 @@ export class OrderItemsAmountsComponent implements OnInit {
     }
   }
 
-  editClicked(item) {
+  editClicked(item, item_index) {
     this.addToOrderComp.isEditingExistingItem = true;
-    this.addToOrderComp.orderItem = item;
+    
     this.addToOrderComp.editingItemId = item['id'];
+    this.addToOrderComp.editingItemIndex = item_index;
+    this.addToOrderComp.editingItem = item;
 
     this.addToOrderComp.setModalVisibility(true);
   }

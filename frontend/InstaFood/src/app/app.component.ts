@@ -27,6 +27,11 @@ export class AppComponent {
       this.settingsService.initialized = false;
       window.location.reload();
     });
+
+    this.platform.ready()
+      .then(() => {
+        this.splashScreen.hide();
+      });
   }
 
   initializeApp() {

@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 })
 export class OrderService {
   
-  public showPopupBeforeAddingItem:boolean = true;
+  public showPopupBeforeAddingItem:boolean = false;
 
   public isOrderAmountCalculatedCorrectly: boolean;
 
@@ -58,6 +58,7 @@ export class OrderService {
 
   removedItems = [];
   newItems = [];
+  qtyChangedItems = [];
 
   constructor(
     private settingsService: SettingsService,
@@ -71,6 +72,7 @@ export class OrderService {
     this.resetOrder();
     this.removedItems.length = 0;
     this.newItems.length = 0;
+    this.qtyChangedItems.length = 0;
     this.getSettings();
   }
 
@@ -127,18 +129,28 @@ export class OrderService {
     this.minimumOrderAmount = this.settingsService.getSettingFromArray('minimum-order-amount');
   }
 
-  addItemInOrder(item) {
+  updateItemInOrder(item, index) {
 
-    if(this.order.items == null) {
-      this.isOrderAmountCalculatedCorrectly = false;
-    }
-
-    if(this.order.items != null && this.order.items.length == 0) {
-      this.isOrderAmountCalculatedCorrectly = false;
-    }
+    this.deleteItem(index);
 
     let newItem = _.cloneDeep(item);
-    this.newItems.push(item);
+    this.newItems.push(newItem);
+
+    this.order.items.push(item);
+    this.order.items = this.order.items.slice();
+    this.calculateOrderAmounts();
+
+  }
+
+  addItemInOrder(item) {
+
+    if(this.order.items == null || (this.order.items != null && this.order.items.length == 0) ) {
+      this.isOrderAmountCalculatedCorrectly = false;
+    }
+
+
+    let newItem = _.cloneDeep(item);
+    this.newItems.push(newItem);
 
     this.order.items.push(item);
     this.order.items = this.order.items.slice();
@@ -263,7 +275,8 @@ export class OrderService {
     let data = {
       'order': this.order,
       'removed_items': this.removedItems,
-      'new_items': this.newItems
+      'new_items': this.newItems,
+      'qty_changed_items': this.qtyChangedItems
     };
     
     if(this.isOrderValid() == false)
