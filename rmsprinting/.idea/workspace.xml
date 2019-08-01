@@ -7,29 +7,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5cf02014-5b2c-4093-954e-fa795c2af0b1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../backend/app/Http/Controllers/OrdersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/Http/Controllers/OrdersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backend/app/Http/Controllers/ReportsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/../backend/app/Http/Controllers/ReportsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/InstaFood/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/InstaFood/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/InstaFood/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/InstaFood/src/app/app.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/InstaFood/src/app/tabs/tab-items/category-items/category-items.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/InstaFood/src/app/tabs/tab-items/category-items/category-items.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/@theme/styles/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/@theme/styles/styles.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/checkout/checkout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/checkout/checkout.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/components/add-to-order/add-to-order.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/components/add-to-order/add-to-order.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/components/add-to-order/add-to-order.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/components/add-to-order/add-to-order.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/components/order-items-amounts/order-items-amounts.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/components/order-items-amounts/order-items-amounts.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/components/order-items-amounts/order-items-amounts.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/components/order-items-amounts/order-items-amounts.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/artifacts/rmsprinting2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__com_mashape_unirest_unirest_java_1_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpasyncclient_4_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_nio_4_4_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_json_json_20160212.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting2/rmsprinting2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/artifacts/JavaFXApp.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__com_mashape_unirest_unirest_java_1_4_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpasyncclient_4_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_nio_4_4_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_json_json_20160212.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../rmsprinting3/src/main/java/main/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/services/base-end-point.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/services/base-end-point.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/services/order.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/services/order.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/pages/orders/open-orders-and-tables/open-orders-and-tables.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/pages/orders/open-orders-and-tables/open-orders-and-tables.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/pages/orders/open-orders-and-tables/open-orders-and-tables.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/pages/orders/open-orders-and-tables/open-orders-and-tables.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/pages/orders/order-add-edit/order-add-edit.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/pages/orders/order-add-edit/order-add-edit.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/pages/orders/order-add-edit/order-add-edit.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/pages/orders/order-add-edit/order-add-edit.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/pages/pages-menu.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/pages/pages-menu.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/pages/reports/sales-report/sales-report.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/pages/reports/sales-report/sales-report.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/pages/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/pages/services/user.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/java/main/MainApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/resources/fxml/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../rmsprinting2/src/main/resources/fxml/MainWindow.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/resources/fxml/Settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../rmsprinting2/src/main/resources/fxml/Settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/resources/styles/Styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/build.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/manifest.mf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/build-impl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/configs/Run_as_WebStart.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/configs/Run_in_Browser.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/genfiles.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/jfx-impl.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/project.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/rmsprinting3/NewClass.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/rmsprinting3/Rmsprinting3.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -47,8 +72,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/main/App.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+            <state relative-caret-position="357">
+              <caret line="21" column="68" selection-start-line="20" selection-start-column="8" selection-end-line="21" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#243#244#0" expanded="true" />
@@ -60,28 +85,28 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/MainWindow.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="10" column="33" lean-forward="true" selection-end-line="40" />
+              <caret line="10" column="33" selection-end-line="40" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/Settings.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="19" column="35" lean-forward="true" selection-end-line="60" />
+            <state relative-caret-position="88">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
             </state>
           </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/main/SettingsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-610">
+            <state relative-caret-position="323">
               <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -93,7 +118,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/main/MainWindowController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2516">
+            <state relative-caret-position="2159">
               <caret line="148" column="43" selection-start-line="148" selection-start-column="43" selection-end-line="148" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -106,18 +131,14 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Helpers/PrinterService.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="9" column="37" lean-forward="true" selection-end-line="182" />
+              <caret line="9" column="37" selection-end-line="182" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-            </state>
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -128,8 +149,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Helpers/FxmlHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="25" lean-forward="true" selection-end-line="61" />
+            <state relative-caret-position="68">
+              <caret line="10" column="25" selection-end-line="61" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#607#608#0" expanded="true" />
@@ -145,7 +166,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Helpers/FxmlHelperControllerInterface.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="102">
-              <caret line="6" column="1" lean-forward="true" selection-end-line="6" selection-end-column="1" />
+              <caret line="6" column="1" selection-end-line="6" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -175,13 +196,13 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/Helpers/FxmlHelper.java" />
         <option value="$PROJECT_DIR$/src/main/java/Helpers/FxmlHelperControllerInterface.java" />
-        <option value="$PROJECT_DIR$/src/main/java/main/App.java" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/MainWindow.fxml" />
         <option value="$PROJECT_DIR$/src/main/resources/fxml/Settings.fxml" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/Helpers/PrinterService.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/SettingsController.java" />
         <option value="$PROJECT_DIR$/src/main/java/main/MainWindowController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/main/App.java" />
       </list>
     </option>
   </component>
@@ -213,7 +234,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -279,11 +299,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../rmsprinting2" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -338,7 +359,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25642964" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2602118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -377,10 +398,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/MainWindow.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+        <state relative-caret-position="170">
+          <caret line="10" column="33" selection-end-line="40" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main/SettingsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/main/MainWindowController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2159">
+          <caret line="148" column="43" selection-start-line="148" selection-start-column="43" selection-end-line="148" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Helpers/PrinterService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="37" selection-end-line="182" />
         </state>
       </provider>
     </entry>
@@ -389,8 +438,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Helpers/FxmlHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="25" lean-forward="true" selection-end-line="61" />
+        <state relative-caret-position="68">
+          <caret line="10" column="25" selection-end-line="61" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#607#608#0" expanded="true" />
@@ -404,21 +453,22 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Helpers/FxmlHelperControllerInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" column="1" lean-forward="true" selection-end-line="6" selection-end-column="1" />
+          <caret line="6" column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Helpers/PrinterService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/Settings.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="37" lean-forward="true" selection-end-line="182" />
+        <state relative-caret-position="88">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/main/App.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        <state relative-caret-position="357">
+          <caret line="21" column="68" selection-start-line="20" selection-start-column="8" selection-end-line="21" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#243#244#0" expanded="true" />
@@ -427,41 +477,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main/MainWindowController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2516">
-          <caret line="148" column="43" selection-start-line="148" selection-start-column="43" selection-end-line="148" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/main/SettingsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-610">
-          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/MainWindow.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="33" lean-forward="true" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/fxml/Settings.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="19" column="35" lean-forward="true" selection-end-line="60" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
