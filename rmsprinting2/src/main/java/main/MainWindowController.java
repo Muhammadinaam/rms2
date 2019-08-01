@@ -92,9 +92,15 @@ public class MainWindowController implements FxmlHelperControllerInterface {
 
         Preferences prefs = Preferences.userRoot();
         prefs.sync();
-        String posPrinter = prefs.get("posPrinter", null);
-
-
+        
+        
+        String printerName = "";
+        if("print-for-customer".equals(printType)) {
+            printerName = prefs.get("posPrinter", null);
+        } else {
+            printerName = prefs.get("kitchen1Printer", null);
+        }
+        
 
         //print some stuff
         String printText =
@@ -133,12 +139,12 @@ public class MainWindowController implements FxmlHelperControllerInterface {
                         + " \n"
                         + " \n";
 
-        printerService.printString(posPrinter, printText, false);
+        printerService.printString(printerName, printText, false);
 
 
          //cut that paper!
         byte[] cutP = new byte[] { 0x1d, 'V', 1 };
-        printerService.printBytes(posPrinter, cutP);
+        printerService.printBytes(printerName, cutP);
 
 
         // delete print job

@@ -7,54 +7,76 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5cf02014-5b2c-4093-954e-fa795c2af0b1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/artifacts/rmsprinting2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__com_mashape_unirest_unirest_java_1_4_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpasyncclient_4_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_nio_4_4_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_json_json_20160212.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting2/rmsprinting2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/artifacts/JavaFXApp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__com_mashape_unirest_unirest_java_1_4_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpasyncclient_4_1_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_nio_4_4_4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_json_json_20160212.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../rmsprinting3/src/main/java/main/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/services/base-end-point.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/admin/src/app/common-services-components/services/base-end-point.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/java/main/MainApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/resources/fxml/MainWindow.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../rmsprinting2/src/main/resources/fxml/MainWindow.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/resources/fxml/Settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/../rmsprinting2/src/main/resources/fxml/Settings.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/resources/styles/Styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/build.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/manifest.mf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/build-impl.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/configs/Run_as_WebStart.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/configs/Run_in_Browser.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/genfiles.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/jfx-impl.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/project.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/nbproject/project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/rmsprinting3/NewClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/rmsprinting3/Rmsprinting3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/artifacts/rmsprinting2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__com_mashape_unirest_unirest_java_1_4_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpasyncclient_4_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_nio_4_4_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/libraries/Maven__org_json_json_20160212.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/classes/artifacts/rmsprinting2/rmsprinting2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/classes/artifacts/rmsprinting2/rmsprinting2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/classes/artifacts/rmsprinting2/rmsprinting2.jnlp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../rmsprinting2/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/rmsprinting2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/java/main/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting2/src/main/java/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/artifacts/JavaFXApp.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/description.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__com_mashape_unirest_unirest_java_1_4_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__commons_codec_commons_codec_1_9.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpasyncclient_4_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpclient_4_5_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_4_4_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpcore_nio_4_4_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_apache_httpcomponents_httpmime_4_5_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/libraries/Maven__org_json_json_20160212.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/out/artifacts/JavaFXApp/JavaFXApp.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/out/artifacts/JavaFXApp/JavaFXApp.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/out/artifacts/JavaFXApp/JavaFXApp.jnlp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/out/production/rmsprinting3/META-INF/rmsprinting3.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/rmsprinting3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/main/java/Helpers/FxmlHelper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/main/java/Helpers/FxmlHelperControllerInterface.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/main/java/Helpers/PrinterService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/main/java/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/main/java/main/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/main/java/main/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/main/java/main/MainWindowController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/main/java/main/SettingsController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/main/resources/fxml/MainWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/src/main/resources/fxml/Settings.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/target/classes/Helpers/FxmlHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/target/classes/Helpers/FxmlHelperControllerInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/target/classes/Helpers/PrinterService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/target/classes/META-INF/rmsprinting3.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/target/classes/fxml/MainWindow.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/target/classes/fxml/Settings.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/target/classes/main/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/target/classes/main/MainWindowController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/target/classes/main/MainWindowController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../rmsprinting3/target/classes/main/SettingsController.class" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -69,11 +91,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/main/App.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="357">
-              <caret line="21" column="68" selection-start-line="20" selection-start-column="8" selection-end-line="21" selection-end-column="68" />
+              <caret line="21" column="68" lean-forward="true" selection-start-line="20" selection-start-column="8" selection-end-line="21" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#243#244#0" expanded="true" />
@@ -136,7 +158,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -465,10 +487,13 @@
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/main/App.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
-          <caret line="21" column="68" selection-start-line="20" selection-start-column="8" selection-end-line="21" selection-end-column="68" />
+          <caret line="21" column="68" lean-forward="true" selection-start-line="20" selection-start-column="8" selection-end-line="21" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#243#244#0" expanded="true" />
@@ -476,9 +501,6 @@
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">

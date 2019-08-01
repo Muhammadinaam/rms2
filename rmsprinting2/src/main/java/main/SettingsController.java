@@ -6,9 +6,13 @@ import javafx.scene.control.TextField;
 import javax.print.*;
 import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class SettingsController {
 
+    @FXML VBox mainLayout;
     @FXML ComboBox posPrinter;
     @FXML TextField kitchen1Name;
     @FXML TextField kitchen2Name;
@@ -23,6 +27,13 @@ public class SettingsController {
 
     @FXML
     private void initialize(){
+        
+        this.kitchen2Name.setVisible(false);
+        this.kitchen3Name.setVisible(false);
+        this.kitchen4Name.setVisible(false);
+        this.kitchen2Printer.setVisible(false);
+        this.kitchen3Printer.setVisible(false);
+        this.kitchen4Printer.setVisible(false);
 
         printServices = PrintServiceLookup.lookupPrintServices(null, null);
         System.out.println("Number of print services: " + printServices.length);
@@ -94,7 +105,10 @@ public class SettingsController {
 
         try {
             prefs.flush();
+            JOptionPane.showMessageDialog(null, "Settings saved successfully");
+            ((Stage)mainLayout.getScene().getWindow()).close();
         } catch (BackingStoreException e) {
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
             e.printStackTrace();
         }
     }

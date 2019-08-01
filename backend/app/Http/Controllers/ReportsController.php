@@ -21,13 +21,20 @@ class ReportsController extends Controller
             ->whereBetween('created_at', [request()->from, request()->to])
             ->get();
 
-        $receipts_summary = $this->receiptsSummary();
+        $receipts_summary = $this->receiptsSummary(request()->from, request()->to);
 
         return compact('sales_by_orders_data', 'receipts_summary');
     }
 
-    public function receiptsSummary()
+    public function receiptsSummary($from, $to)
     {
-        return [];
+        $receipts_summary = DB::table('receipts')
+                                ->select('receipttypes.name', 'receipts.customer', DB::raw('sum(receipts.actual_amount) as amount'))
+                                ->join('orders', 'orders.id', '=', 'receipts.order_id')
+                                ->join('receipttypes', 'receipttypes.id', '=', 'receipts.receipttype_id')
+                                ->whereBetween('orders.created_at', [$from, $to])
+                                ->groupBy('receipttypes.name', 'receipts.customer')
+                                ->get();
+        return $receipts_summary;
     }
 }

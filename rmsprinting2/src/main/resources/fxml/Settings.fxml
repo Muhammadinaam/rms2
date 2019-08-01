@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="497.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.SettingsController">
+<VBox fx:id="mainLayout" prefHeight="497.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.SettingsController">
     <children>
         <TitledPane animated="false" layoutX="10.0" layoutY="10.0" text="Printrs">
             <content>
