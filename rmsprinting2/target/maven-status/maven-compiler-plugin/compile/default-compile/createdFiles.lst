@@ -1,0 +1,7 @@
+Helpers\FxmlHelper.class
+Helpers\PrinterService.class
+main\MainWindowController$1.class
+main\SettingsController.class
+Helpers\FxmlHelperControllerInterface.class
+main\MainApp.class
+main\MainWindowController.class
