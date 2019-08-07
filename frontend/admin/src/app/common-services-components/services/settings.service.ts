@@ -10,6 +10,7 @@ export class SettingsService {
   
   orderTypes;
   public initialized = false;
+  isKeyboardEnabled: boolean;
   
   constructor(private http: HttpClient) 
   {

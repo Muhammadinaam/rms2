@@ -9,7 +9,10 @@
 </div>
 
 <div class="header-container">
-  <ngx-layout-direction-switcher></ngx-layout-direction-switcher>
+  <!-- <ngx-layout-direction-switcher></ngx-layout-direction-switcher> -->
+
+  <input type="checkbox" [ngModel]="isKeyboardEnabled" (ngModelChange)="keyboardCheckboxChanged(obj, $event)">Keyboard
+
   <nb-actions
     size="medium"
     [class.right]="position === 'normal'"

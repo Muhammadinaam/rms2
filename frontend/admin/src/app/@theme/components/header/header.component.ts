@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { NbMenuService, NbSidebarService } from '@nebular/theme';
 import { AnalyticsService } from '../../../@core/utils/analytics.service';
 import { AuthService } from '../../../auth/services/auth.service';
+import { SettingsService } from '../../../common-services-components/services/settings.service';
 
 @Component({
   selector: 'ngx-header',
@@ -14,13 +15,15 @@ export class HeaderComponent implements OnInit {
   @Input() position = 'normal';
 
   user: any;
+  isKeyboardEnabled = false;
 
   userMenu = [{ title: 'Change Password' }, { title: 'Log out' }];
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
               private analyticsService: AnalyticsService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private settingsService: SettingsService) {
   }
 
   async ngOnInit() {
@@ -54,5 +57,9 @@ export class HeaderComponent implements OnInit {
 
   startSearch() {
     this.analyticsService.trackEvent('startSearch');
+  }
+
+  keyboardCheckboxChanged(obj: any, isChecked: boolean) {
+    this.settingsService.isKeyboardEnabled = isChecked;
   }
 }

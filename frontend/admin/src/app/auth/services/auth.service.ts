@@ -35,7 +35,7 @@ export class AuthService {
 
   public getLoggedInUserFromBackend(){
     
-    return this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/logged-in-user')
+    return this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/logged-in-user');
     
   }
 

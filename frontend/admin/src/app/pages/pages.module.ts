@@ -31,6 +31,7 @@ import { HasPermissionPipe } from './pipes/has-permission.pipe';
 import { OrderPendingTimePipe } from './pipes/order-pending-time.pipe';
 import { IsOrderPendingOrPreparingPipe } from './pipes/is-order-pending-or-preparing.pipe';
 import {NgPipesModule} from 'ngx-pipes';
+import { OsKeyboardDirective } from './directives/os-keyboard.directive';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -72,6 +73,7 @@ const PAGES_COMPONENTS = [
     HasPermissionPipe,
     OrderPendingTimePipe,
     IsOrderPendingOrPreparingPipe,
+    OsKeyboardDirective,
   ],
 })
 export class PagesModule {
