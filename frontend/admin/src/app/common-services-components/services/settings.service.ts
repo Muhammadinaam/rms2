@@ -11,6 +11,7 @@ export class SettingsService {
   orderTypes;
   public initialized = false;
   isKeyboardEnabled: boolean;
+  initError: any = null;
   
   constructor(private http: HttpClient) 
   {
@@ -88,7 +89,7 @@ export class SettingsService {
 
             this.initialized = false;
             resolve(error);
-            
+            this.initError = error;
             //reject();
           });
 
