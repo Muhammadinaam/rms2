@@ -10,7 +10,7 @@ export class BaseEndPointService {
   static getBaseEndPoint()
   {
     //return 'http://localhost/rms2/backend/public';
-    return 'https://cors-anywhere.herokuapp.com/http://instafood.devzonesolutions.com/public';
+    return 'http://instafood.devzonesolutions.com/public';
   }
 
   static getClientInfo()
