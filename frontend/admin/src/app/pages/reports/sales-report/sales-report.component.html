@@ -61,23 +61,4 @@
     </tfoot>
 </table>
 
-<br><br>
-<div *ngIf="amountsSummary != null && amountsSummary.length > 0">
-    <h4>Amounts Summary</h4>
-    <table class="table">
-        <tbody>
-            <tr>
-                <td>Sales Tax / Vat</td>   <td>{{amountsSummary[0]['sales_tax_amount']}}</td>
-            </tr>
-            <tr>
-                <td>Discount</td>   <td>{{amountsSummary[0]['discount_amount']}}</td>
-            </tr>
-            <tr>
-                <td>Card Collection</td>   <td>{{amountsSummary[0]['received_through_card']}}</td>
-            </tr>
-            <tr>
-                <td>Cash Collection</td>   <td>{{amountsSummary[0]['received_through_cash']}}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+

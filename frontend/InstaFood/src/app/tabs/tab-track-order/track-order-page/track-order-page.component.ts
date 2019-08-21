@@ -26,9 +26,20 @@ export class TrackOrderPageComponent {
         this.settingsService.initialized = false;
         window.location.reload();
       });
+
+      this.storage.get('tracking_number')
+      .then(tracking_number => {
+        this.tracking_number = tracking_number
+        this.refreshStatus();
+      });
     }
 
   ionViewDidEnter() {
+
+    this.network.onDisconnect().subscribe(() => {
+      this.settingsService.initialized = false;
+      window.location.reload();
+    });
     
     this.storage.get('tracking_number')
       .then(tracking_number => {

@@ -1,0 +1,48 @@
+<from-to-filter (submitEvent)="showReport($event)"></from-to-filter>
+
+<h2>Sales Report</h2>
+<p>From: {{from}}</p>
+<p>To: {{to}}</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <h4>Top Selling Items by Quantity</h4>
+  
+    <canvas id="topItemsQtyChart"></canvas>
+
+    <table class="table">
+      <thead>
+        <th>Item</th>
+        <th>Qty</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of reportData">
+          <td>{{row['order_number']}}</td>
+          <td>{{row['order_amount_before_discount']}}</td>
+        </tr>
+      </tbody>
+  
+    </table>
+  </div>
+
+  <div class="col-md-6">
+    <h4>Top Selling Items by Amount</h4>
+  
+    <table class="table">
+      <thead>
+        <th>Item</th>
+        <th>Amount</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of reportData">
+          <td>{{row['order_number']}}</td>
+          <td>{{row['order_amount_before_discount']}}</td>
+        </tr>
+      </tbody>
+  
+    </table>
+  </div>
+</div>
+
+
+

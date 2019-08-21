@@ -9,6 +9,11 @@
     <ion-card class="welcome-card">
       <!-- <img src="/assets/shapes.svg" alt="" /> -->
 
+      <div class="ion-text-center">
+        <img src="{{logoImage}}" alt="">
+      </div>
+      <br>
+
       <ion-slides *ngIf="imageSources.length > 0" pager="true" [options]="slideOpts">
         <ion-slide *ngFor="let imageSource of imageSources">
           <img src="{{imageSource}}" alt="" />
@@ -20,10 +25,7 @@
       </ion-card-header>
       <ion-card-content>
 
-        <div class="ion-text-center">
-          <img src="{{logoImage}}" alt="">
-        </div>
-        <br>
+        
 
         <p class="ion-text-justify">{{'welcome-note' | getSettingFromArray}}</p>
       </ion-card-content>

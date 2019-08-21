@@ -4,6 +4,7 @@ import { BaseEndPointService } from '../../../../../../admin/src/app/common-serv
 import { HttpClient } from '@angular/common/http';
 import { SettingsService } from '../../../../../../admin/src/app/common-services-components/services/settings.service';
 import { ToastController } from '@ionic/angular';
+import { Network } from '@ionic-native/network/ngx';
 
 @Component({
   selector: 'app-category-items',
@@ -26,9 +27,21 @@ export class CategoryItemsComponent {
     private activatedRoute: ActivatedRoute,
     private http: HttpClient,
     private settingsService: SettingsService,
-    public toastController: ToastController) { }
+    public toastController: ToastController,
+    private network: Network) {
+      this.network.onDisconnect().subscribe(() => {
+        this.settingsService.initialized = false;
+        window.location.reload();
+      });
+    }
 
   ionViewDidEnter() {
+
+    this.network.onDisconnect().subscribe(() => {
+      this.settingsService.initialized = false;
+      window.location.reload();
+    });
+
     this.activatedRoute.params.subscribe( params => {
       if(params.id) {
 

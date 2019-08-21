@@ -34,14 +34,22 @@ export class TabHomePageComponent {
     private http: HttpClient,
     private settingsService: SettingsService,
     private network: Network) { 
+
       this.network.onDisconnect().subscribe(() => {
         this.settingsService.initialized = false;
         window.location.reload();
       });
+
     }
 
   ionViewDidEnter() {
 
+    this.network.onDisconnect().subscribe(() => {
+      this.settingsService.initialized = false;
+      window.location.reload();
+    });
+
+    this.imageSources = [];
     for(let i = 0; i < 5; i++ ){
       let imageURL = this.settingsService.getSettingFromArray('slider-image-' + (i+1));
 

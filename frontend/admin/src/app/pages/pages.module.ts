@@ -32,6 +32,8 @@ import { OrderPendingTimePipe } from './pipes/order-pending-time.pipe';
 import { IsOrderPendingOrPreparingPipe } from './pipes/is-order-pending-or-preparing.pipe';
 import {NgPipesModule} from 'ngx-pipes';
 import { OsKeyboardDirective } from './directives/os-keyboard.directive';
+import { TopSellingItemsComponent } from './reports/top-selling-items/top-selling-items.component';
+import { TopAreacodesComponent } from './reports/top-areacodes/top-areacodes.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -74,6 +76,8 @@ const PAGES_COMPONENTS = [
     OrderPendingTimePipe,
     IsOrderPendingOrPreparingPipe,
     OsKeyboardDirective,
+    TopSellingItemsComponent,
+    TopAreacodesComponent,
   ],
 })
 export class PagesModule {
