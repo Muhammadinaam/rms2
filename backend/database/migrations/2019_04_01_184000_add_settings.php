@@ -28,7 +28,7 @@ class AddSettings extends Migration
                     'name' => 'Delivery Charges Function',
                     'idt' => 'delivery-charges-function',
                     'type' => 'text',
-                    'instructions' => 'Function for delivery charges e.g. "(order_amount) => { return order_amount < 100 ? 10 : 0; }"',
+                    'instructions' => 'Function for delivery charges e.g. (order_amount) => { return order_amount < 100 ? 10 : 0; }',
                 ],
             ]);
     }

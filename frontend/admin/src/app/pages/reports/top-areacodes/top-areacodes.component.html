@@ -1,3 +1,30 @@
-<p>
-  top-areacodes works!
-</p>
+<from-to-filter (submitEvent)="showReport($event)"></from-to-filter>
+
+<h2>Top Areacodes / Zipcodes / Postcodes</h2>
+<p>From: {{from}}</p>
+<p>To: {{to}}</p>
+
+<div class="row">
+
+
+  <div  class="col-md-12">
+
+    <table *ngIf="reportData" class="table">
+      <thead>
+        <th>Areacode / Zipcode / Postcode</th>
+        <th>Count</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of reportData">
+          <td>{{ row['customer_zipcode'] == null || row['customer_zipcode'] == '' ? 'Not Specified' : row['customer_zipcode'] }}</td>
+          <td>{{row['count']}}</td>
+        </tr>
+      </tbody>
+  
+    </table>
+  </div>
+
+</div>
+
+
+

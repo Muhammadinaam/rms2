@@ -241,7 +241,7 @@ export class OpenOrdersAndTablesComponent implements OnInit, OnDestroy {
   saveDiscount()
   {
     if(this.discount_amount > 0 && this.discount_remarks == '') {
-      alert('Please enterr discount remarks');
+      alert('Please enter discount remarks');
       return;
     }
 

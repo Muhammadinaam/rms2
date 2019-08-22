@@ -64,6 +64,8 @@ Route::middleware(['auth:api'])->group(function () {
     });
 
     Route::get('sales-report', 'ReportsController@salesReport');   
+    Route::get('top-selling-items-report', 'ReportsController@topSellingItemsReport');   
+    Route::get('top-areacodes-report', 'ReportsController@topAreaCodesReport');
 
 
 });

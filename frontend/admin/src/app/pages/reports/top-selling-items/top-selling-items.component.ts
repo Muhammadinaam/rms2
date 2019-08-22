@@ -20,7 +20,7 @@ export class TopSellingItemsComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.createCharts();
+    
   }
 
   showReport(filters){
@@ -30,42 +30,66 @@ export class TopSellingItemsComponent implements OnInit {
     let fromStr = moment(filters.from).format("YYYY-MM-DD HH:mm:ss");
     let toStr = moment(filters.to).format("YYYY-MM-DD HH:mm:ss");
     this.http.get(BaseEndPointService.getBaseEndPoint() + 
-      '/api/sales-report?from=' + fromStr + '&to=' + toStr)
+      '/api/top-selling-items-report?from=' + fromStr + '&to=' + toStr)
       .subscribe(resp => {
-        this.reportData = resp['sales_by_orders_data'];
-
-        this.reportData.forEach(reportRow => {
-          reportRow['order_amount_before_discount'] = +reportRow['order_amount_before_discount'];
-          reportRow['discount_amount'] = +reportRow['discount_amount'];
-          reportRow['sales_tax_amount'] = +reportRow['sales_tax_amount'];
-          reportRow['receivable_amount'] = +reportRow['receivable_amount'];
-        });
-
+        this.reportData = resp;
         
+        this.createCharts();
       });
 
-    this.createCharts();
   }
 
   createCharts() {
-    this.topItemsQtyChart = new Chart('topItemsQtyChart', {
-        type: 'pie',
-        data: {
-            datasets: [{
-                data: [10, 20, 30]
-            }],
-            backgroundColor: [
+    let qtyData = {
+      datasets: [{
+        data: [],
+        backgroundColor: []
+      }],
+      labels: [],
+    };
 
-            ],
-            // These labels appear in the legend and in the tooltips when hovering different arcs
-            labels: [
-                'Red',
-                'Yellow',
-                'Blue'
-            ]
-        },
-        //options: null
-    });
+    let amountData = {
+      datasets: [{
+        data: [],
+        backgroundColor: []
+      }],
+      labels: [],
+    };
+
+    if(this.reportData && this.reportData['top_selling_items_qty']) {
+
+      this.createDataForChart(qtyData, 'top_selling_items_qty', 'quantity');
+
+      this.topItemsQtyChart = new Chart('topItemsQtyChart', {
+          type: 'pie',
+          data: qtyData
+          //options: null
+      });
+    }
+
+    if(this.reportData && this.reportData['top_selling_items_amount']) {
+
+      this.createDataForChart(qtyData, 'top_selling_items_amount', 'amount');
+
+      this.topItemsQtyChart = new Chart('topItemsAmountChart', {
+          type: 'pie',
+          data: amountData,
+          //options: null
+      });
+    }
   }
 
+
+  private createDataForChart(reportData: { datasets: { data: any[]; backgroundColor: any[]; }[]; labels: any[]; },
+    reportDataName: string, reportColumnName: string) {
+    this.reportData[reportDataName].forEach(row => {
+      reportData.datasets[0].data.push(row[reportColumnName]);
+      let r = Math.floor(Math.random() * 200);
+      let g = Math.floor(Math.random() * 200);
+      let b = Math.floor(Math.random() * 200);
+      let color = 'rgb(' + r + ', ' + g + ', ' + b + ')';
+      reportData.datasets[0].backgroundColor.push(color);
+      reportData.labels.push(row['item_name']);
+    });
+  }
 }
