@@ -1,3 +1,64 @@
-<p>
-  sales-and-tax-report works!
-</p>
+<from-to-filter (submitEvent)="showReport($event)"></from-to-filter>
+
+<h2>Sales Report</h2>
+<p>From: {{from}}</p>
+<p>To: {{to}}</p>
+
+
+<h4>Collection Summary</h4>
+<table class="table">
+    <thead>
+        <th>Receipt Type</th>
+        <th>Customer Name</th>
+        <th>Amount</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of amountsSummary">
+            <td>{{row['name']}}</td>
+            <td>{{row['customer']}}</td>
+            <td>{{row['amount'] | number }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<h4>Sales Detail</h4>
+<table class="table">
+    <thead>
+        <th>Invoice ID</th>
+        <th>Order Amount Before Discount</th>
+        <th>Discount (%)</th>
+        <th>Discount Amount</th>
+        <th>Discount Remarks</th>
+        <th>Discount By</th>
+        <th>ST (%)</th>
+        <th>ST Amount</th>
+        <th>Net Amount</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of reportData; let i = index">
+            <td>{{ i + 1 + startingNumber }}</td>
+            <td>{{row['order_amount_before_discount']}}</td>
+            <td>{{row['discount_percent']}}</td>
+            <td>{{row['discount_amount']}}</td>
+            <td>{{row['discount_remarks']}}</td>
+            <td>{{row['discount_given_by']}}</td>
+            <td>{{row['sales_tax_percent']}}</td>
+            <td>{{row['sales_tax_amount']}}</td>
+            <td>{{row['receivable_amount']}}</td>
+        </tr>
+    </tbody>
+
+    <tfoot>
+        <td><b>Total</b></td>
+        <td> {{ reportData | pluck:'order_amount_before_discount' | sum | number }} </td>
+        <td></td>
+        <td> {{ reportData | pluck:'discount_amount' | sum | number }} </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td> {{ reportData | pluck:'sales_tax_amount' | sum | number }} </td>
+        <td> {{ reportData | pluck:'receivable_amount' | sum | number }} </td>
+    </tfoot>
+</table>
+
+

@@ -69,7 +69,7 @@ export class TopSellingItemsComponent implements OnInit {
 
     if(this.reportData && this.reportData['top_selling_items_amount']) {
 
-      this.createDataForChart(qtyData, 'top_selling_items_amount', 'amount');
+      this.createDataForChart(amountData, 'top_selling_items_amount', 'amount');
 
       this.topItemsQtyChart = new Chart('topItemsAmountChart', {
           type: 'pie',

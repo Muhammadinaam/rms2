@@ -39,7 +39,7 @@ class ReportsController extends Controller
 
         $receipts_summary = $this->receiptsSummary(request()->from, request()->to);
 
-        return compact($starting_number, 'sales_by_orders_data', 'receipts_summary');
+        return compact('starting_number', 'sales_by_orders_data', 'receipts_summary');
     }
 
     public function receiptsSummary($from, $to)
