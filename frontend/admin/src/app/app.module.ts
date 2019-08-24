@@ -17,9 +17,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthInterceptorService } from './auth/interceptors/auth-interceptor.service';
 import { SettingsService } from './common-services-components/services/settings.service';
 import { ToastrModule } from 'ngx-toastr';
+import { BaseEndPointService } from './common-services-components/services/base-end-point.service';
 
 export function initializeApp1(settingsService: SettingsService) {
   return (): Promise<any> => { 
+    BaseEndPointService.isApp = false;
     return settingsService.Init();
   }
 }

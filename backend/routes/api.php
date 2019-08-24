@@ -51,6 +51,7 @@ Route::middleware(['auth:api'])->group(function () {
     Route::get('orders', 'OrdersController@index');
     Route::get('orders/{id}/edit', 'OrdersController@edit');
     Route::put('orders/{id}', 'OrdersController@update');
+    Route::post('orders/{id}/delete', 'OrdersController@delete');
 
     Route::get('open-orders', 'OrdersController@openOrders');
     Route::get('assignable-statuses', 'OrdersController@assignableStatuses');
@@ -63,6 +64,7 @@ Route::middleware(['auth:api'])->group(function () {
         return User::with('userPermissions')->find(Auth::id());
     });
 
+    Route::get('sales-and-tax-report', 'ReportsController@salesAndTaxReport');   
     Route::get('sales-report', 'ReportsController@salesReport');   
     Route::get('top-selling-items-report', 'ReportsController@topSellingItemsReport');   
     Route::get('top-areacodes-report', 'ReportsController@topAreaCodesReport');

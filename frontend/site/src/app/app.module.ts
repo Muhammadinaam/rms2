@@ -27,6 +27,7 @@ import { SettingsService } from '../../../admin/src/app/common-services-componen
 
 export function initializeApp1(settingsService: SettingsService) {
   return (): Promise<any> => { 
+    BaseEndPointService.isApp = false;
     return settingsService.Init();
   }
 }

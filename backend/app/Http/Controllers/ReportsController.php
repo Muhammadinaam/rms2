@@ -26,6 +26,22 @@ class ReportsController extends Controller
         return compact('sales_by_orders_data', 'receipts_summary');
     }
 
+    public function salesAndTaxReport()
+    {
+        $starting_number = \DB::table('orders')
+            ->where('created_at', '<', request()->from)
+            ->count();
+
+        $sales_by_orders_data = \DB::table('orders')
+            ->where('order_status_id', $this->OrderCloseStatusIdt)
+            ->whereBetween('created_at', [request()->from, request()->to])
+            ->get();
+
+        $receipts_summary = $this->receiptsSummary(request()->from, request()->to);
+
+        return compact($starting_number, 'sales_by_orders_data', 'receipts_summary');
+    }
+
     public function receiptsSummary($from, $to)
     {
         $receipts_summary = DB::table('receipts')

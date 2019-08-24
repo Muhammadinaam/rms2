@@ -4,13 +4,24 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class BaseEndPointService {
+  
+  static isApp: boolean = false;
 
   constructor() { }
 
-  static getBaseEndPoint()
+
+  static getBaseEndPoint() : string
   {
-    //return 'http://localhost/rms2/backend/public';
-    return 'https://cors-anywhere.herokuapp.com/http://instafood.devzonesolutions.com/public';
+    let corsUrl = 'https://cors-anywhere.herokuapp.com/';
+
+    // LOCAL URL
+    let url = 'http://localhost/rms2/backend/public';
+    
+    // REMOTE URL
+    //let url = 'http://instafood.devzonesolutions.com/public';
+
+    return this.isApp ? corsUrl + url : url;
+    
   }
 
   static getClientInfo()

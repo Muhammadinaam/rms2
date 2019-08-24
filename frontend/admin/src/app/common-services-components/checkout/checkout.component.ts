@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'checkout',
   templateUrl: './checkout.component.html',

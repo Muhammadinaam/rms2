@@ -63,6 +63,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     children: [
 
       {
+        title: 'Sales and Tax Report',
+        link: '/pages/sales-and-tax-report',
+        icon: 'nb-tables',
+        data: {
+          permission_idt: 'sales-and-tax-report',
+        }
+      },
+
+      {
         title: 'Sales Report',
         link: '/pages/sales-report',
         icon: 'nb-tables',

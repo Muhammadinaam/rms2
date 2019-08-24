@@ -34,6 +34,7 @@ import {NgPipesModule} from 'ngx-pipes';
 import { OsKeyboardDirective } from './directives/os-keyboard.directive';
 import { TopSellingItemsComponent } from './reports/top-selling-items/top-selling-items.component';
 import { TopAreacodesComponent } from './reports/top-areacodes/top-areacodes.component';
+import { SalesAndTaxReportComponent } from './reports/sales-and-tax-report/sales-and-tax-report.component';
 
 const PAGES_COMPONENTS = [
   PagesComponent,
@@ -78,6 +79,7 @@ const PAGES_COMPONENTS = [
     OsKeyboardDirective,
     TopSellingItemsComponent,
     TopAreacodesComponent,
+    SalesAndTaxReportComponent,
   ],
 })
 export class PagesModule {

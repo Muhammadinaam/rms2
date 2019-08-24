@@ -61,10 +61,12 @@ export class UserService implements DataServiceInterface {
         {'idt' : 'close-orders', 'title' : 'Close Orders'},
         {'idt' : 'cancel-orders', 'title' : 'Cancel Orders'},
         {'idt' : 'give-discount', 'title' : 'Give Discount'},
+        {'idt' : 'delete-invoice', 'title' : 'Delete Invoice'},
     ],
     'Reports and Settings' :
     [
       {'idt' : 'settings', 'title' : 'Settings'},
+      {'idt' : 'sales-and-tax-report', 'title' : 'Sales and Tax Report'},
       {'idt' : 'sales-report', 'title' : 'Sales Report'},
       {'idt' : 'top-selling-items-report', 'title' : 'Top Selling Items'},
       {'idt' : 'top-areacodes-report', 'title' : 'Top Areacodes'},

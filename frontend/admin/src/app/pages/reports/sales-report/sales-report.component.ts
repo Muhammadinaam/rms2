@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BaseEndPointService } from '../../../common-services-components/services/base-end-point.service';
 import { from } from 'rxjs';
 import * as moment from 'moment';
+import { OrderService } from '../../../common-services-components/services/order.service';
 
 @Component({
   selector: 'sales-report',
@@ -16,7 +17,7 @@ export class SalesReportComponent implements OnInit {
   from;
   to;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private orderService: OrderService) { }
 
   ngOnInit() {
   }
@@ -41,6 +42,20 @@ export class SalesReportComponent implements OnInit {
         });
 
         
+      });
+  }
+
+  deleteOrder(orderId, rowIndex) {
+    this.orderService.deleteOrder(orderId)
+      .subscribe((resp) => {
+        if(resp['success'] == true) {
+          this.reportData.splice(rowIndex, 1);
+        } else {
+          alert(resp['message']);
+        }
+      }, 
+      error => {
+        alert('Error occurred');
       });
   }
 

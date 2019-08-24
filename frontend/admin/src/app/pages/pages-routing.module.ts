@@ -20,6 +20,7 @@ import { ReceipttypesListComponent } from './receipttypes/receipttypes-list/rece
 import { ReceipttypesAddEditComponent } from './receipttypes/receipttypes-add-edit/receipttypes-add-edit.component';
 import { TopSellingItemsComponent } from './reports/top-selling-items/top-selling-items.component';
 import { TopAreacodesComponent } from './reports/top-areacodes/top-areacodes.component';
+import { SalesAndTaxReportComponent } from './reports/sales-and-tax-report/sales-and-tax-report.component';
 
 const routes: Routes = [{
   path: '',
@@ -114,6 +115,11 @@ const routes: Routes = [{
     {
       path: 'orders/:id/edit',
       component: OrderAddEditComponent,
+    },
+
+    {
+      path: 'sales-and-tax-report',
+      component: SalesAndTaxReportComponent,
     },
 
     {

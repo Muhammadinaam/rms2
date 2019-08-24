@@ -532,4 +532,17 @@ class OrdersController extends Controller
             return ['message' => 'Error Occurred: ' . $ex->getMessage()];
         }
     }
+
+    public function delete($order_id)
+    {
+        try
+        {
+            Order::where('id', $order_id)->delete();
+            return ['success' => true, 'message' => 'Deleted'];
+        }
+        catch(\Exception $ex)
+        {
+            return ['success' => false, 'message' => 'Error Occurred: ' . $ex->getMessage()];
+        }
+    }
 }

@@ -352,6 +352,10 @@ export class OrderService {
     });
   }
 
+  deleteOrder(orderId) {
+    return this.http.post(BaseEndPointService.getBaseEndPoint() + '/api/orders/' + orderId + '/delete', null);
+  }
+
   // cloneItem(item){
   //   let clonedItem = {};
 
@@ -369,4 +373,6 @@ export class OrderService {
   //   return clonedItem;
 
   // }
+
+
 }

@@ -13,9 +13,11 @@ import { SettingsService } from '../../../admin/src/app/common-services-componen
 import { IonicStorageModule } from '@ionic/storage';
 import { NoInternetComponent } from './no-internet/no-internet.component';
 import { Network } from '@ionic-native/network/ngx';
+import { BaseEndPointService } from '../../../admin/src/app/common-services-components/services/base-end-point.service';
 
 export function initializeApp1(settingsService: SettingsService) {
   return (): Promise<any> => { 
+    BaseEndPointService.isApp = true;
     return settingsService.Init();
   }
 }
