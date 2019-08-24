@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit {
     this.analyticsService.trackEvent('startSearch');
   }
 
-  keyboardCheckboxChanged(obj: any, isChecked: boolean) {
+  keyboardCheckboxChanged(isChecked: boolean) {
     this.settingsService.isKeyboardEnabled = isChecked;
   }
 }
