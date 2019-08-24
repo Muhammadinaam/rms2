@@ -59,7 +59,7 @@ export class CheckoutComponent implements OnInit {
         }
       },
       (error) => {
-        alert('Error occurred, please try again');
+        alert('Internet/Network Failure, please try again');
       })
       .add(() => this.loading = false);
   }
