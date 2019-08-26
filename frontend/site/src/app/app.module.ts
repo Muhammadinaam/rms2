@@ -24,6 +24,7 @@ import { SliderComponent } from './components/slider/slider.component';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import {CommonServicesComponentsModule} from '../../../admin/src/app/common-services-components/common-services-components.module';
 import { SettingsService } from '../../../admin/src/app/common-services-components/services/settings.service';
+import { BaseEndPointService } from '../../../admin/src/app/common-services-components/services/base-end-point.service';
 
 export function initializeApp1(settingsService: SettingsService) {
   return (): Promise<any> => { 
