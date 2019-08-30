@@ -78,7 +78,7 @@ export class TrackOrderPageComponent {
       let idt = status['idt'];
       console.log(idt);
 
-      if(idt == 'phone-confirmation-pending' || idt == 'preparing' || idt == 'on-the-way' || idt == 'served' ||idt == 'phone-not-confirmed') {
+      if(idt == 'phone-confirmation-pending' || idt == 'preparing' || idt == 'on-the-way' || idt == 'served' || idt == 'phone-not-confirmed' || idt == 'closed') {
         this.status = status['name'];
         this.statusDescription = status['description'];
       } else {

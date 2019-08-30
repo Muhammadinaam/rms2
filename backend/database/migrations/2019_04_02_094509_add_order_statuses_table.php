@@ -62,8 +62,8 @@ class AddOrderStatusesTable extends Migration
                 ],
                 [
                     'idt' => 'closed',
-                    'name' => 'Closed',
-                    'description' => 'Order has been closed'
+                    'name' => 'Completed',
+                    'description' => 'Order has been completed'
                 ]
             ]);
     }

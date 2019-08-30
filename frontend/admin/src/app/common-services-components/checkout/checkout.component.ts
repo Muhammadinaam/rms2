@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrderService } from '../services/order.service';
 import { Router } from '@angular/router';
+import { mergeMap, retry, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'checkout',
@@ -46,6 +48,10 @@ export class CheckoutComponent implements OnInit {
 
     this.loading = true
     this.orderService.saveOrder()
+      .pipe(
+        catchError(error => throwError(error)),
+        retry(5)
+      )
       .subscribe(data => {
         if(data['success'] == true)
         {

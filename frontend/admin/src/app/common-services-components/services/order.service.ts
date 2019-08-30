@@ -248,7 +248,7 @@ export class OrderService {
     let deliveryChargesFunction = eval(this.deliveryChargesFunction);
 
     this.order.delivery_charges = 0;
-    if(isFunction(deliveryChargesFunction))
+    if(isFunction(deliveryChargesFunction) && this.isDeliveryChargesApplicable())
     {
       this.order.delivery_charges = deliveryChargesFunction(order_amount);
     }
@@ -257,6 +257,13 @@ export class OrderService {
     +this.order.discount_amount + 
     +this.order.sales_tax_amount + 
     +this.order.delivery_charges;
+  }
+
+  isDeliveryChargesApplicable() {
+    if(this.order.order_type_idt == 'wd' || this.order.order_type_idt == 'ad' || this.order.order_type_idt == 'otd') {
+      return true;
+    }
+    return false;
   }
 
 
