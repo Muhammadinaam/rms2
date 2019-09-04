@@ -54,7 +54,7 @@ export class AppComponent {
   setupPush() {
     this.oneSignal.startInit('536880ca-b361-4110-8ee1-8e8c8066c0d1', '393593629869');
 
-    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.None);
+    this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.Notification);
  
     // Notifcation was received in general
     this.oneSignal.handleNotificationReceived().subscribe(data => {
