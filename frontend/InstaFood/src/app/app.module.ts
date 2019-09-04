@@ -5,6 +5,7 @@ import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,6 +40,7 @@ export function initializeApp1(settingsService: SettingsService) {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SettingsService,
     { provide: APP_INITIALIZER,useFactory: initializeApp1, deps: [SettingsService], multi: true},
+    OneSignal
   ],
   bootstrap: [AppComponent]
 })

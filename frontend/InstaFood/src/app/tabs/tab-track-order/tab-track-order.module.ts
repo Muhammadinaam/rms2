@@ -11,7 +11,11 @@ import { FormsModule } from '@angular/forms';
     IonicModule,
     CommonModule,
     FormsModule,
-    RouterModule.forChild([{ path: '', component: TrackOrderPageComponent }]),
+    RouterModule.forChild(
+      [
+        { path: '', component: TrackOrderPageComponent },
+        { path: '/:order_id', component: TrackOrderPageComponent }
+      ]),
   ]
 })
 export class TabTrackOrderModule { }

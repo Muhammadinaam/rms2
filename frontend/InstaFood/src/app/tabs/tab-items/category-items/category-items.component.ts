@@ -11,7 +11,7 @@ import { Network } from '@ionic-native/network/ngx';
   templateUrl: './category-items.component.html',
   styleUrls: ['./category-items.component.scss'],
 })
-export class CategoryItemsComponent {
+export class CategoryItemsComponent implements OnInit {
 
   loading:boolean;
   category;
@@ -35,23 +35,28 @@ export class CategoryItemsComponent {
       });
     }
 
+  ngOnInit(): void {
+    this.refresh();
+  }
+
   ionViewDidEnter() {
 
+    this.refresh();
+  }
+
+  private refresh() {
     this.network.onDisconnect().subscribe(() => {
       this.settingsService.initialized = false;
       window.location.reload();
     });
-
-    this.activatedRoute.params.subscribe( params => {
-      if(params.id) {
-
+    this.activatedRoute.params.subscribe(params => {
+      if (params.id) {
         this.loading = true;
         this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/get-category-with-items?id=' + params.id)
           .subscribe(resp => this.category = resp)
           .add(() => this.loading = false);
       }
     });
-
     this.currency = this.settingsService.getSettingFromArray('currency-code');
     this.salesTaxRate = +this.settingsService.getSalesTaxPercent();
   }

@@ -9,7 +9,8 @@ import { SettingsService } from '../../../../../../admin/src/app/common-services
   templateUrl: './tab-categories.component.html',
   styleUrls: ['./tab-categories.component.scss'],
 })
-export class TabCategoriesComponent {
+export class TabCategoriesComponent implements OnInit {
+  
 
   loading:boolean;
   categories;
@@ -23,8 +24,22 @@ export class TabCategoriesComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.refresh();
+  }
+
   ionViewDidEnter() {
 
+    this.refresh();
+
+  }
+
+
+  private refresh() {
+    this.network.onDisconnect().subscribe(() => {
+      this.settingsService.initialized = false;
+      window.location.reload();
+    });
     this.loading = true;
     this.http.get(BaseEndPointService.getBaseEndPoint() + '/api/categories?all=1')
       .subscribe(resp => {
@@ -32,7 +47,5 @@ export class TabCategoriesComponent {
       }).add(() => {
         this.loading = false;
       });
-
   }
-
 }

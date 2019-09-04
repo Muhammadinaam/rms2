@@ -18,6 +18,7 @@ export class CheckoutComponent implements OnInit {
   loading
 
   @Output() orderSaved:EventEmitter<any> = new EventEmitter<any>();
+  retryCount: any;
 
   constructor(private orderService: OrderService, private router: Router) { }
 
@@ -46,28 +47,33 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    this.loading = true
-    this.orderService.saveOrder()
-      .pipe(
-        catchError(error => throwError(error)),
-        retry(5)
-      )
-      .subscribe(data => {
-        if(data['success'] == true)
-        {
-          this.orderService.order.items = [];
-          this.router.navigate(['/' + this.redirectPath , data['tracking_number']])
-          this.orderSaved.emit(data['tracking_number']);
-        }
-        else
-        {
-          alert(data['message']);
-        }
-      },
-      (error) => {
-        alert('Internet/Network Failure, please try again');
-      })
-      .add(() => this.loading = false);
+    this.retryCount = 0;
+    this.callSaveOrderServiceMethod();
   }
 
+
+  private callSaveOrderServiceMethod() {
+    this.loading = true;
+    this.orderService.saveOrder()
+      .subscribe(data => {
+        if (data['success'] == true) {
+          this.orderService.order.items = [];
+          this.router.navigate(['/' + this.redirectPath, data['tracking_number']]);
+          this.orderSaved.emit(data['tracking_number']);
+        }
+        else {
+          alert(data['message']);
+        }
+        this.loading = false;
+      }, (error) => {
+        this.retryCount++;
+        if(this.retryCount < 5) {
+          this.callSaveOrderServiceMethod();
+        } else {
+          this.loading = false;
+          console.log(error);
+          alert('Internet/Network Failure, please try again. Error: ' + error.message);
+        }
+      });
+  }
 }

@@ -9,7 +9,8 @@ import { Network } from '@ionic-native/network/ngx';
   templateUrl: './tab-home-page.component.html',
   styleUrls: ['./tab-home-page.component.scss'],
 })
-export class TabHomePageComponent {
+export class TabHomePageComponent implements OnInit {
+  
 
   loading: boolean;
   imageSources = [];
@@ -42,7 +43,15 @@ export class TabHomePageComponent {
 
     }
 
+  ngOnInit(): void {
+    this.refresh();
+  }
+
   ionViewDidEnter() {
+    this.refresh();
+  }
+
+  refresh() {
 
     this.network.onDisconnect().subscribe(() => {
       this.settingsService.initialized = false;

@@ -10,7 +10,8 @@ import { Network } from '@ionic-native/network/ngx';
   templateUrl: './track-order-page.component.html',
   styleUrls: ['./track-order-page.component.scss'],
 })
-export class TrackOrderPageComponent {
+export class TrackOrderPageComponent implements OnInit {
+  
   
   loading = false;
   tracking_number = '';
@@ -21,33 +22,34 @@ export class TrackOrderPageComponent {
   constructor(private storage: Storage, 
     private orderService: OrderService,
     private settingsService: SettingsService,
-    private network: Network) { 
+    private network: Network) {
+
       this.network.onDisconnect().subscribe(() => {
         this.settingsService.initialized = false;
         window.location.reload();
       });
 
-      this.storage.get('tracking_number')
-      .then(tracking_number => {
-        this.tracking_number = tracking_number
-        this.refreshStatus();
-      });
     }
+
+  ngOnInit(): void {
+    this.refresh();
+  }
 
   ionViewDidEnter() {
 
+    this.refresh();
+  }
+
+  private refresh() {
     this.network.onDisconnect().subscribe(() => {
       this.settingsService.initialized = false;
       window.location.reload();
     });
-    
     this.storage.get('tracking_number')
       .then(tracking_number => {
-        this.tracking_number = tracking_number
+        this.tracking_number = tracking_number;
         this.refreshStatus();
       });
-
-    
     this.intervalID = setInterval(() => {
       this.refreshStatus();
     }, 20000);
