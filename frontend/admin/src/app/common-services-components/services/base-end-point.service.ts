@@ -21,7 +21,7 @@ export class BaseEndPointService {
     //let url = 'http://10.0.2.2/rms2/backend/public'
     
     // REMOTE URL
-    let url = 'http://instafood.devzonesolutions.com/public';
+    let url = 'http://instafood.khantandoorionline.co.uk/public';
 
     return this.isApp ? corsUrl + url : url;
     
