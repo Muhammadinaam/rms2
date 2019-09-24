@@ -16,6 +16,14 @@ export const MENU_ITEMS: NbMenuItem[] = [
     icon: 'nb-grid-a-outline',
     children: [
       {
+        title: 'Push Notifications',
+        icon: 'nb-person',
+        link: '/pages/push-notifications',
+        data: {
+          permission_idt: 'push-notifications',
+        }
+      },
+      {
         title: 'Users',
         icon: 'nb-person',
         link: '/pages/users',
@@ -95,8 +103,6 @@ export const MENU_ITEMS: NbMenuItem[] = [
           permission_idt: 'top-areacodes-report',
         }
       },
-
-
     ],
   },
   {

@@ -21,6 +21,7 @@ import { ReceipttypesAddEditComponent } from './receipttypes/receipttypes-add-ed
 import { TopSellingItemsComponent } from './reports/top-selling-items/top-selling-items.component';
 import { TopAreacodesComponent } from './reports/top-areacodes/top-areacodes.component';
 import { SalesAndTaxReportComponent } from './reports/sales-and-tax-report/sales-and-tax-report.component';
+import { PushNotificationsComponent } from './push-notifications/push-notifications.component';
 
 const routes: Routes = [{
   path: '',
@@ -32,6 +33,10 @@ const routes: Routes = [{
     //   component: DashboardComponent,
     // },
     
+    {
+      path: 'push-notifications',
+      component: PushNotificationsComponent,
+    },
     {
       path: 'users',
       component: UsersListComponent,

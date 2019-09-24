@@ -70,6 +70,10 @@ export class UserService implements DataServiceInterface {
       {'idt' : 'sales-report', 'title' : 'Sales Report'},
       {'idt' : 'top-selling-items-report', 'title' : 'Top Selling Items'},
       {'idt' : 'top-areacodes-report', 'title' : 'Top Areacodes'},
+    ],
+    'Push Notifications' :
+    [
+      {'idt' : 'push-notifications', 'title' : 'Push Notifications'},
     ]
   };
 
