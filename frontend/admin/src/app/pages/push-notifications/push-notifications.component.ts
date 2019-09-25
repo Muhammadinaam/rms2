@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpBackend } from '@angular/common/http';
+import { SettingsService } from '../../common-services-components/services/settings.service';
 
 @Component({
   selector: 'push-notifications',
@@ -7,13 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PushNotificationsComponent implements OnInit {
 
-  constructor() { }
+  private http: HttpClient;
+
+  data = {
+    title: '',
+    message: '',
+  };
+
+  constructor(handler: HttpBackend, private settings: SettingsService) { 
+    this.http = new HttpClient(handler);
+  }
 
   ngOnInit() {
   }
 
-  openPushNotifications() {
-    window.open("https://app.onesignal.com", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=0,left=0,width=5000,height=5000");
-  }
+  submit() {
 
+    let appId = this.settings.getSettingFromArray('app-id');
+    let apiKey = this.settings.getSettingFromArray('api-key');
+
+    let body = {
+      "app_id": appId,
+      "included_segments": ["All"],
+      "headings": {"en": this.data.title},
+      "contents": {"en": this.data.message}
+    };
+
+    this.http.post("https://onesignal.com/api/v1/notifications", body, {
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+        "Authorization": "Basic " + apiKey,
+      }
+    }).subscribe(resp => {
+      alert('Sent Successfully');
+      this.data.title = '';
+      this.data.message = '';
+    }, error => {
+      alert('Error occurred');
+    });
+  }
 }

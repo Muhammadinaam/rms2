@@ -15,7 +15,7 @@ export class BaseEndPointService {
     let corsUrl = 'https://cors-anywhere.herokuapp.com/';
 
     // LOCAL URL
-    //let url = 'http://localhost/rms2/backend/public';
+    // let url = 'http://localhost/rms2/backend/public';
 
     // EMULATOR URL
     //let url = 'http://10.0.2.2/rms2/backend/public'
